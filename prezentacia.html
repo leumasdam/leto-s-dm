@@ -42,6 +42,9 @@
   .s-veil{position:absolute;inset:0;z-index:0;pointer-events:none;
     background:linear-gradient(180deg,rgba(255,255,255,.74) 0%,rgba(255,255,255,.5) 26%,rgba(255,255,255,.5) 100%);}
   .slide.navy .s-veil{background:linear-gradient(180deg,rgba(0,26,54,.72) 0%,rgba(0,26,54,.52) 26%,rgba(0,26,54,.52) 100%);}
+  /* titulka (mimo mobilu) — fotka na pozadí ostrá a viditeľná */
+  .slide:first-child .s-bg{filter:saturate(1.12);opacity:1;}
+  .slide:first-child .s-veil{background:linear-gradient(180deg,rgba(0,26,54,.20) 0%,rgba(0,26,54,.32) 48%,rgba(0,26,54,.68) 100%);}
   .bokeh{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
   .bokeh i{position:absolute;border-radius:50%;}
   /* newsletter vizuály */
@@ -515,6 +518,9 @@
     .persona .pbody{padding:9px 11px 11px;}
     .persona h3{font-size:14px;}
     .persona p{font-size:11.5px;}
+    /* na telefóne titulka ostáva s rozmazaným pozadím */
+    .slide:first-child .s-bg{filter:blur(15px) saturate(1.25);opacity:.8;}
+    .slide:first-child .s-veil{background:linear-gradient(180deg,rgba(0,26,54,.72) 0%,rgba(0,26,54,.52) 26%,rgba(0,26,54,.52) 100%);}
     /* na telefóne skryť „Tip: listujte..." */
     .title-tip{display:none;}
     /* slnko zatlačené do rohu */

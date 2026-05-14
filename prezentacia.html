@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leto s dm — Letná e-mailová kampaň 2026</title>
+<style>
+  :root{
+    --navy:#003a78; --navy-deep:#002b54; --blue:#0a6fc2;
+    --blue-light:#eaf4fb; --blue-mist:#f3f9fd;
+    --yellow:#ffcc00; --red:#e2001a; --pink:#e6007e;
+    --mint:#1faa6f; --mint-light:#e7f7ef;
+    --ink:#0d2240; --muted:#5b7088; --line:#dce6ef; --white:#ffffff;
+    --radius:20px;
+    --shadow:0 18px 50px -18px rgba(0,40,90,.28);
+    --shadow-sm:0 12px 32px -16px rgba(0,40,90,.22);
+    --pad-x:72px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{
+    font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+    color:var(--ink); background:var(--navy-deep);
+    -webkit-font-smoothing:antialiased;
+  }
+  .deck{scroll-snap-type:y mandatory;overflow-y:auto;height:100vh;scroll-behavior:smooth;}
+
+  /* ===== SLIDE SKELETON: head / body / foot ===== */
+  .slide{
+    scroll-snap-align:start;
+    min-height:100vh;
+    display:flex; flex-direction:column;
+    position:relative;
+    background:linear-gradient(160deg,#f2eafa 0%,#fdfbff 60%);
+  }
+  .slide > *:not(.bokeh):not(.s-bg):not(.s-veil):not(.title-sun):not(.title-logo){position:relative;z-index:1;}
+  .s-bg{position:absolute;inset:-44px;background-size:cover;background-position:center;
+    filter:blur(15px) saturate(1.25);opacity:.92;z-index:0;pointer-events:none;}
+  .slide.navy .s-bg{opacity:.8;}
+  /* svetlý závoj — drží fotku viditeľnú, ale text čitateľný */
+  .s-veil{position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:linear-gradient(180deg,rgba(255,255,255,.74) 0%,rgba(255,255,255,.5) 26%,rgba(255,255,255,.5) 100%);}
+  .slide.navy .s-veil{background:linear-gradient(180deg,rgba(0,26,54,.72) 0%,rgba(0,26,54,.52) 26%,rgba(0,26,54,.52) 100%);}
+  .bokeh{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
+  .bokeh i{position:absolute;border-radius:50%;}
+  /* newsletter vizuály */
+  .nl-shot{width:430px;border-radius:18px;box-shadow:var(--shadow);display:block;border:1px solid rgba(255,255,255,.7);}
+  .map-shot{width:100%;height:82px;object-fit:cover;object-position:top;border-radius:9px;
+    margin-bottom:5px;border:1px solid rgba(0,40,90,.08);}
+
+  .s-head{
+    flex-shrink:0;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px var(--pad-x) 14px;
+  }
+  .s-head-l{display:flex;align-items:center;gap:15px;}
+  .s-logo{height:24px;display:block;}
+  .s-head-div{width:1px;height:20px;background:var(--line);}
+  .s-head-r{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;}
+
+  .s-body{
+    flex:1;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:14px var(--pad-x) 14px;
+    position:relative;
+  }
+  .s-inner{width:100%;max-width:1480px;}
+
+  .s-foot{
+    flex-shrink:0;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px var(--pad-x) 22px;
+    border-top:1px solid rgba(0,40,90,.07);
+    margin:0 var(--pad-x);
+    padding-left:0;padding-right:0;
+  }
+  .s-foot-tag{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+  .s-foot-no{font-size:11.5px;font-weight:800;letter-spacing:.08em;color:var(--muted);}
+
+  /* tones */
+  .slide.navy{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;}
+  .slide.navy .s-head-r,.slide.navy .s-foot-tag,.slide.navy .s-foot-no{color:#7fa3c8;}
+  .slide.navy .s-head-div{background:rgba(255,255,255,.18);}
+  .slide.navy .s-foot{border-top-color:rgba(255,255,255,.12);}
+  .slide.mint{background:linear-gradient(150deg,#e4f6ec 0%,#f3fbf7 65%);}
+  .slide:nth-of-type(2){background:linear-gradient(160deg,#f2eafa 0%,#fdfbff 62%);}
+  .slide:nth-of-type(3){background:linear-gradient(160deg,#fdebdd 0%,#fffdfa 62%);}
+  .slide:nth-of-type(4){background:linear-gradient(160deg,#e6effb 0%,#fbfdff 62%);}
+  .slide:nth-of-type(5){background:linear-gradient(160deg,#fde7f0 0%,#fffdfe 62%);}
+  .slide:nth-of-type(7){background:linear-gradient(160deg,#f0e9f8 0%,#fdfcff 58%);}
+  .slide:nth-of-type(8){background:linear-gradient(160deg,#e6effb 0%,#fbfdff 62%);}
+  .slide:nth-of-type(9){background:linear-gradient(160deg,#fdeee0 0%,#fffefb 58%);}
+  .slide:nth-of-type(10){background:linear-gradient(160deg,#e6f6ed 0%,#fbfefc 62%);}
+  .slide:nth-of-type(11){background:linear-gradient(160deg,#fde7f0 0%,#fffdfe 62%);}
+  .slide:nth-of-type(12){background:linear-gradient(160deg,#f2eafa 0%,#fdfbff 62%);}
+  .slide:nth-of-type(13){background:linear-gradient(160deg,#e6effb 0%,#fbfdff 62%);}
+  .slide:nth-of-type(14){background:linear-gradient(160deg,#fde7f0 0%,#fffdfe 62%);}
+  .slide:nth-of-type(15){background:linear-gradient(160deg,#e6f6ed 0%,#fbfefc 62%);}
+  .slide:nth-of-type(17){background:linear-gradient(160deg,#fdebdd 0%,#fffdfa 62%);}
+  .slide:nth-of-type(18){background:linear-gradient(160deg,#f2eafa 0%,#fdfbff 62%);}
+  .slide:nth-of-type(19){background:linear-gradient(160deg,#e6effb 0%,#fbfdff 62%);}
+
+  /* ===== typography ===== */
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);
+  }
+  .navy .kicker{color:var(--yellow);}
+  .mint .kicker{color:var(--mint);}
+  .kicker::before{content:"";width:22px;height:3px;border-radius:3px;background:currentColor;}
+  h1{font-size:56px;line-height:1.05;font-weight:800;letter-spacing:-.02em;}
+  h2{font-size:40px;line-height:1.12;font-weight:800;letter-spacing:-.02em;margin-bottom:7px;}
+  h3{font-size:21.5px;font-weight:800;line-height:1.2;}
+  .lead{font-size:18px;line-height:1.56;color:#3a4f63;font-weight:500;max-width:960px;}
+  .navy .lead{color:#bcd4ec;}
+  .mint .lead{color:#3c6b53;}
+  p{line-height:1.55;}
+
+  /* continuity */
+  .continuity{
+    margin-top:18px;display:flex;align-items:center;gap:14px;
+    background:#fffaf0;border:1px solid #ffe199;border-left:5px solid var(--yellow);
+    border-radius:12px;padding:11px 17px;
+  }
+  .continuity .lbl{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#9a7400;white-space:nowrap;}
+  .continuity p{font-size:12.5px;line-height:1.5;color:#5c4a1f;}
+  .continuity p b{color:#7a5a00;}
+  .navy .continuity{background:rgba(255,204,0,.1);border-color:rgba(255,204,0,.28);}
+  .navy .continuity .lbl{color:var(--yellow);}
+  .navy .continuity p{color:#e6d8b4;}
+  .navy .continuity p b{color:#fff;}
+
+  /* progress + nav */
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--yellow);z-index:60;transition:width .2s;}
+  .navbtns{position:fixed;right:52px;bottom:50px;z-index:60;display:flex;flex-direction:row;gap:14px;}
+  .navbtns button{
+    width:70px;height:70px;border-radius:50%;border:3px solid rgba(255,255,255,.85);cursor:pointer;
+    background:var(--navy);color:#fff;font-size:32px;font-weight:800;line-height:1;
+    box-shadow:0 16px 34px -8px rgba(0,40,90,.5);transition:transform .12s,background .12s;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .navbtns button:hover{background:var(--yellow);color:var(--navy);transform:scale(1.08);}
+  .dotrail{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:60;display:flex;flex-direction:column;gap:8px;}
+  .dotrail button{
+    width:10px;height:10px;border-radius:50%;border:2px solid #b9c9d8;background:transparent;
+    cursor:pointer;padding:0;transition:all .15s;position:relative;
+  }
+  .dotrail button:hover{border-color:var(--blue);transform:scale(1.25);}
+  .dotrail button.active{background:var(--yellow);border-color:var(--yellow);transform:scale(1.3);}
+  .dotrail button .tip{
+    position:absolute;right:19px;top:50%;transform:translateY(-50%);
+    background:var(--navy);color:#fff;font-size:10.5px;font-weight:700;white-space:nowrap;
+    padding:4px 9px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .12s;
+  }
+  .dotrail button:hover .tip{opacity:1;}
+
+  /* grids + cards */
+  .grid{display:grid;gap:16px;}
+  .g2{grid-template-columns:1fr 1fr;}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  .g4{grid-template-columns:repeat(4,1fr);}
+  .g5{grid-template-columns:repeat(5,1fr);}
+  .card{
+    background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.95);
+    border-radius:var(--radius);padding:19px;box-shadow:var(--shadow-sm);
+  }
+  .card.pad-lg{padding:24px;}
+  .card .ico{
+    width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    background:var(--blue-light);color:var(--navy);margin-bottom:11px;font-size:20px;font-weight:800;
+  }
+  .card p{font-size:14.5px;color:var(--muted);margin-top:6px;}
+  .card .big{font-size:35px;font-weight:800;color:var(--navy);line-height:1;}
+
+  .pill{display:inline-block;padding:5px 12px;border-radius:999px;font-size:11.5px;font-weight:700;background:var(--blue-light);color:var(--navy);}
+  .pill.y{background:#fff3c4;color:#7a5a00;}
+  .pill.r{background:#ffe0e3;color:#a4000f;}
+  .pill.p{background:#ffe1f0;color:#9c0055;}
+  .pill.m{background:var(--mint-light);color:#0d6b44;}
+
+  ul.clean{list-style:none;}
+  ul.clean li{position:relative;padding-left:22px;margin:6px 0;font-size:14px;line-height:1.5;color:var(--ink);}
+  ul.clean li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:var(--yellow);}
+  .navy ul.clean li{color:#dce8f5;}
+
+  /* TITLE */
+  .title-sun{position:absolute;left:-72px;top:-150px;width:460px;height:460px;border-radius:50%;
+    background:radial-gradient(circle at 54% 58%,#ffec96,#ffcc00 60%,#ffb300 84%);
+    box-shadow:0 30px 90px -16px rgba(255,179,0,.5);z-index:1;}
+  .title-logo{position:absolute;right:60px;top:46px;height:54px;width:auto;z-index:2;
+    background:#fff;padding:13px 20px;border-radius:14px;box-shadow:0 16px 38px -14px rgba(0,0,0,.45);}
+  .slide:first-child .s-body{justify-content:flex-end;padding-bottom:228px;}
+  .slide:first-child .s-inner{max-width:900px;}
+  .slide:first-child h1{font-size:60px;}
+  .slide:first-child .lead{color:#d2e2f1;font-weight:400;}
+  .title-author{margin-top:18px;font-size:12.5px;color:#8aaac7;font-weight:700;letter-spacing:.04em;}
+  .title-tip{margin-top:9px;font-size:11.5px;color:#6f93b5;}
+
+  /* persona */
+  .persona{padding:0;overflow:hidden;display:flex;flex-direction:column;}
+  .persona .photo{height:132px;background-size:cover;background-position:center;position:relative;}
+  .persona .photo .role{position:absolute;left:11px;top:11px;background:rgba(255,255,255,.94);
+    font-size:10.5px;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.05em;
+    padding:4px 10px;border-radius:999px;}
+  .persona .pbody{padding:13px 15px 16px;}
+  .persona h3{font-size:15.5px;}
+  .persona p{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.48;}
+
+  /* big idea */
+  .bigidea{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;
+    border-radius:24px;padding:40px 48px;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .bigidea .quote{font-size:40px;font-weight:800;line-height:1.12;letter-spacing:-.02em;max-width:840px;}
+  .bigidea .sub{font-size:15.5px;color:#cfe2f5;margin-top:14px;max-width:720px;line-height:1.55;}
+  .bigidea .glow{position:absolute;width:340px;height:340px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,204,0,.5),transparent 65%);right:-90px;bottom:-150px;}
+
+  /* funnel */
+  .funnel{display:flex;gap:9px;margin-top:14px;}
+  .funnel .fn{flex:1;background:rgba(255,255,255,.92);border-radius:14px;padding:12px 13px 13px;
+    border-top:5px solid var(--c);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:3px;}
+  .funnel .fn-stage{font-size:14px;font-weight:800;color:var(--navy);}
+  .funnel .fn-nl{font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--mint);}
+  .funnel .fn p{font-size:10.5px;line-height:1.4;color:var(--muted);margin-top:2px;}
+  .loop{display:flex;align-items:stretch;gap:10px;margin-top:12px;}
+  .loop-box{flex:1;border-radius:14px;padding:13px 17px;}
+  .loop-box .lh{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;}
+  .loop-box p{font-size:12.5px;line-height:1.5;}
+  .loop-box.collect{background:rgba(255,255,255,.92);border:2px solid var(--mint);}
+  .loop-box.collect .lh{color:#0d6b44;}
+  .loop-box.collect p{color:#2a6a4c;}
+  .loop-box.use{background:var(--navy);}
+  .loop-box.use .lh{color:var(--yellow);}
+  .loop-box.use p{color:#cfe2f5;}
+  .loop-arrow{display:flex;align-items:center;font-size:10.5px;font-weight:800;color:var(--mint);
+    text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;}
+  .loop-note{margin-top:9px;font-size:13px;font-weight:700;color:var(--navy);}
+  .layers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px;}
+  .layers .ly{background:rgba(255,255,255,.92);border-radius:12px;padding:11px 14px;
+    box-shadow:var(--shadow-sm);border-left:4px solid var(--mint);}
+  .layers .ly b{display:block;font-size:12.5px;color:var(--navy);margin-bottom:2px;}
+  .layers .ly span{font-size:11px;color:var(--muted);line-height:1.45;}
+
+  /* architecture */
+  .arch{margin-top:12px;}
+  .arch-top{display:flex;flex-direction:column;align-items:center;}
+  .arch-box{background:rgba(255,255,255,.95);border:1.5px solid var(--line);border-radius:12px;
+    padding:9px 16px;box-shadow:var(--shadow-sm);text-align:center;max-width:340px;}
+  .arch-box .ab-t{font-size:13px;font-weight:800;color:var(--navy);}
+  .arch-box .ab-d{font-size:10.5px;color:var(--muted);margin-top:1px;line-height:1.35;}
+  .arch-box.welcome{background:#fff8e0;border-color:#f0d480;}
+  .arch-box.seg{background:var(--blue-light);border-color:#a9cde8;}
+  .arch-conn{width:2px;height:12px;background:#c2d2e0;}
+  .arch-cols{display:flex;gap:9px;margin-top:5px;align-items:flex-start;}
+  .arch-col{flex:1;display:flex;flex-direction:column;align-items:center;}
+  .arch-col .ac-box{width:100%;border-radius:11px;padding:8px 10px;border:1.5px solid var(--c);background:var(--cb);text-align:center;}
+  .arch-col .ac-seg .t{font-size:12px;font-weight:800;color:var(--navy);}
+  .arch-col .ac-seg .d{font-size:9.5px;color:var(--muted);margin-top:1px;}
+  .arch-col .ac-nl{background:rgba(255,255,255,.96) !important;}
+  .arch-col .ac-nl .t{font-size:11.5px;font-weight:800;color:var(--navy);}
+  .arch-col .ac-nl .d{font-size:9px;color:var(--muted);margin-top:1px;}
+  .arch-col .ac-cond{background:rgba(255,255,255,.96) !important;border-style:dashed !important;}
+  .arch-col .ac-cond .t{font-size:10.5px;font-weight:800;color:var(--ink);}
+  .arch-branch{display:flex;gap:5px;width:100%;margin-top:5px;}
+  .arch-branch .br{flex:1;border-radius:8px;padding:5px 6px;font-size:8.5px;line-height:1.3;text-align:center;font-weight:600;}
+  .arch-branch .yes{background:var(--mint-light);color:#0d6b44;}
+  .arch-branch .no{background:#ffe7ea;color:#a4000f;}
+  .arch-bottom{display:flex;gap:10px;margin-top:11px;}
+  .arch-bottom .abx{flex:1;background:rgba(255,255,255,.92);border:1.5px solid var(--line);border-radius:12px;
+    padding:10px 14px;display:flex;gap:10px;align-items:center;}
+  .arch-bottom .abx .ic{font-size:20px;}
+  .arch-bottom .abx b{font-size:12px;color:var(--navy);}
+  .arch-bottom .abx p{font-size:10.5px;color:var(--muted);margin-top:1px;}
+
+  /* per-phase flow */
+  .pflows{display:flex;flex-direction:column;gap:9px;margin-top:13px;}
+  .pflow{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.92);border:1px solid var(--line);
+    border-left:5px solid var(--c);border-radius:13px;padding:10px 13px;box-shadow:var(--shadow-sm);}
+  .pflow .pf-nl{flex-shrink:0;width:70px;}
+  .pflow .pf-nl .n{font-size:13.5px;font-weight:800;color:var(--navy);}
+  .pflow .pf-nl .s{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--c2);}
+  .pflow .step{background:var(--blue-mist);border-radius:9px;padding:6px 10px;flex:1;}
+  .pflow .step .l{font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);}
+  .pflow .step .v{font-size:11px;color:var(--ink);line-height:1.3;margin-top:1px;font-weight:600;}
+  .pflow .step.cond{background:#fff8e0;}
+  .pflow .step.cond .l{color:#9a7400;}
+  .pflow .arr{color:#9fb2c4;font-weight:800;font-size:12px;flex-shrink:0;}
+  .pflow .branch{flex-shrink:0;display:flex;flex-direction:column;gap:4px;width:150px;}
+  .pflow .branch .b{border-radius:8px;padding:4px 8px;font-size:9px;line-height:1.3;font-weight:600;}
+  .pflow .branch .yes{background:var(--mint-light);color:#0d6b44;}
+  .pflow .branch .no{background:#ffe7ea;color:#a4000f;}
+
+  /* segment worlds */
+  .worlds{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px;}
+  .world{background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.95);border-radius:18px;
+    overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;}
+  .world .wimg{height:172px;background-size:cover;background-position:center;position:relative;}
+  .world .wimg .wtag{position:absolute;left:13px;bottom:13px;background:rgba(255,255,255,.95);
+    border-radius:999px;padding:5px 13px;font-size:11.5px;font-weight:800;color:var(--navy);}
+  .world .wbody{padding:15px 17px 17px;}
+  .world h3{font-size:16px;}
+  .world .wmeta{font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.05em;margin-top:3px;}
+  .world p{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.5;}
+  .world .wtags{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px;}
+
+  /* campaign map */
+  .map{display:flex;flex-direction:column;margin-top:4px;}
+  .map-track{display:flex;gap:12px;align-items:stretch;}
+  .map-node{flex:1;background:rgba(255,255,255,.93);border:1.5px solid var(--line);border-radius:16px;
+    padding:13px 12px;position:relative;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:4px;}
+  .map-node .step{font-size:10px;font-weight:800;letter-spacing:.09em;color:var(--blue);text-transform:uppercase;}
+  .map-node h3{font-size:14.5px;line-height:1.15;}
+  .map-node .when{font-size:11px;color:var(--muted);font-weight:700;}
+  .map-node .role{font-size:10px;font-weight:800;color:var(--mint);text-transform:uppercase;letter-spacing:.05em;}
+  .map-node .mech{font-size:10.5px;color:var(--muted);line-height:1.4;}
+  .map-node .dot{position:absolute;right:-9px;top:50%;transform:translateY(-50%);
+    width:20px;height:20px;border-radius:50%;background:var(--yellow);color:var(--navy);
+    display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;z-index:2;}
+  .map-node:last-child .dot{display:none;}
+  .map-node.hero-node{border-color:var(--yellow);border-width:2.5px;}
+  .map-thread{margin-top:12px;background:var(--mint-light);border:1.5px dashed var(--mint);
+    border-radius:14px;padding:12px 18px;display:flex;align-items:center;gap:16px;}
+  .map-thread .ic{font-size:23px;}
+  .map-thread b{color:#0d6b44;}
+  .map-thread p{font-size:12.5px;color:#2a6a4c;line-height:1.5;}
+  .map-auto{display:flex;gap:10px;margin-top:10px;}
+  .map-auto .a{flex:1;background:rgba(255,255,255,.92);border:1.5px solid var(--line);
+    border-left:5px solid var(--pink);border-radius:12px;padding:10px 12px;}
+  .map-auto .a h3{font-size:12.5px;}
+  .map-auto .a p{font-size:10.5px;color:var(--muted);margin-top:2px;}
+
+  /* phone mockup */
+  .mock{width:100%;max-width:264px;background:#fff;border-radius:24px;border:1px solid var(--line);
+    box-shadow:var(--shadow);overflow:hidden;}
+  .mock .m-top{height:26px;background:#fff;border-bottom:1px solid var(--line);
+    display:flex;align-items:center;gap:7px;padding:0 13px;}
+  .mock .m-top img{height:12px;}
+  .mock .m-top .dots{margin-left:auto;display:flex;gap:4px;}
+  .mock .m-top .dots i{width:5px;height:5px;border-radius:50%;background:#cdd9e3;}
+  .mock .m-hero{padding:17px;color:#fff;background-size:cover;background-position:center;}
+  .mock .m-hero .pre{font-size:8px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;opacity:.95;}
+  .mock .m-hero h4{font-size:18px;font-weight:800;margin:4px 0 6px;line-height:1.06;}
+  .mock .m-hero p{font-size:9.5px;line-height:1.42;opacity:.96;}
+  .mock .m-cta{display:inline-block;margin-top:8px;background:var(--yellow);color:var(--navy);
+    font-size:9.5px;font-weight:800;padding:7px 12px;border-radius:999px;}
+  .mock .m-body{padding:13px 15px;}
+  .mock .m-block{background:var(--blue-mist);border-radius:10px;padding:8px 10px;margin-bottom:6px;}
+  .mock .m-block .lbl{font-size:8px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);}
+  .mock .m-block h5{font-size:11px;margin:2px 0;}
+  .mock .m-block p{font-size:9px;color:var(--muted);line-height:1.4;}
+  .mock .m-mech{background:#fff3c4;border:1px dashed #e0b400;border-radius:10px;padding:8px 10px;}
+  .mock .m-mech .lbl{font-size:8px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#9a7400;}
+  .mock .m-mech p{font-size:9px;color:#7a5a00;line-height:1.4;margin-top:2px;}
+  .mock .m-foot{background:var(--navy);padding:9px 15px;text-align:center;}
+  .mock .m-foot img{height:12px;}
+
+  .nl-detail{display:grid;grid-template-columns:430px 1fr;gap:38px;align-items:start;}
+  .nl-detail .meta-row{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 12px;}
+  .nl-spec{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .nl-spec .s{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:13px;padding:14px 17px;}
+  .nl-spec .s .t{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);margin-bottom:4px;}
+  .nl-spec .s p{font-size:13.5px;color:var(--ink);line-height:1.48;}
+  .nl-spec .s.link{border-color:var(--yellow);background:#fffaf0;}
+  .nl-spec .s.link .t{color:#9a7400;}
+  .nl-auto{margin-top:11px;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:12px;padding:11px 14px;}
+  .nl-auto .nat{font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--pink);margin-bottom:7px;}
+  .nl-auto .nasteps{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .nl-auto .nastep{background:var(--blue-mist);border-radius:8px;padding:5px 9px;font-size:10px;font-weight:600;color:var(--ink);}
+  .nl-auto .nastep.t{background:#fff8e0;color:#7a5a00;}
+  .nl-auto .nastep.y{background:var(--mint-light);color:#0d6b44;}
+  .nl-auto .nastep.n{background:#ffe7ea;color:#a4000f;}
+  .nl-auto .naarr{color:#9fb2c4;font-weight:800;font-size:11px;}
+
+  /* callouts */
+  .callout{border-radius:17px;padding:21px 23px;position:relative;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:space-between;min-height:140px;}
+  .callout .ctxt{font-size:20px;font-weight:800;line-height:1.18;letter-spacing:-.01em;}
+  .callout .cmeta{font-size:11.5px;font-weight:700;margin-top:10px;opacity:.85;}
+  .co-navy{background:var(--navy);color:#fff;} .co-navy .cmeta{color:var(--yellow);}
+  .co-yellow{background:var(--yellow);color:var(--navy-deep);}
+  .co-pink{background:var(--pink);color:#fff;}
+  .co-mint{background:var(--mint);color:#fff;}
+  .co-light{background:rgba(255,255,255,.95);color:var(--navy);border:2px solid var(--line);}
+  .co-red{background:var(--red);color:#fff;}
+
+  /* identity */
+  .swatch{height:80px;border-radius:13px;display:flex;align-items:flex-end;padding:10px;
+    font-size:11px;font-weight:700;box-shadow:var(--shadow-sm);}
+  .comp-demo{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+  .btn-demo{padding:10px 18px;border-radius:999px;font-weight:800;font-size:13px;border:none;}
+  .btn-y{background:var(--yellow);color:var(--navy);}
+  .btn-n{background:var(--navy);color:#fff;}
+  .btn-o{background:#fff;color:var(--navy);border:2px solid var(--navy);}
+
+  /* timeline */
+  .tl{display:flex;flex-direction:column;margin-top:4px;}
+  .tl-month{display:flex;gap:15px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);}
+  .tl-month:last-child{border-bottom:none;}
+  .tl-month .mname{width:120px;flex-shrink:0;font-size:19px;font-weight:800;color:var(--navy);}
+  .tl-month .mname span{display:block;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+  .tl-items{display:flex;gap:8px;flex-wrap:wrap;flex:1;}
+  .tl-item{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:10px;padding:7px 12px;
+    font-size:12px;font-weight:700;display:flex;align-items:center;gap:7px;box-shadow:var(--shadow-sm);}
+  .tl-item .dotc{width:8px;height:8px;border-radius:50%;}
+
+  /* kpi */
+  .kpi{text-align:left;}
+  .kpi .num{font-size:36px;font-weight:800;color:var(--navy);line-height:1;}
+  .kpi .num small{font-size:17px;}
+  .kpi .lbl{font-size:12.5px;font-weight:700;color:var(--ink);margin-top:5px;}
+  .kpi .sub{font-size:11px;color:var(--muted);margin-top:2px;}
+
+  .two-col{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;}
+
+  .agenda-list{display:grid;grid-template-columns:1fr 1fr;gap:6px 34px;margin-top:4px;}
+  .agenda-item{display:flex;gap:12px;align-items:center;padding:8px;border-bottom:1px solid var(--line);
+    cursor:pointer;border-radius:8px;transition:background .12s;}
+  .agenda-item:hover{background:rgba(255,255,255,.7);}
+  .agenda-item .n{width:29px;height:29px;border-radius:9px;background:var(--navy);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;flex-shrink:0;}
+  .agenda-item .tt{font-size:14px;font-weight:700;}
+  .agenda-item .ts{font-size:12px;color:var(--muted);}
+
+  @media print{
+    .deck{height:auto;overflow:visible;}
+    .slide{page-break-after:always;}
+    .progress,.navbtns,.dotrail{display:none;}
+  }
+  @media (max-width:1240px){
+    :root{--pad-x:40px;}
+    h1{font-size:40px;} h2{font-size:28px;}
+    .g5,.g4{grid-template-columns:repeat(2,1fr);}
+    .g3,.worlds{grid-template-columns:1fr 1fr;}
+    .nl-detail,.two-col{grid-template-columns:1fr;gap:22px;}
+    .map-track,.funnel,.arch-cols{flex-wrap:wrap;}
+    .map-node,.funnel .fn,.arch-col{flex:1 1 30%;}
+    .agenda-list{grid-template-columns:1fr;}
+    .loop,.arch-bottom{flex-direction:column;}
+    .layers{grid-template-columns:1fr;}
+    .dotrail{display:none;}
+    .pflow{flex-wrap:wrap;}
+    /* na mobile posuň fotku doľava a trochu ju oddiaľ (menší zoom) */
+    .s-bg{background-position:calc(50% - 400px) center;background-size:330%;}
+    /* titulka na mobile — text content nižšie, ako bolo pôvodne */
+    .slide:first-child .s-body{justify-content:flex-end;padding-bottom:116px;}
+    .slide:first-child h1{font-size:38px;}
+    .slide:first-child .s-inner{max-width:none;}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck" id="deck">
+
+  <!-- 1 — TITLE -->
+  <section class="slide navy">
+    <div class="title-sun"></div>
+    <img class="title-logo" src="dm-logo.png" alt="dm">
+    <div class="s-body">
+      <div class="s-inner">
+        <div class="kicker">Letná e-mailová kampaň 2026 &nbsp;·&nbsp; Stratégia · Systém · Automatizácia · Dizajn</div>
+        <h1 style="margin-top:14px;">Leto s dm<br><span style="color:var(--yellow);">Od prvého lúča<br>po posledný festival.</span></h1>
+        <p class="lead" style="margin-top:18px;">Kompletný koncept letnej e-mailovej kampane — segmentácia, prepojená séria newsletterov, automatizačná architektúra, gamifikačné mechaniky, vizuálna identita a meranie výsledkov.</p>
+        <p class="title-author">Pripravil: Samuel Zenko &nbsp;·&nbsp; Máj 2026 &nbsp;·&nbsp; Portfólio — e-mail marketing &amp; kampaňová stratégia</p>
+        <p class="title-tip">Tip: listujte šípkami ← → alebo bodkami vpravo. Obsah na ďalšom slide je klikateľný.</p>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Titulka</span><span class="s-foot-no">01 / 20</span></div>
+  </section>
+
+  <!-- 2 — AGENDA -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">Obsah prezentácie</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Čo vás čaká na 20 slidoch</h2>
+        <p class="lead">Od obchodného zadania cez systém a automatizáciu až po čísla. Kliknite na ktorúkoľvek kapitolu — prejde vás priamo na ňu.</p>
+        <div class="agenda-list">
+          <div class="agenda-item" data-go="2"><div class="n">01</div><div><div class="tt">Východisko &amp; ciele</div><div class="ts">Prečo leto a čo má kampaň priniesť</div></div></div>
+          <div class="agenda-item" data-go="3"><div class="n">02</div><div><div class="tt">Cieľové skupiny</div><div class="ts">5 letných persón a ich potreby</div></div></div>
+          <div class="agenda-item" data-go="4"><div class="n">03</div><div><div class="tt">Veľká myšlienka &amp; logika celku</div><div class="ts">Koncept + ako 6 NL tvorí jeden lievik</div></div></div>
+          <div class="agenda-item" data-go="6"><div class="n">04</div><div><div class="tt">Newsletteringový systém</div><div class="ts">Architektúra, mapa, automatizácia podľa fáz</div></div></div>
+          <div class="agenda-item" data-go="9"><div class="n">05</div><div><div class="tt">Mechaniky &amp; segmentové svety</div><div class="ts">Gamifikácia, personalizácia, vizuály segmentov</div></div></div>
+          <div class="agenda-item" data-go="11"><div class="n">06</div><div><div class="tt">Varianty &amp; detaily NL</div><div class="ts">3 kľúčové newslettery rozpísané</div></div></div>
+          <div class="agenda-item" data-go="15"><div class="n">07</div><div><div class="tt">Copywriting &amp; callouty</div><div class="ts">Úderné letné texty</div></div></div>
+          <div class="agenda-item" data-go="16"><div class="n">08</div><div><div class="tt">Vizuálna identita &amp; ukážka</div><div class="ts">dm brand v e-maile + funkčný výstup</div></div></div>
+          <div class="agenda-item" data-go="18"><div class="n">09</div><div><div class="tt">Harmonogram</div><div class="ts">Kalendár jún – august</div></div></div>
+          <div class="agenda-item" data-go="19"><div class="n">10</div><div><div class="tt">Meranie &amp; ďalšie kroky</div><div class="ts">KPI a čo nasleduje</div></div></div>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Červená niť</span>
+          <p><b>6 newsletterov nie je 6 kampaní — je to jeden lievik, ktorý beží na automatizačnej architektúre.</b> Pruh „Kde sme" na každom slide ukazuje, kde v tom systéme práve sme.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Obsah</span><span class="s-foot-no">02 / 20</span></div>
+  </section>
+
+  <!-- 3 — VYCHODISKO -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">01 — Východisko &amp; ciele</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Leto je pre drogériu najsilnejší príbeh roka</h2>
+        <p class="lead">Mení sa nákupné správanie, pribúdajú sezónne potreby a zákazník je otvorený inšpirácii. E-mail je kanál, ktorý ho prevedie celým letom — nie jeden výkrik, ale sprievodca.</p>
+        <div class="grid g3" style="margin-top:18px;">
+          <div class="card"><div class="ico">☀️</div><h3>Sezónny dopyt</h3><p>Opaľovacia kozmetika, after-sun, cestovné balenia, repelenty — kategórie, ktoré inokedy nepredáte.</p></div>
+          <div class="card"><div class="ico">🎒</div><h3>Zmena rytmu</h3><p>Dovolenky, festivaly, deti doma. Zákazník nakupuje inak — a inokedy. E-mail to vie načasovať.</p></div>
+          <div class="card"><div class="ico">💛</div><h3>Priestor pre vzťah</h3><p>Leto je „ľahká" sezóna. Ideálny čas budovať vernosť cez Svet výhod dm, nie len tlačiť zľavy.</p></div>
+        </div>
+        <h3 style="margin-top:20px;">Ciele kampane</h3>
+        <div class="grid g4" style="margin-top:10px;">
+          <div class="card"><div class="big">+18 %</div><p>medziročný obrat letných kategórií z e-mailu</p></div>
+          <div class="card"><div class="big">+25 %</div><p>nárast zapojených odberateľov vo Svete výhod dm</p></div>
+          <div class="card"><div class="big">35 %+</div><p>priemerný open rate naprieč sériou</p></div>
+          <div class="card"><div class="big">&lt; 0,3 %</div><p>miera odhlásení — relevancia pred frekvenciou</p></div>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — PREČO</span>
+          <p><b>Toto je základ celej kampane.</b> Tieto štyri ciele sa vrátia na poslednom slide ako KPI — kruh sa uzavrie. Všetko medzi tým je cesta presne k týmto číslam.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Východisko</span><span class="s-foot-no">03 / 20</span></div>
+  </section>
+
+  <!-- 4 — PERSONY -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">02 — Cieľové skupiny</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Päť letných persón, päť rôznych liet</h2>
+        <p class="lead">Každý newsletter vie cez segment a dynamický obsah ukázať tomu istému e-mailu inú tvár. Toto sú ľudia, pre ktorých kampaň píšeme — a podľa nich vyberáme vizuály.</p>
+        <div class="grid g5" style="margin-top:16px;">
+          <div class="card persona">
+            <div class="photo" style="background-image:url('img-festival-ema.png');"><span class="role">Festival</span></div>
+            <div class="pbody"><h3>Festivalová Ema</h3><p>18–26 r. Trblietky, výrazný makeup, suchý šampón, mini balenia. Žije Instagramom.</p></div>
+          </div>
+          <div class="card persona">
+            <div class="photo" style="background-image:url('img-rodina-plaz.png');"><span class="role">Rodina</span></div>
+            <div class="pbody"><h3>Rodina na dovolenke</h3><p>30–45 r. Detské opaľováky s vysokým SPF, lekárnička, dmBio snacky na cesty.</p></div>
+          </div>
+          <div class="card persona">
+            <div class="photo" style="background-image:url('img-beauty-glam.png');"><span class="role">Beauty</span></div>
+            <div class="pbody"><h3>Beauty nadšenkyňa</h3><p>25–40 r. alverde, after-sun rituály, ochrana vlasov a pleti. Hľadá kvalitu.</p></div>
+          </div>
+          <div class="card persona">
+            <div class="photo" style="background-image:url('img-rodina-piknik.png');"><span class="role">Mesto</span></div>
+            <div class="pbody"><h3>Mestský typ</h3><p>25–50 r. Ostal v meste. Osvieženie, hydratácia, pikniky, „leto v parku a na balkóne".</p></div>
+          </div>
+          <div class="card persona">
+            <div class="photo" style="background-image:url('img-rodina-aftersun.png');"><span class="role">Vernosť</span></div>
+            <div class="pbody"><h3>Zberateľ výhod</h3><p>Naprieč vekom. Reaguje na body a personalizované zľavy. Srdce Sveta výhod dm.</p></div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:14px;display:flex;align-items:center;gap:16px;">
+          <div style="font-size:26px;">🎯</div>
+          <p style="font-size:13.5px;color:var(--muted);"><b style="color:var(--ink);">Princíp:</b> jeden master e-mail, viacero segmentových verzií. Hero vizuál, hlavný produkt a CTA sa menia podľa persóny — štruktúra a brand ostávajú rovnaké. Menej výroby, vyššia relevancia.</p>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — KOMU</span>
+          <p><b>Týchto 5 persón nie sú portréty do šuflíka.</b> Sú to priamo 5 vetiev automatizačného systému (slide 7) a 5 verzií hero bloku. Persóna = vstup, z ktorého sa odvíja celá personalizácia aj výber fotiek.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Segmentácia</span><span class="s-foot-no">04 / 20</span></div>
+  </section>
+
+  <!-- 5 — VELKA MYSLIENKA -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">03 — Veľká myšlienka</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Koncept, ktorý drží šesť e-mailov pokope</h2>
+        <div class="bigidea" style="margin-top:14px;">
+          <div class="glow"></div>
+          <div style="position:relative;z-index:2;">
+            <div class="kicker" style="color:var(--yellow);">Big idea</div>
+            <div class="quote" style="margin-top:8px;">„Leto má 92 dní.<br>dm je pri každom z nich."</div>
+            <p class="sub">Kampaň nie je séria zliav — je to <b style="color:#fff;">sprievodca letom</b>. Každý newsletter je jedna kapitola: príprava, festivaly, dovolenka, mesto, doznievanie. Zákazník neotvára reklamu, otvára ďalšiu časť svojho leta. A dm je tá samozrejmá vec, ktorá tam celý čas je.</p>
+          </div>
+        </div>
+        <div class="grid g3" style="margin-top:14px;">
+          <div class="card"><div class="ico" style="background:#fff3c4;color:#7a5a00;">🧭</div><h3>Sprievodca, nie predajca</h3><p>Tón „leto zvládneme spolu". Produkt je riešenie reálnej letnej situácie.</p></div>
+          <div class="card"><div class="ico" style="background:#ffe1f0;color:var(--pink);">🔗</div><h3>Kapitoly na seba nadväzujú</h3><p>Každý e-mail teasuje ďalší. Vzniká očakávanie — a dôvod neodhlásiť sa.</p></div>
+          <div class="card"><div class="ico" style="background:var(--mint-light);color:var(--mint);">🏆</div><h3>Jedna niť cez celé leto</h3><p>Vernostná „letná cesta" — zbieraj body naprieč kampaňou, odmena príde v auguste.</p></div>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — AKO o tom hovoríme</span>
+          <p><b>Toto je obal a tón, ktorý drží 6 dielov pokope.</b> Ale obal sám o sebe nestačí — ďalší slide ukáže mechaniku celku: ako tých 6 newsletterov funguje ako jeden lievik.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Koncept</span><span class="s-foot-no">05 / 20</span></div>
+  </section>
+
+  <!-- 6 — LOGIKA CELKU -->
+  <section class="slide mint">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">03 — Logika celku</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Šesť newsletterov = jeden lievik cez celé leto</h2>
+        <p class="lead">Nie šesť emailov. Jeden seriál — každý diel posúva zákazníka ďalej a stojí na predošlom. Toto je chrbtica, na ktorej visí celý systém.</p>
+        <div class="funnel">
+          <div class="fn" style="--c:#9fd9bb;"><div class="fn-stage">Spoznaj</div><div class="fn-nl">NL 0 · máj</div><p>Ešte nepredávam. Zbieram záujmy a náladu na leto.</p></div>
+          <div class="fn" style="--c:#7fcda8;"><div class="fn-stage">Aktivuj</div><div class="fn-nl">NL 1 · jún</div><p>Prvý nákup sezóny — opaľováky. Rozbeh.</p></div>
+          <div class="fn" style="--c:#5cbf93;"><div class="fn-stage">Profiluj</div><div class="fn-nl">NL 2 · jún</div><p>Kvíz vyťahuje dáta. Kampaň sa učí, kto si.</p></div>
+          <div class="fn" style="--c:#3aae7c;"><div class="fn-stage">Naplň košík</div><div class="fn-nl">NL 3 · júl</div><p>Najväčší obrat. Ponuka ušitá na tvoje dáta.</p></div>
+          <div class="fn" style="--c:#239367;"><div class="fn-stage">Udrž</div><div class="fn-nl">NL 4 · august</div><p>Pre tých, čo ostali doma. Vzťah nepúšťam.</p></div>
+          <div class="fn" style="--c:#0d7a52;"><div class="fn-stage">Ostaň</div><div class="fn-nl">NL 5 · august</div><p>Odmena + spätná väzba. Verný zákazník na ďalší rok.</p></div>
+        </div>
+        <div class="loop">
+          <div class="loop-box collect"><div class="lh">1. polovica leta — ZBIERA</div><p><b>NL 0</b> + kvíz v <b>NL 2</b> vyťahujú, čo zákazníka zaujíma a aký je letný typ.</p></div>
+          <div class="loop-arrow">dáta tečú ďalej →</div>
+          <div class="loop-box use"><div class="lh">2. polovica leta — VYUŽÍVA</div><p><b>NL 3, 4, 5</b> tie dáta používajú — personalizovaná ponuka, ktorá konvertuje.</p></div>
+        </div>
+        <p class="loop-note">→ Preto je kampaň v auguste múdrejšia ako v máji. Toto je rozdiel medzi „6 emailov" a „kampaňou".</p>
+        <div class="layers">
+          <div class="ly"><b>Vrstva 1 — kalendárová</b><span>6 newsletterov, raz za ~2–3 týždne. Hlavná os príbehu.</span></div>
+          <div class="ly"><b>Vrstva 2 — vernostná</b><span>Letná cesta výhod beží na pozadí celý čas. Pečiatka pri každom NL.</span></div>
+          <div class="ly"><b>Vrstva 3 — reakčná</b><span>Automatizácie reagujú na správanie, nie na kalendár. Bežia nezávisle.</span></div>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — CHRBTICA</span>
+          <p><b>Toto je kĺb celej prezentácie.</b> Ďalší slide ukáže, ako tento lievik beží na reálnom automatizačnom systéme — od prihlásenia odberateľa až po jeho odchod.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Logika celku</span><span class="s-foot-no">06 / 20</span></div>
+  </section>
+
+  <!-- 7 — ARCHITEKTURA -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">04 — Newsletteringový systém</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Automatizačná architektúra komunikácie</h2>
+        <p class="lead">Lievik nie je ručná práca — beží na automatizácii. Od prihlásenia cez segmentáciu po vetvy podľa záujmu, s vlastným tokom pre neaktívnych. Správna správa, správnemu človeku, v správny čas.</p>
+        <div class="arch">
+          <div class="arch-top">
+            <div class="arch-box"><div class="ab-t">Nový odberateľ</div><div class="ab-d">Prihlásenie cez web alebo dm aplikáciu</div></div>
+            <div class="arch-conn"></div>
+            <div class="arch-box welcome"><div class="ab-t">✉️ Vitaj v dm</div><div class="ab-d">Poďakovanie + predstavenie výhod · odoslanie ihneď</div></div>
+            <div class="arch-conn"></div>
+            <div class="arch-box seg"><div class="ab-t">🏷️ Segmentácia záujmov</div><div class="ab-d">Na základe preferencií z NL 0 alebo správania</div></div>
+            <div class="arch-conn"></div>
+          </div>
+          <div class="arch-cols">
+            <div class="arch-col" style="--c:#e6007e;--cb:#fdf2f8;">
+              <div class="ac-box ac-seg"><div class="t">💃 Festivalová Ema</div><div class="d">Trblietky, makeup, mini balenia</div></div>
+              <div class="arch-conn"></div>
+              <div class="ac-box ac-nl"><div class="t">Festival &amp; beauty NL</div><div class="d">NL 2 · 1–2× za leto</div></div>
+              <div class="arch-conn"></div>
+              <div class="ac-box ac-cond"><div class="t">Interakcia? otvorenie / klik</div></div>
+              <div class="arch-branch"><div class="br yes">Áno → pokračuje v sérii</div><div class="br no">Nie → re-engagement</div></div>
+            </div>
+            <div class="arch-col" style="--c:#0a6fc2;--cb:#eef6fc;">
+              <div class="ac-box ac-seg"><div class="t">👨‍👩‍👧 Rodina</div><div class="d">Detské SPF, lekárnička, cesty</div></div>
+              <div class="arch-conn"></div>
+              <div class="ac-box ac-nl"><div class="t">Family newsletter</div><div class="d">NL 1, NL 3 · sezónne</div></div>
+              <div class="arch-conn"></div>
+              <div class="ac-box ac-cond"><div class="t">Interakcia? otvorenie / klik</div></div>
+              <div class="arch-branch"><div class="br yes">Áno → pokračuje v sérii</div><div class="br no">Nie → re-engagement</div></div>
+            </div>
+            <div class="arch-col" style="--c:#1faa6f;--cb:#ecf8f2;">
+              <div class="ac-box ac-seg"><div class="t">✨ Beauty nadšenkyňa</div><div class="d">alverde, after-sun, rituály</div></div>
+              <div class="arch-conn"></div>
+              <div class="ac-box ac-nl"><div class="t">Beauty &amp; active beauty NL</div><div class="d">NL 5 + obsah z magazínu</div></div>
+              <div class="arch-conn"></div>
+              <div class="ac-box ac-cond"><div class="t">Interakcia? otvorenie / klik</div></div>
+              <div class="arch-branch"><div class="br yes">Áno → pokračuje v sérii</div><div class="br no">Nie → re-engagement</div></div>
+            </div>
+            <div class="arch-col" style="--c:#f0b400;--cb:#fff8e0;">
+              <div class="ac-box ac-seg"><div class="t">🏙️ Mestský typ + Vernosť</div><div class="d">Osvieženie, akcie, body</div></div>
+              <div class="arch-conn"></div>
+              <div class="ac-box ac-nl"><div class="t">Mestské leto &amp; výhody NL</div><div class="d">NL 4 + dm akcie</div></div>
+              <div class="arch-conn"></div>
+              <div class="ac-box ac-cond"><div class="t">Interakcia? otvorenie / klik</div></div>
+              <div class="arch-branch"><div class="br yes">Áno → pokračuje v sérii</div><div class="br no">Nie → re-engagement</div></div>
+            </div>
+            <div class="arch-col" style="--c:#9aa7b4;--cb:#f1f4f7;">
+              <div class="ac-box ac-seg"><div class="t">😴 Neaktívni odberatelia</div><div class="d">Bez interakcie 60+ dní</div></div>
+              <div class="arch-conn"></div>
+              <div class="ac-box ac-nl"><div class="t">We miss you!</div><div class="d">Pripomenutie hodnoty · 1×</div></div>
+              <div class="arch-conn"></div>
+              <div class="ac-box ac-cond"><div class="t">Reakcia? otvorenie / klik</div></div>
+              <div class="arch-branch"><div class="br yes">Áno → späť do segmentu</div><div class="br no">Nie → Posledná šanca → odstránenie</div></div>
+            </div>
+          </div>
+          <div class="arch-bottom">
+            <div class="abx"><div class="ic">✨</div><div><b>Naša filozofia</b><p>Relevancia pred frekvenciou · starostlivosť, nie tlak · hodnota v každom e-maile · dôvera.</p></div></div>
+            <div class="abx"><div class="ic">🎁</div><div><b>Vernostné odmeny &amp; špeciálne kampane</b><p>Narodeniny, výročie odberu, exkluzívne akcie — bežia naprieč všetkými vetvami.</p></div></div>
+            <div class="abx"><div class="ic">💡</div><div><b>Cieľ systému</b><p>Budovať dlhodobé vzťahy cez personalizovanú, načasovanú komunikáciu.</p></div></div>
+          </div>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — SYSTÉM</span>
+          <p><b>Toto je „mechanizmus", ktorý v prezentácii chýbal.</b> 5 persón zo slidu 4 sú tu reálne vetvy automatizácie. Každý newsletter z lievika sa do tohto systému zapája.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Architektúra</span><span class="s-foot-no">07 / 20</span></div>
+  </section>
+
+  <!-- 8 — KAMPANOVA MAPA -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">04 — Kampaňová mapa</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Šesť kapitol leta — prepojená séria</h2>
+        <p class="lead">Lievik rozložený na časovú os. Každý newsletter má svoju úlohu, segment, mechaniku a teaser na ďalší — a vstupuje do automatizačného systému z predošlého slidu.</p>
+        <div class="map">
+          <div class="map-track">
+            <div class="map-node"><img class="map-shot" src="img-nl0-vitaj.png" alt="NL 0"><div class="step">NL 0 · Teaser</div><h3>Leto klope na dvere</h3><div class="when">koniec mája</div><div class="role">úloha: spoznaj &amp; zbieraj</div><div class="mech">Naladenie, súťaž, zber preferencií.</div><div class="dot">→</div></div>
+            <div class="map-node hero-node"><img class="map-shot" src="img-nl1-priprav.png" alt="NL 1"><div class="step">NL 1 · Hlavná</div><h3>Priprav sa na leto</h3><div class="when">začiatok júna</div><div class="role">úloha: aktivuj</div><div class="mech">Opaľováky, Balea Sun. Segmentový hero.</div><div class="dot">→</div></div>
+            <div class="map-node"><img class="map-shot" src="img-nl2-kviz.png" alt="NL 2"><div class="step">NL 2 · Festival</div><h3>Festivalové leto</h3><div class="when">koniec júna</div><div class="role">úloha: profiluj</div><div class="mech">Kvíz „Aký si letný typ", trblietky.</div><div class="dot">→</div></div>
+            <div class="map-node"><img class="map-shot" src="img-nl3-checklist.png" alt="NL 3"><div class="step">NL 3 · Dovolenka</div><h3>Dovolenka bez starostí</h3><div class="when">polovica júla</div><div class="role">úloha: naplň košík</div><div class="mech">Interaktívny checklist, cestovné balenia.</div><div class="dot">→</div></div>
+            <div class="map-node"><img class="map-shot" src="img-nl4-mesto.png" alt="NL 4"><div class="step">NL 4 · Mesto</div><h3>Leto v meste</h3><div class="when">začiatok augusta</div><div class="role">úloha: udrž</div><div class="mech">Osvieženie, hydratácia. Pre tých doma.</div><div class="dot">→</div></div>
+            <div class="map-node"><img class="map-shot" src="img-nl5-dakujeme.png" alt="NL 5"><div class="step">NL 5 · Finále</div><h3>Doznievanie leta</h3><div class="when">koniec augusta</div><div class="role">úloha: ostaň</div><div class="mech">After-sun, bodová odmena, spätná väzba.</div><div class="dot">→</div></div>
+          </div>
+          <div class="map-thread">
+            <div class="ic">🏆</div>
+            <p><b>Spojovacia niť — Letná cesta výhod:</b> každý newsletter odomyká pečiatku v rámci Sveta výhod dm. Kto „prejde leto" s dm, v NL 5 si vyberá finálnu odmenu. Dôvod otvárať každý jeden e-mail.</p>
+          </div>
+          <div class="map-auto">
+            <div class="a"><h3>⚡ Uvítací rad</h3><p>Nový odberateľ → 3-mailový onboarding.</p></div>
+            <div class="a"><h3>⚡ Opustené prezeranie</h3><p>Pozrel opaľováky, nekúpil → pripomienka do 24 h.</p></div>
+            <div class="a"><h3>⚡ Bodový míľnik</h3><p>Dosiahol prah bodov → „využi cez leto".</p></div>
+            <div class="a"><h3>⚡ Narodeniny v lete</h3><p>Letní oslávenci → darčekový kód + tip.</p></div>
+          </div>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — KEDY a ČO</span>
+          <p><b>Lievik na časovej osi.</b> Riadok „úloha" v každom uzle — vľavo newslettery, ktoré ZBIERAJÚ dáta (NL 0, 2), vpravo tie, ktoré ich VYUŽÍVAJÚ (NL 3–5). Ďalší slide rozpíše automatizáciu fáz.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Mapa kampane</span><span class="s-foot-no">08 / 20</span></div>
+  </section>
+
+  <!-- 9 — AUTOMATIZACIA PODLA FAZ -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">04 — Automatizácia podľa fáz</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Každá fáza má vlastnú automatizačnú schému</h2>
+        <p class="lead">Spúšťač → e-mail → podmienka → vetva. Každý newsletter z mapy nie je len odoslaný — má naprogramované, čo sa stane, keď zákazník zareaguje a keď nie.</p>
+        <div class="pflows">
+          <div class="pflow" style="--c:#9fd9bb;--c2:#0d7a52;">
+            <div class="pf-nl"><div class="n">NL 0</div><div class="s">Spoznaj</div></div>
+            <div class="step t"><div class="l">Spúšťač</div><div class="v">Štart kampane / nový kontakt</div></div><span class="arr">→</span>
+            <div class="step"><div class="l">E-mail</div><div class="v">Teaser + zber preferencií</div></div><span class="arr">→</span>
+            <div class="step cond"><div class="l">Podmienka</div><div class="v">Vyplnil preferencie?</div></div><span class="arr">→</span>
+            <div class="branch"><div class="b yes">Áno → tag záujmu (vetva v systéme)</div><div class="b no">Nie → základný segment + retarget</div></div>
+          </div>
+          <div class="pflow" style="--c:#7fcda8;--c2:#0d7a52;">
+            <div class="pf-nl"><div class="n">NL 1</div><div class="s">Aktivuj</div></div>
+            <div class="step t"><div class="l">Spúšťač</div><div class="v">Segment pripravený + dátum</div></div><span class="arr">→</span>
+            <div class="step"><div class="l">E-mail</div><div class="v">Segmentový hero — opaľováky</div></div><span class="arr">→</span>
+            <div class="step cond"><div class="l">Podmienka</div><div class="v">Otvoril do 3 dní?</div></div><span class="arr">→</span>
+            <div class="branch"><div class="b yes">Áno → pokračuje na NL 2</div><div class="b no">Nie → resend s iným predmetom</div></div>
+          </div>
+          <div class="pflow" style="--c:#5cbf93;--c2:#0d7a52;">
+            <div class="pf-nl"><div class="n">NL 2</div><div class="s">Profiluj</div></div>
+            <div class="step t"><div class="l">Spúšťač</div><div class="v">Dokončený NL 1 cyklus</div></div><span class="arr">→</span>
+            <div class="step"><div class="l">E-mail</div><div class="v">Kvíz „Aký si letný typ"</div></div><span class="arr">→</span>
+            <div class="step cond"><div class="l">Podmienka</div><div class="v">Dokončil kvíz?</div></div><span class="arr">→</span>
+            <div class="branch"><div class="b yes">Áno → profilový tag → personalizácia NL 3–5</div><div class="b no">Nie → pripomienka kvízu o 4 dni</div></div>
+          </div>
+          <div class="pflow" style="--c:#3aae7c;--c2:#0d7a52;">
+            <div class="pf-nl"><div class="n">NL 3</div><div class="s">Naplň košík</div></div>
+            <div class="step t"><div class="l">Spúšťač</div><div class="v">Profil z kvízu hotový</div></div><span class="arr">→</span>
+            <div class="step"><div class="l">E-mail</div><div class="v">Personalizovaný checklist do kufra</div></div><span class="arr">→</span>
+            <div class="step cond"><div class="l">Podmienka</div><div class="v">Klik na checklist / košík?</div></div><span class="arr">→</span>
+            <div class="branch"><div class="b yes">Áno → predvyplnený košík + potvrdenie</div><div class="b no">Nie → trigger „opustené prezeranie"</div></div>
+          </div>
+          <div class="pflow" style="--c:#239367;--c2:#0d7a52;">
+            <div class="pf-nl"><div class="n">NL 4</div><div class="s">Udrž</div></div>
+            <div class="step t"><div class="l">Spúšťač</div><div class="v">Segment „ostal v meste" / nízka aktivita</div></div><span class="arr">→</span>
+            <div class="step"><div class="l">E-mail</div><div class="v">Leto v meste — osvieženie</div></div><span class="arr">→</span>
+            <div class="step cond"><div class="l">Podmienka</div><div class="v">Otvoril?</div></div><span class="arr">→</span>
+            <div class="branch"><div class="b yes">Áno → pokračuje na NL 5</div><div class="b no">Nie → presun do toku „We miss you"</div></div>
+          </div>
+          <div class="pflow" style="--c:#0d7a52;--c2:#0d7a52;">
+            <div class="pf-nl"><div class="n">NL 5</div><div class="s">Ostaň</div></div>
+            <div class="step t"><div class="l">Spúšťač</div><div class="v">Koniec kampane + nazbierané pečiatky</div></div><span class="arr">→</span>
+            <div class="step"><div class="l">E-mail</div><div class="v">After-sun + výber bodovej odmeny</div></div><span class="arr">→</span>
+            <div class="step cond"><div class="l">Podmienka</div><div class="v">Vybral odmenu?</div></div><span class="arr">→</span>
+            <div class="branch"><div class="b yes">Áno → odmena + prieskum spokojnosti</div><div class="b no">Nie → pripomienka + prieskum o 5 dní</div></div>
+          </div>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — AKO to beží samo</span>
+          <p><b>Kampaňová mapa preložená do automatizácie.</b> Všimnite si NL 2 — vetva „Áno" kŕmi personalizáciu NL 3–5. To je dátový kolobeh zo slidu 6, naprogramovaný krok po kroku.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Automatizácia</span><span class="s-foot-no">09 / 20</span></div>
+  </section>
+
+  <!-- 10 — MECHANIKY -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">05 — Mechaniky &amp; personalizácia</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Ako e-maily „žijú" a nie sú len plagát</h2>
+        <p class="lead">Štyri vrstvy, ktoré zo statického newslettera robia interaktívny, merateľný a osobný zážitok.</p>
+        <div class="grid g2" style="margin-top:16px;gap:16px;">
+          <div class="card pad-lg">
+            <div class="ico" style="background:#fff3c4;color:#7a5a00;">🎮</div><h3>Gamifikácia</h3>
+            <ul class="clean">
+              <li><b>Kvíz „Aký je tvoj letný typ?"</b> — výsledok = personalizované odporúčanie produktov.</li>
+              <li><b>Letné BINGO / stieracia karta</b> — odhalí zľavu alebo bonusové body.</li>
+              <li><b>Checklist do kufra</b> — odklikávacie položky, na konci CTA „dokúp, čo chýba".</li>
+            </ul>
+          </div>
+          <div class="card pad-lg">
+            <div class="ico" style="background:#ffe1f0;color:var(--pink);">👤</div><h3>Personalizácia &amp; dynamický obsah</h3>
+            <ul class="clean">
+              <li><b>Segmentový hero blok</b> — iný vizuál a produkt pre Emu, rodinu, beauty.</li>
+              <li><b>Oslovenie menom</b> + zostatok bodov vo Svete výhod dm priamo v e-maile.</li>
+              <li><b>Geo / počasie blok</b> — „u vás bude 31 °C — nezabudni na SPF".</li>
+            </ul>
+          </div>
+          <div class="card pad-lg">
+            <div class="ico" style="background:var(--blue-light);color:var(--navy);">🧪</div><h3>A/B testovanie</h3>
+            <ul class="clean">
+              <li><b>Predmet e-mailu</b> — emoji vs. bez, otázka vs. tvrdenie.</li>
+              <li><b>Farba a text CTA</b> — žlté „Objaviť" vs. modré „Chcem to".</li>
+              <li><b>Poradie blokov</b> — produkt hore vs. mechanika hore.</li>
+            </ul>
+          </div>
+          <div class="card pad-lg">
+            <div class="ico" style="background:var(--mint-light);color:var(--mint);">⏱️</div><h3>Časovanie &amp; triggery</h3>
+            <ul class="clean">
+              <li><b>Countdown</b> na promo akciu — naživo dopočítava v e-maile.</li>
+              <li><b>Automatizované toky</b> — uvítací rad, opustené prezeranie, narodeniny.</li>
+              <li><b>Send-time optimalizácia</b> — odoslanie podľa zvyku otvárania.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — ČÍM to oživíme</span>
+          <p><b>Nástroje vnútri emailov.</b> Kvíz tu nie je hračka — je to „profiler" z automatizácie (slide 9), ktorý kŕmi personalizáciu druhej polovice leta.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Mechaniky</span><span class="s-foot-no">10 / 20</span></div>
+  </section>
+
+  <!-- 11 — SEGMENTOVE SVETY -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">05 — Segmentové svety</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Jeden brand, tri letné svety</h2>
+        <p class="lead">Tá istá kostra e-mailu, no úplne iná atmosféra. Vizuálny jazyk sa mení podľa segmentu — fotka, farba akcentu aj produktový fokus. Takto vyzerá personalizácia, keď ju zákazník vidí.</p>
+        <div class="worlds">
+          <div class="world">
+            <div class="wimg" style="background-image:url('img-festival-produkty.png');"><span class="wtag">💃 Festivalová Ema</span></div>
+            <div class="wbody">
+              <h3>Festivalový svet</h3>
+              <div class="wmeta">Akcent: beauty pink · NL 2</div>
+              <p>Trblietky, mini balenia, suchý šampón, fixačné spreje. Energický tón, hravé callouty, kvíz ako hlavný blok.</p>
+              <div class="wtags"><span class="pill p">Festival</span><span class="pill p">Mini balenia</span><span class="pill p">Glam</span></div>
+            </div>
+          </div>
+          <div class="world">
+            <div class="wimg" style="background-image:url('img-rodina-balenie.png');"><span class="wtag">👨‍👩‍👧 Rodina</span></div>
+            <div class="wbody">
+              <h3>Rodinný svet</h3>
+              <div class="wmeta">Akcent: dm modrá · NL 1 &amp; NL 3</div>
+              <p>Detské SPF, lekárnička, dmBio snacky na cesty, checklist do kufra. Pokojný, praktický tón — „leto bez starostí".</p>
+              <div class="wtags"><span class="pill">Dovolenka</span><span class="pill">Deti</span><span class="pill">Checklist</span></div>
+            </div>
+          </div>
+          <div class="world">
+            <div class="wimg" style="background-image:url('img-beauty-ritual.png');"><span class="wtag">✨ Beauty nadšenkyňa</span></div>
+            <div class="wbody">
+              <h3>Beauty svet</h3>
+              <div class="wmeta">Akcent: bio zelená · NL 5</div>
+              <p>alverde, after-sun rituály, hydratácia, obsah z active beauty. Starostlivý, inšpiratívny tón — kvalita a rituál.</p>
+              <div class="wtags"><span class="pill m">after-sun</span><span class="pill m">alverde</span><span class="pill m">rituál</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — AKO to vidí zákazník</span>
+          <p><b>Vetvy systému zo slidu 7, preložené do vizuálu.</b> Festivalová Ema, rodina a beauty dostanú ten istý e-mail v troch úplne iných „svetoch" — to je personalizácia, ktorú zákazník naozaj cíti.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Segmentové svety</span><span class="s-foot-no">11 / 20</span></div>
+  </section>
+
+  <!-- 12 — VARIANTY -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">06 — Varianty newsletterov</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Tri kľúčové formáty série</h2>
+        <p class="lead">Každý newsletter v mape patrí do jedného z troch formátov. Spoločná kostra, iná „náplň" a mechanika — efektívna výroba, pestrý zážitok.</p>
+        <div class="grid g3" style="margin-top:16px;gap:16px;">
+          <div class="card pad-lg">
+            <span class="pill y">Formát A · Produktový</span>
+            <h3 style="margin-top:10px;">Sezónny sprievodca</h3>
+            <p>Hero + 3–4 produktové bloky + promo banner. Ťahúň obratu. <b>Použitie:</b> NL 1, NL 4.</p>
+            <div style="margin-top:8px;font-size:11.5px;color:var(--muted);"><b>Mechanika:</b> segmentový hero, dynamické odporúčania.</div>
+          </div>
+          <div class="card pad-lg" style="border-color:var(--yellow);border-width:2px;">
+            <span class="pill p">Formát B · Interaktívny</span>
+            <h3 style="margin-top:10px;">Hravý newsletter</h3>
+            <p>Kvíz / BINGO / checklist ako hlavný blok, produkty ako odmena za zapojenie. <b>Použitie:</b> NL 2, NL 3.</p>
+            <div style="margin-top:8px;font-size:11.5px;color:var(--muted);"><b>Mechanika:</b> gamifikácia, vyššia preklikovosť a zber dát.</div>
+          </div>
+          <div class="card pad-lg">
+            <span class="pill m">Formát C · Vzťahový</span>
+            <h3 style="margin-top:10px;">Komunita &amp; vernosť</h3>
+            <p>Teaser, súťaž, spätná väzba, bodová odmena, obsah z active beauty. <b>Použitie:</b> NL 0, NL 5.</p>
+            <div style="margin-top:8px;font-size:11.5px;color:var(--muted);"><b>Mechanika:</b> Svet výhod dm, UGC, prieskum.</div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:14px;">
+          <h3 style="font-size:15px;">Spoločná kostra každého e-mailu</h3>
+          <div class="comp-demo" style="margin-top:10px;">
+            <span class="pill">Preheader</span><span style="color:var(--muted);">→</span>
+            <span class="pill">Logo dm + vlnka</span><span style="color:var(--muted);">→</span>
+            <span class="pill">Hero (segmentový)</span><span style="color:var(--muted);">→</span>
+            <span class="pill">Hlavný blok / mechanika</span><span style="color:var(--muted);">→</span>
+            <span class="pill">Produktové karty</span><span style="color:var(--muted);">→</span>
+            <span class="pill">Vernostný pruh</span><span style="color:var(--muted);">→</span>
+            <span class="pill">Teaser ďalšieho NL</span><span style="color:var(--muted);">→</span>
+            <span class="pill">Pätička</span>
+          </div>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — AKO to vyrobiť</span>
+          <p><b>3 formáty = efektívna výroba bez nudy.</b> Každý zo 6 newsletterov patrí do jedného formátu — séria pôsobí jednotne, ale nie monotónne. Ďalšie 3 slidy rozpíšu konkrétne diely aj s automatizáciou.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Varianty</span><span class="s-foot-no">12 / 20</span></div>
+  </section>
+
+  <!-- 13 — DETAIL NL1 -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">06 — Detail newslettera · Formát A</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>NL 1 — „Priprav sa na leto"</h2>
+        <div class="nl-detail" style="margin-top:12px;">
+          <img class="nl-shot" src="img-nl1-priprav.png" alt="Newsletter NL 1 — Priprav sa na leto">
+          <div>
+            <div class="meta-row">
+              <span class="pill y">Formát A · Produktový</span>
+              <span class="pill">Segment: všetci (5 verzií hero)</span>
+              <span class="pill r">Úloha v lieviku: aktivuj</span>
+            </div>
+            <p class="lead" style="font-size:14.5px;">Otvárací výstrel sezóny. Zákazníka prevedie kompletnou letnou ochranou a každému ukáže práve to „jeho" leto cez segmentový hero.</p>
+            <div class="nl-spec" style="margin-top:11px;">
+              <div class="s"><div class="t">Cieľ</div><p>Naštartovať predaj opaľovacej kozmetiky, nastaviť tón série.</p></div>
+              <div class="s"><div class="t">Hlavná mechanika</div><p>Dynamický segmentový hero — rodina vidí deti, Ema festival.</p></div>
+              <div class="s"><div class="t">CTA</div><p>„Objaviť letnú ochranu" → letná hub stránka s filtrami.</p></div>
+              <div class="s link"><div class="t">↔ Prepojenie v sérii</div><p>Stojí na dátach z NL 0. +1 pečiatka. Teaser → NL 2.</p></div>
+            </div>
+            <div class="nl-auto">
+              <div class="nat">⚙️ Automatizačná schéma fázy</div>
+              <div class="nasteps">
+                <span class="nastep t">Spúšťač: segment + dátum</span><span class="naarr">→</span>
+                <span class="nastep">E-mail NL 1</span><span class="naarr">→</span>
+                <span class="nastep">Podmienka: otvoril do 3 dní?</span><span class="naarr">→</span>
+                <span class="nastep y">Áno → NL 2</span>
+                <span class="nastep n">Nie → resend s iným predmetom</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — jeden diel zblízka</span>
+          <p><b>Bunka „Prepojenie v sérii" + automatizačná schéma.</b> Vidno niť na ďalší diel aj to, čo systém spraví, keď zákazník (ne)zareaguje. Kapitola, nie samostatný e-mail.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Detail NL 1</span><span class="s-foot-no">13 / 20</span></div>
+  </section>
+
+  <!-- 14 — DETAIL NL2 -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">06 — Detail newslettera · Formát B</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>NL 2 — „Festivalové leto"</h2>
+        <div class="nl-detail" style="margin-top:12px;">
+          <img class="nl-shot" src="img-nl2-kviz.png" alt="Newsletter NL 2 — Festivalové leto">
+          <div>
+            <div class="meta-row">
+              <span class="pill p">Formát B · Interaktívny</span>
+              <span class="pill">Segment: Ema + beauty</span>
+              <span class="pill m">Úloha v lieviku: profiluj</span>
+            </div>
+            <p class="lead" style="font-size:14.5px;">Hravá kapitola. Kvíz nie je gimmick — je to nástroj na zber preferencií, ktoré spresnia personalizáciu zvyšku série.</p>
+            <div class="nl-spec" style="margin-top:11px;">
+              <div class="s"><div class="t">Cieľ</div><p>Zvýšiť preklikovosť a zozbierať dáta o type zákazníka.</p></div>
+              <div class="s"><div class="t">Hlavná mechanika</div><p>Kvíz „Aký si letný typ" — výsledok mení odporúčania ďalej.</p></div>
+              <div class="s"><div class="t">CTA</div><p>„Spustiť kvíz" → po dohraní „Daj si balíček do košíka".</p></div>
+              <div class="s link"><div class="t">↔ Prepojenie v sérii</div><p>Srdce dátového kolobehu — výsledok riadi NL 3, 4, 5.</p></div>
+            </div>
+            <div class="nl-auto">
+              <div class="nat">⚙️ Automatizačná schéma fázy</div>
+              <div class="nasteps">
+                <span class="nastep t">Spúšťač: dokončený NL 1</span><span class="naarr">→</span>
+                <span class="nastep">E-mail s kvízom</span><span class="naarr">→</span>
+                <span class="nastep">Podmienka: dokončil kvíz?</span><span class="naarr">→</span>
+                <span class="nastep y">Áno → profilový tag → NL 3–5</span>
+                <span class="nastep n">Nie → pripomienka o 4 dni</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — srdce dátového kolobehu</span>
+          <p><b>Newsletter, ktorý ZBIERA.</b> Vetva „Áno" v schéme vytvára profilový tag — a ten priamo riadi, čo zákazník uvidí v NL 3, 4 a 5.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Detail NL 2</span><span class="s-foot-no">14 / 20</span></div>
+  </section>
+
+  <!-- 15 — DETAIL NL3 -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">06 — Detail newslettera · Formát B</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>NL 3 — „Dovolenka bez starostí"</h2>
+        <div class="nl-detail" style="margin-top:12px;">
+          <img class="nl-shot" src="img-nl3-checklist.png" alt="Newsletter NL 3 — Dovolenka bez starostí">
+          <div>
+            <div class="meta-row">
+              <span class="pill m">Formát B · Interaktívny</span>
+              <span class="pill">Segment: rodina + cestovatelia</span>
+              <span class="pill r">Úloha v lieviku: naplň košík</span>
+            </div>
+            <p class="lead" style="font-size:14.5px;">Kapitola s najvyšším potenciálom košíka. Checklist mení „čo by som mal kúpiť" na „čo mi ešte chýba" — a to predáva.</p>
+            <div class="nl-spec" style="margin-top:11px;">
+              <div class="s"><div class="t">Cieľ</div><p>Zvýšiť priemernú hodnotu objednávky cez dokúpenie.</p></div>
+              <div class="s"><div class="t">Hlavná mechanika</div><p>Odklikávací checklist — neoznačené položky idú do košíka.</p></div>
+              <div class="s"><div class="t">CTA</div><p>„Otvoriť checklist" → „Dokúp, čo ti chýba".</p></div>
+              <div class="s link"><div class="t">↔ Prepojenie v sérii</div><p>VYUŽÍVA dáta z NL 0 a kvízu — checklist je ušitý na mieru.</p></div>
+            </div>
+            <div class="nl-auto">
+              <div class="nat">⚙️ Automatizačná schéma fázy</div>
+              <div class="nasteps">
+                <span class="nastep t">Spúšťač: profil z kvízu hotový</span><span class="naarr">→</span>
+                <span class="nastep">Personalizovaný checklist</span><span class="naarr">→</span>
+                <span class="nastep">Podmienka: klik na košík?</span><span class="naarr">→</span>
+                <span class="nastep y">Áno → predvyplnený košík</span>
+                <span class="nastep n">Nie → trigger „opustené prezeranie"</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — newsletter, ktorý VYUŽÍVA</span>
+          <p><b>Tu sa dátový kolobeh uzatvára.</b> Všetko, čo NL 0 a kvíz nazbierali, sa premieňa na personalizovaný checklist. Aj „Nie" má pokračovanie — nič nezapadne.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Detail NL 3</span><span class="s-foot-no">15 / 20</span></div>
+  </section>
+
+  <!-- 16 — CALLOUTY -->
+  <section class="slide navy">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm" style="filter:brightness(0) invert(1);"><div class="s-head-div"></div><span class="kicker">07 — Copywriting</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2 style="color:#fff;">Úderné letné callouty</h2>
+        <p class="lead">Predmety e-mailov a hero headliny, ktoré zastavia palec. Krátke, konkrétne, s ľudským tónom dm — „tu som človekom".</p>
+        <div class="grid g3" style="margin-top:16px;gap:14px;">
+          <div class="callout co-yellow"><div class="ctxt">„Slnko už balí kufre. Ty tiež?"</div><div class="cmeta" style="color:#7a5a00;">NL 1 · hero / predmet</div></div>
+          <div class="callout co-pink"><div class="ctxt">„Trblietky nie sú len na Vianoce."</div><div class="cmeta" style="color:#ffd9ee;">NL 2 · festival hero</div></div>
+          <div class="callout co-mint"><div class="ctxt">„Dovolenka v kufri sa zmestí. Aj s opaľovákom."</div><div class="cmeta" style="color:#d4f5e5;">NL 3 · dovolenka</div></div>
+          <div class="callout co-navy" style="border:1px solid rgba(255,255,255,.15);"><div class="ctxt">„Leto má 92 dní. Žiadny nepremárnime."</div><div class="cmeta">koncept · podpis kampane</div></div>
+          <div class="callout co-light"><div class="ctxt">„Tvoja pokožka si pamätá každé leto. Dopraj jej dobré spomienky."</div><div class="cmeta" style="color:var(--muted);">NL 1 · emočná verzia</div></div>
+          <div class="callout co-red"><div class="ctxt">„Festival prežiješ. Otázka je, ako budeš na fotkách."</div><div class="cmeta" style="color:#ffd2d7;">NL 2 · predmet B</div></div>
+          <div class="callout co-yellow"><div class="ctxt">„After-sun nie je luxus. Je to ospravedlnenie tvojej pokožke."</div><div class="cmeta" style="color:#7a5a00;">NL 5 · doznievanie leta</div></div>
+          <div class="callout co-navy" style="border:1px solid rgba(255,255,255,.15);"><div class="ctxt">„Ostávaš v meste? Leto sa dá aj na balkóne."</div><div class="cmeta">NL 4 · leto v meste</div></div>
+          <div class="callout co-mint"><div class="ctxt">„Prejdi leto s dm — odmena ťa čaká v auguste."</div><div class="cmeta" style="color:#d4f5e5;">vernostná niť · cez celú sériu</div></div>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — veľká myšlienka v jednej vete</span>
+          <p><b>Každý callout patrí ku konkrétnemu dielu série.</b> Nie sú to náhodné slogany — je to ten istý tón „sprievodca, nie predajca" naprieč celým letom.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Callouty</span><span class="s-foot-no">16 / 20</span></div>
+  </section>
+
+  <!-- 17 — VIZUALNA IDENTITA -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">08 — Vizuálna identita</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>dm brand v e-maile — pravidlá aplikácie</h2>
+        <p class="lead">Vychádza z reálnej identity dm: modrá ako základ, žlto-červená vlnka ako podpis, vzdušné svetlé pozadia, biele zaoblené karty a priateľský tón.</p>
+        <div class="two-col" style="margin-top:14px;">
+          <div>
+            <h3 style="font-size:15px;margin-bottom:8px;">Farebná paleta</h3>
+            <div class="grid g4" style="gap:9px;">
+              <div class="swatch" style="background:#003a78;color:#fff;">dm modrá<br>#003A78</div>
+              <div class="swatch" style="background:#0a6fc2;color:#fff;">modrá svetlá<br>#0A6FC2</div>
+              <div class="swatch" style="background:#ffcc00;color:#5a4200;">žltá vlnka<br>#FFCC00</div>
+              <div class="swatch" style="background:#e2001a;color:#fff;">červená vlnka<br>#E2001A</div>
+              <div class="swatch" style="background:#e6007e;color:#fff;">beauty pink<br>#E6007E</div>
+              <div class="swatch" style="background:#1faa6f;color:#fff;">bio zelená<br>#1FAA6F</div>
+              <div class="swatch" style="background:#eaf4fb;color:#003a78;">pozadie blue<br>#EAF4FB</div>
+              <div class="swatch" style="background:#ffffff;color:#003a78;border:1px solid var(--line);">biela karta<br>#FFFFFF</div>
+            </div>
+            <h3 style="font-size:15px;margin:13px 0 7px;">Tón komunikácie</h3>
+            <ul class="clean">
+              <li>Priateľský, ľudský — „tu som človekom, tu nakupujem".</li>
+              <li>Tykanie, krátke vety, žiadny korporátny žargón.</li>
+              <li>Sprievodca, nie predajca — najprv situácia, potom produkt.</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="font-size:15px;margin-bottom:8px;">Komponenty</h3>
+            <div class="card" style="background:rgba(255,255,255,.86);">
+              <div style="display:flex;align-items:center;gap:13px;margin-bottom:11px;">
+                <img src="dm-logo.png" alt="dm logo" style="height:38px;">
+                <div style="font-size:11.5px;color:var(--muted);">Logo vždy na bielom poli + vlnka ako oddeľovač sekcií.</div>
+              </div>
+              <div style="height:12px;border-radius:6px;margin-bottom:11px;background:
+                linear-gradient(90deg,#ffcc00 0 50%,#e2001a 50% 100%);
+                -webkit-mask:radial-gradient(circle at 10px -2px,transparent 10px,#000 11px);"></div>
+              <div class="comp-demo" style="margin-bottom:10px;">
+                <button class="btn-demo btn-y">Objaviť ponuku</button>
+                <button class="btn-demo btn-n">Chcem to</button>
+                <button class="btn-demo btn-o">Viac info</button>
+              </div>
+              <div class="comp-demo">
+                <span class="pill y">Akcia leta</span>
+                <span class="pill p">Novinka</span>
+                <span class="pill m">dmBio</span>
+                <span class="pill r">−20 %</span>
+                <span class="pill">Svet výhod dm</span>
+              </div>
+              <div style="margin-top:11px;background:#fff;border-radius:12px;padding:11px;border:1px solid var(--line);">
+                <div style="font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);">Produktová karta</div>
+                <h3 style="font-size:14px;margin:4px 0 3px;">Zaoblené rohy · jemný tieň</h3>
+                <p style="font-size:11.5px;color:var(--muted);">Vzdušné odsadenie, krátky popis, jedno jasné CTA.</p>
+              </div>
+            </div>
+            <p style="font-size:11.5px;color:var(--muted);margin-top:8px;"><b>Pozn.:</b> v deku aj v ukážke je použité reálne logo dm; v produkcii sa berie oficiálny súbor z brand manuálu.</p>
+          </div>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — ČÍM to vyzerá rovnako</span>
+          <p><b>Tieto pravidlá platia pre všetkých 6 newsletterov identicky.</b> Práve preto zákazník vníma sériu ako jeden seriál, nie ako 6 cudzích e-mailov.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Identita</span><span class="s-foot-no">17 / 20</span></div>
+  </section>
+
+  <!-- 18 — UKAZKA -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">08 — Hotová ukážka</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Funkčný newsletter — „Leto s dm"</h2>
+        <p class="lead">Reálny, e-mailovo bezpečný HTML newsletter (table layout, inline štýly, responzívny) postavený presne na tejto identite. Súbor je súčasťou odovzdania.</p>
+        <div class="two-col" style="margin-top:14px;">
+          <div class="card pad-lg">
+            <h3>Čo ukážka obsahuje</h3>
+            <ul class="clean" style="margin-top:5px;">
+              <li>Reálne logo dm + žlto-červená vlnka ako podpis brandu.</li>
+              <li>Hero „Leto s dm" s jasným CTA a preheader textom.</li>
+              <li>Kartové bloky: Balea Sun, alverde, dmBio — vzdušné, zaoblené.</li>
+              <li>Promo pruh −20 % naviazaný na Svet výhod dm.</li>
+              <li>Vernostný pruh + teaser ďalšieho dielu — niť série v e-maile.</li>
+              <li>Plne responzívne — overené na desktop aj mobil.</li>
+            </ul>
+            <div style="margin-top:11px;display:flex;gap:8px;flex-wrap:wrap;">
+              <span class="pill">📄 newsletter.html</span>
+              <span class="pill m">✅ desktop overené</span>
+              <span class="pill m">✅ mobil overené</span>
+              <span class="pill y">Email-safe HTML</span>
+            </div>
+          </div>
+          <div class="card pad-lg" style="background:var(--navy);color:#fff;">
+            <h3 style="color:#fff;">Technické riešenie</h3>
+            <ul class="clean" style="margin-top:5px;">
+              <li>Table-based layout — funguje aj v Outlooku.</li>
+              <li>Inline CSS, šírka 600 px, bulletproof tlačidlá.</li>
+              <li>MSO podmienené komentáre, <code style="color:var(--yellow);">role="presentation"</code>.</li>
+              <li>Media query so <code style="color:var(--yellow);">.stack</code> triedou pre mobil.</li>
+              <li>Pripravené na napojenie na ESP (merge tagy, segmenty).</li>
+            </ul>
+            <p style="font-size:12px;color:#bcd4ec;margin-top:11px;">Otvor <b style="color:#fff;">newsletter.html</b> v prehliadači vedľa tejto prezentácie — je to živý, klikateľný výstup, nie obrázok.</p>
+          </div>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — dôkaz, nie mockup</span>
+          <p><b>NL 1 z kampaňovej mapy ako reálny funkčný kód.</b> Stratégia, systém a automatizácia z predošlých slidov sa tu menia na vec, ktorú je možné poslať zajtra.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Ukážka</span><span class="s-foot-no">18 / 20</span></div>
+  </section>
+
+  <!-- 19 — HARMONOGRAM -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">09 — Harmonogram</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Kalendár kampane — jún až august</h2>
+        <p class="lead">Šesť newsletterov hlavnej osi + automatizované toky bežiace na pozadí celé leto.</p>
+        <div class="tl">
+          <div class="tl-month">
+            <div class="mname">Máj<span>naladenie</span></div>
+            <div class="tl-items">
+              <div class="tl-item"><span class="dotc" style="background:var(--mint);"></span>NL 0 — Leto klope na dvere</div>
+              <div class="tl-item"><span class="dotc" style="background:var(--pink);"></span>Štart uvítacieho radu</div>
+            </div>
+          </div>
+          <div class="tl-month">
+            <div class="mname">Jún<span>rozbeh</span></div>
+            <div class="tl-items">
+              <div class="tl-item"><span class="dotc" style="background:var(--yellow);"></span>NL 1 — Priprav sa na leto</div>
+              <div class="tl-item"><span class="dotc" style="background:var(--pink);"></span>NL 2 — Festivalové leto</div>
+              <div class="tl-item"><span class="dotc" style="background:var(--blue);"></span>A/B test predmetov</div>
+            </div>
+          </div>
+          <div class="tl-month">
+            <div class="mname">Júl<span>vrchol</span></div>
+            <div class="tl-items">
+              <div class="tl-item"><span class="dotc" style="background:var(--mint);"></span>NL 3 — Dovolenka bez starostí</div>
+              <div class="tl-item"><span class="dotc" style="background:var(--pink);"></span>Trigger: opustené prezeranie</div>
+              <div class="tl-item"><span class="dotc" style="background:var(--red);"></span>Countdown promo −20 %</div>
+            </div>
+          </div>
+          <div class="tl-month">
+            <div class="mname">August<span>finále</span></div>
+            <div class="tl-items">
+              <div class="tl-item"><span class="dotc" style="background:var(--blue);"></span>NL 4 — Leto v meste</div>
+              <div class="tl-item"><span class="dotc" style="background:var(--navy);"></span>NL 5 — Doznievanie leta</div>
+              <div class="tl-item"><span class="dotc" style="background:var(--mint);"></span>Výber bodovej odmeny + prieskum</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:12px;display:flex;align-items:center;gap:15px;">
+          <div style="font-size:24px;">📨</div>
+          <p style="font-size:13px;color:var(--muted);"><b style="color:var(--ink);">Frekvencia:</b> max. 2 newslettery mesačne na segment — relevancia pred objemom. Automatizované toky (uvítací rad, triggery, narodeniny, „We miss you") bežia nezávisle a nepočítajú sa do tohto stropu.</p>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — KEDY v kalendári</span>
+          <p><b>Tri vrstvy zo slidu 6 v reálnom čase.</b> Kalendárová (6 NL), vernostná (Letná cesta beží celé leto) a reakčná (automatizácie zo slidu 7 a 9). Spolu pokrývajú celé leto.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Harmonogram</span><span class="s-foot-no">19 / 20</span></div>
+  </section>
+
+  <!-- 20 — MERANIE -->
+  <section class="slide navy">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm" style="filter:brightness(0) invert(1);"><div class="s-head-div"></div><span class="kicker">10 — Meranie &amp; ďalšie kroky</span></div>
+      <div class="s-head-r">Leto s dm · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2 style="color:#fff;">Ako poznáme, že leto vyšlo</h2>
+        <p class="lead">Kampaň sa neriadi pocitom. Každý newsletter má cieľové čísla, séria má spoločné KPI.</p>
+        <div class="grid g4" style="margin-top:16px;">
+          <div class="card kpi"><div class="num">35<small>%+</small></div><div class="lbl">Open rate</div><div class="sub">priemer naprieč sériou</div></div>
+          <div class="card kpi"><div class="num">7<small>%+</small></div><div class="lbl">Click-through rate</div><div class="sub">interaktívne NL až 9 %</div></div>
+          <div class="card kpi"><div class="num">+18<small>%</small></div><div class="lbl">Obrat letných kategórií</div><div class="sub">medziročne, podiel e-mailu</div></div>
+          <div class="card kpi"><div class="num">+25<small>%</small></div><div class="lbl">Zapojenie vo Svete výhod</div><div class="sub">cez Letnú cestu výhod</div></div>
+          <div class="card kpi"><div class="num">22<small>%</small></div><div class="lbl">Dokončenie kvízu</div><div class="sub">NL 2 — zber dát</div></div>
+          <div class="card kpi"><div class="num">+15<small>%</small></div><div class="lbl">Priemerná hodnota košíka</div><div class="sub">NL 3 — checklist mechanika</div></div>
+          <div class="card kpi"><div class="num">&lt;0,3<small>%</small></div><div class="lbl">Miera odhlásení</div><div class="sub">strážená hranica</div></div>
+          <div class="card kpi"><div class="num">100<small>%</small></div><div class="lbl">NL s A/B testom</div><div class="sub">kontinuálne učenie</div></div>
+        </div>
+        <div class="grid g2" style="margin-top:14px;gap:16px;">
+          <div class="card" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.15);">
+            <h3 style="color:#fff;">Ďalšie kroky</h3>
+            <ul class="clean">
+              <li>Schválenie konceptu a veľkej myšlienky.</li>
+              <li>Finalizácia segmentov v ESP a príprava merge tagov.</li>
+              <li>Nastavenie automatizačnej architektúry a vetiev.</li>
+              <li>Produkcia šablón formátov A / B / C.</li>
+            </ul>
+          </div>
+          <div class="card" style="background:var(--yellow);border-color:var(--yellow);">
+            <h3 style="color:var(--navy-deep);">Čo som týmto ukázal</h3>
+            <ul class="clean" style="color:var(--navy-deep);">
+              <li style="color:var(--navy-deep);">Kampaňové a systémové myslenie — od zadania po KPI.</li>
+              <li style="color:var(--navy-deep);">Automatizačnú architektúru a per-fázové schémy.</li>
+              <li style="color:var(--navy-deep);">Segmentáciu, personalizáciu a copywriting.</li>
+              <li style="color:var(--navy-deep);">Reálny funkčný HTML výstup, nie len mockup.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="continuity">
+          <span class="lbl">Kde sme — kruh sa uzatvára</span>
+          <p><b>Tieto čísla sú presne tie ciele zo slidu 3.</b> Kampaň sa nimi začala a končí ich meraním — to z nej robí celok: stratégiu, systém aj výstup. Ďakujem za pozornosť — leto s dm môže začať. ☀️</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Záver</span><span class="s-foot-no">20 / 20</span></div>
+  </section>
+
+</div>
+
+<div class="dotrail" id="dotrail"></div>
+<div class="navbtns">
+  <button id="prev" aria-label="Predchádzajúci slide">‹</button>
+  <button id="next" aria-label="Ďalší slide">›</button>
+</div>
+
+<script>
+  const deck=document.getElementById('deck');
+  const slides=[...document.querySelectorAll('.slide')];
+  const prog=document.getElementById('progress');
+  const rail=document.getElementById('dotrail');
+  const titles=['Titulka','Obsah','Východisko','Persóny','Veľká myšlienka','Logika celku',
+    'Architektúra systému','Kampaňová mapa','Automatizácia fáz','Mechaniky','Segmentové svety',
+    'Varianty','Detail NL 1','Detail NL 2','Detail NL 3','Callouty','Vizuálna identita',
+    'Ukážka newslettera','Harmonogram','Meranie & záver'];
+  function current(){return Math.round(deck.scrollTop/window.innerHeight);}
+  function go(i){i=Math.max(0,Math.min(slides.length-1,i));slides[i].scrollIntoView({behavior:'smooth'});}
+  slides.forEach((s,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML='<span class="tip">'+(i+1)+'. '+titles[i]+'</span>';
+    b.onclick=()=>go(i);
+    rail.appendChild(b);
+  });
+  const dots=[...rail.children];
+  function update(){
+    const i=current();
+    prog.style.width=((i+1)/slides.length*100)+'%';
+    dots.forEach((d,j)=>d.classList.toggle('active',j===i));
+  }
+  deck.addEventListener('scroll',update,{passive:true});
+  document.getElementById('next').onclick=()=>go(current()+1);
+  document.getElementById('prev').onclick=()=>go(current()-1);
+  document.addEventListener('keydown',e=>{
+    if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(current()+1);}
+    if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(current()-1);}
+    if(e.key==='Home'){e.preventDefault();go(0);}
+    if(e.key==='End'){e.preventDefault();go(slides.length-1);}
+  });
+  document.querySelectorAll('.agenda-item').forEach(a=>{a.onclick=()=>go(parseInt(a.dataset.go,10));});
+  // rozmazaný obrázok na pozadí + bokeh dekor — dm pastelové kruhy
+  const bgImgs=['img-festival-ema.png','img-rodina-bicykle.png','img-rodina-domov.png',
+    'img-priatelia-vecer.png','img-rodina-plaz.png','img-rodina-bicykle.png','img-rodina-kufre.png',
+    'img-rodina-kufre.png','img-festival-produkty.png','img-festival-ema.png','img-beauty-glam.png',
+    'img-beauty-ritual.png','img-rodina-aftersun.png','img-festival-ema.png','img-rodina-balenie.png',
+    'img-priatelia-vecer.png','img-beauty-terasa.png','img-rodina-piknik.png','img-rodina-kufre.png',
+    'img-priatelia-vecer.png'];
+  const bokehCols=['#f1a9d0','#c3aee6','#a3ddc1','#ffd98a','#abd3f1','#ffb6c9'];
+  slides.forEach((s,i)=>{
+    const veil=document.createElement('div');
+    veil.className='s-veil';
+    s.insertBefore(veil,s.firstChild);
+    const navy=s.classList.contains('navy');
+    const dense=[6,8].includes(i);
+    const spots=dense
+      ? [[-4,12,180],[102,72,200],[95,-6,150]]
+      : [[-5,14,300],[101,24,330],[88,-8,220],[7,95,260],[60,103,230],[-3,66,200]];
+    const b=document.createElement('div');
+    b.className='bokeh';
+    spots.forEach((sp,k)=>{
+      const c=document.createElement('i');
+      c.style.width=sp[2]+'px';c.style.height=sp[2]+'px';
+      c.style.left=sp[0]+'%';c.style.top=sp[1]+'%';
+      c.style.background=navy?'#ffffff':bokehCols[(i+k)%bokehCols.length];
+      c.style.opacity=((navy?0.05:(dense?0.22:0.38))+Math.random()*0.12).toFixed(2);
+      c.style.filter='blur('+(18+Math.random()*16).toFixed(0)+'px)';
+      b.appendChild(c);
+    });
+    s.insertBefore(b,s.firstChild);
+    const bg=document.createElement('div');
+    bg.className='s-bg';
+    bg.style.backgroundImage="url('"+bgImgs[i]+"')";
+    s.insertBefore(bg,s.firstChild);
+  });
+  update();
+</script>
+</body>
+</html>

@@ -526,9 +526,10 @@
     .slide:first-child .s-veil{background:linear-gradient(180deg,rgba(0,26,54,.72) 0%,rgba(0,26,54,.52) 26%,rgba(0,26,54,.52) 100%);}
     /* na telefóne skryť „Tip: listujte..." */
     .title-tip{display:none;}
-    /* slnko zatlačené do rohu */
-    .title-sun{width:190px;height:190px;left:-72px;top:-72px;
-      box-shadow:0 18px 50px -14px rgba(255,179,0,.45);}
+    /* slnko malé v rohu + obsah bezpečne zhora — nezávisle od výšky obrazovky */
+    .title-sun{width:162px;height:162px;left:-62px;top:-62px;
+      box-shadow:0 16px 44px -14px rgba(255,179,0,.45);}
+    .slide:first-child .s-body{justify-content:flex-start;padding-top:106px;padding-bottom:20px;}
     /* na telefóne žiadne navigačné šípky — listuje sa swipom */
     .navbtns{display:none;}
   }

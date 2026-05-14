@@ -109,7 +109,7 @@
   .navy .kicker{color:var(--yellow);}
   .mint .kicker{color:var(--mint);}
   .kicker::before{content:"";width:22px;height:3px;border-radius:3px;background:currentColor;}
-  h1{font-size:56px;line-height:1.05;font-weight:800;letter-spacing:-.02em;}
+  h1{font-size:56px;line-height:1.05;font-weight:800;letter-spacing:-.02em;-webkit-text-stroke:0.8px currentColor;}
   h2{font-size:40px;line-height:1.12;font-weight:800;letter-spacing:-.02em;margin-bottom:7px;}
   h3{font-size:21.5px;font-weight:800;line-height:1.2;}
   .lead{font-size:18px;line-height:1.56;color:#3a4f63;font-weight:500;max-width:960px;}
@@ -515,7 +515,9 @@
     .persona .pbody{padding:9px 11px 11px;}
     .persona h3{font-size:14px;}
     .persona p{font-size:11.5px;}
-    /* slnko zatlačené do rohu + menšie navigačné šípky */
+    /* na telefóne skryť „Tip: listujte..." */
+    .title-tip{display:none;}
+    /* slnko zatlačené do rohu */
     .title-sun{width:190px;height:190px;left:-72px;top:-72px;
       box-shadow:0 18px 50px -14px rgba(255,179,0,.45);}
     /* na telefóne žiadne navigačné šípky — listuje sa swipom */
@@ -810,7 +812,7 @@
           <div class="map-track">
             <div class="map-node"><img class="map-shot" src="img-nl0-vitaj.png" alt="NL 0"><div class="step">NL 0 · Teaser</div><h3>Leto klope na dvere</h3><div class="when">koniec mája</div><div class="role">úloha: spoznaj &amp; zbieraj</div><div class="mech">Naladenie, súťaž, zber preferencií.</div><div class="dot">→</div></div>
             <div class="map-node hero-node"><img class="map-shot" src="img-nl1-priprav.png" alt="NL 1"><div class="step">NL 1 · Hlavná</div><h3>Priprav sa na leto</h3><div class="when">začiatok júna</div><div class="role">úloha: aktivuj</div><div class="mech">Opaľováky, Balea Sun. Segmentový hero.</div><div class="dot">→</div></div>
-            <div class="map-node"><img class="map-shot" src="img-nl2-kviz.png" alt="NL 2"><div class="step">NL 2 · Festival</div><h3>Festivalové leto</h3><div class="when">koniec júna</div><div class="role">úloha: profiluj</div><div class="mech">Kvíz „Aký si letný typ", trblietky.</div><div class="dot">→</div></div>
+            <div class="map-node"><img class="map-shot" src="img-nl2-kviz.png" alt="NL 2"><div class="step">NL 2 · Festival</div><h3>Festivalové leto</h3><div class="when">koniec júna</div><div class="role">úloha: profiluj</div><div class="mech">Kvíz „Aké leto ťa čaká?", trblietky.</div><div class="dot">→</div></div>
             <div class="map-node"><img class="map-shot" src="img-nl3-checklist.png" alt="NL 3"><div class="step">NL 3 · Dovolenka</div><h3>Dovolenka bez starostí</h3><div class="when">polovica júla</div><div class="role">úloha: naplň košík</div><div class="mech">Interaktívny checklist, cestovné balenia.</div><div class="dot">→</div></div>
             <div class="map-node"><img class="map-shot" src="img-nl4-mesto.png" alt="NL 4"><div class="step">NL 4 · Mesto</div><h3>Leto v meste</h3><div class="when">začiatok augusta</div><div class="role">úloha: udrž</div><div class="mech">Osvieženie, hydratácia. Pre tých doma.</div><div class="dot">→</div></div>
             <div class="map-node"><img class="map-shot" src="img-nl5-dakujeme.png" alt="NL 5"><div class="step">NL 5 · Finále</div><h3>Doznievanie leta</h3><div class="when">koniec augusta</div><div class="role">úloha: ostaň</div><div class="mech">After-sun, bodová odmena, spätná väzba.</div><div class="dot">→</div></div>
@@ -863,7 +865,7 @@
           <div class="pflow" style="--c:#5cbf93;--c2:#0d7a52;">
             <div class="pf-nl"><div class="n">NL 2</div><div class="s">Profiluj</div></div>
             <div class="step t"><div class="l">Spúšťač</div><div class="v">Dokončený NL 1 cyklus</div></div><span class="arr">→</span>
-            <div class="step"><div class="l">E-mail</div><div class="v">Kvíz „Aký si letný typ"</div></div><span class="arr">→</span>
+            <div class="step"><div class="l">E-mail</div><div class="v">Kvíz „Aké leto ťa čaká?"</div></div><span class="arr">→</span>
             <div class="step cond"><div class="l">Podmienka</div><div class="v">Dokončil kvíz?</div></div><span class="arr">→</span>
             <div class="branch"><div class="b yes">Áno → profilový tag → personalizácia NL 3–5</div><div class="b no">Nie → pripomienka kvízu o 4 dni</div></div>
           </div>
@@ -912,7 +914,7 @@
           <div class="card pad-lg">
             <div class="ico" style="background:#fff3c4;color:#7a5a00;">🎮</div><h3>Gamifikácia</h3>
             <ul class="clean">
-              <li><b>Kvíz „Aký je tvoj letný typ?"</b> — výsledok = personalizované odporúčanie produktov.</li>
+              <li><b>Kvíz „Aké leto ťa čaká?"</b> — výsledok = personalizované odporúčanie produktov.</li>
               <li><b>Letné BINGO / stieracia karta</b> — odhalí zľavu alebo bonusové body.</li>
               <li><b>Checklist do kufra</b> — odklikávacie položky, na konci CTA „dokúp, čo chýba".</li>
             </ul>
@@ -1116,7 +1118,7 @@
             <p class="lead" style="font-size:14.5px;">Hravá kapitola. Kvíz nie je gimmick — je to nástroj na zber preferencií, ktoré spresnia personalizáciu zvyšku série.</p>
             <div class="nl-spec" style="margin-top:11px;">
               <div class="s"><div class="t">Cieľ</div><p>Zvýšiť preklikovosť a zozbierať dáta o type zákazníka.</p></div>
-              <div class="s"><div class="t">Hlavná mechanika</div><p>Kvíz „Aký si letný typ" — výsledok mení odporúčania ďalej.</p></div>
+              <div class="s"><div class="t">Hlavná mechanika</div><p>Kvíz „Aké leto ťa čaká?" — výsledok mení odporúčania ďalej.</p></div>
               <div class="s"><div class="t">CTA</div><p>„Spustiť kvíz" → po dohraní „Daj si balíček do košíka".</p></div>
               <div class="s link"><div class="t">↔ Prepojenie v sérii</div><p>Srdce dátového kolobehu — výsledok riadi NL 3, 4, 5.</p></div>
             </div>

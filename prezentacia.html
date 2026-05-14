@@ -17,13 +17,13 @@
     --pad-x:72px;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html,body{height:100%;}
+  html,body{height:100%;overflow-x:hidden;}
   body{
     font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
     color:var(--ink); background:var(--navy-deep);
     -webkit-font-smoothing:antialiased;
   }
-  .deck{scroll-snap-type:y mandatory;overflow-y:auto;height:100vh;scroll-behavior:smooth;}
+  .deck{scroll-snap-type:y mandatory;overflow-y:auto;overflow-x:hidden;height:100vh;scroll-behavior:smooth;}
 
   /* ===== SLIDE SKELETON: head / body / foot ===== */
   .slide{
@@ -31,6 +31,7 @@
     min-height:100vh;
     display:flex; flex-direction:column;
     position:relative;
+    overflow:hidden;
     background:linear-gradient(160deg,#f2eafa 0%,#fdfbff 60%);
   }
   .slide > *:not(.bokeh):not(.s-bg):not(.s-veil):not(.title-sun):not(.title-logo){position:relative;z-index:1;}
@@ -438,6 +439,9 @@
     .layers{grid-template-columns:1fr;}
     .dotrail{display:none;}
     .pflow{flex-wrap:wrap;}
+    .nl-shot{width:100%;max-width:430px;}
+    .pflow .step,.pflow .branch{flex:1 1 100%;width:auto;}
+    .pflow .pf-nl{width:100%;}
     /* na mobile posuň fotku doľava a trochu ju oddiaľ (menší zoom) */
     .s-bg{background-position:calc(50% - 400px) center;background-size:330%;}
     /* titulka na mobile — text content nižšie, ako bolo pôvodne */

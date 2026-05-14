@@ -450,10 +450,68 @@
     .slide:first-child .s-inner{max-width:none;}
   }
   @media (max-width:640px){
-    /* slnko zmenšiť a zatlačiť do rohu — nech neprechádza cez text */
+    /* na mobile voľný scroll v rámci slidu — snap nepreskakuje celý slide */
+    .deck{scroll-snap-type:y proximity;}
+    /* kompaktnejší mobil — čo najviac obsahu na jednu obrazovku */
+    :root{--pad-x:22px;}
+    .s-head{padding:13px var(--pad-x) 7px;}
+    .s-body{padding:7px var(--pad-x);}
+    .s-foot{padding:7px 0 13px;margin:0 var(--pad-x);}
+    h2{font-size:23px;line-height:1.14;}
+    h3{font-size:16px;}
+    .lead{font-size:13.5px;line-height:1.5;}
+    .kicker{font-size:10px;}
+    .grid{gap:9px;}
+    .card{padding:13px;border-radius:15px;}
+    .card.pad-lg{padding:15px;}
+    .card .ico{width:34px;height:34px;font-size:16px;margin-bottom:7px;border-radius:10px;}
+    .card p{font-size:12.5px;}
+    .card .big{font-size:26px;}
+    .card h3,.world h3{font-size:15px;}
+    ul.clean li{font-size:12.5px;margin:4px 0;}
+    .continuity{margin-top:10px;padding:8px 12px;gap:10px;}
+    .continuity p{font-size:11.5px;}
+    .bigidea{padding:22px;border-radius:18px;}
+    .bigidea .quote{font-size:25px;}
+    .bigidea .sub{font-size:13px;margin-top:9px;}
+    .funnel{gap:7px;} .funnel .fn{padding:9px 10px;}
+    .layers{gap:7px;} .layers .ly{padding:9px 11px;}
+    .loop-box{padding:10px 13px;}
+    .map-thread{padding:10px 13px;} .map-thread p{font-size:11.5px;}
+    .map-auto{flex-wrap:wrap;gap:7px;} .map-auto .a{flex:1 1 45%;}
+    .nl-spec{gap:8px;} .nl-spec .s{padding:10px 12px;}
+    .nl-auto{padding:9px 11px;}
+    .nl-shot{max-width:340px;}
+    .callout{min-height:auto;padding:14px 15px;}
+    .callout .ctxt{font-size:16px;line-height:1.2;}
+    .callout .cmeta{margin-top:7px;}
+    .tl-month{flex-direction:column;gap:5px;padding:8px 0;}
+    .tl-month .mname{width:auto;font-size:16px;}
+    .kpi .num{font-size:27px;}
+    .agenda-item{padding:6px;}
+    .agenda-item .tt{font-size:13px;}
+    .agenda-item .ts{font-size:11px;}
+    .swatch{height:60px;font-size:10px;}
+    .persona .photo{height:96px;}
+    .world .wimg{height:130px;}
+    .arch-box .ab-t{font-size:12px;} .arch-box .ab-d{font-size:9.5px;}
+    .two-col{gap:14px;}
+    /* automatizačné flow riadky — kroky 2-up, bez šípok, kompaktne */
+    .pflow{flex-wrap:wrap;gap:5px;padding:9px 11px;}
+    .pflow .pf-nl{width:100%;}
+    .pflow .step{flex:1 1 44%;padding:5px 8px;}
+    .pflow .step .v{font-size:10px;}
+    .pflow .arr{display:none;}
+    .pflow .branch{flex:1 1 100%;width:auto;}
+    .pflow .branch .b{font-size:9px;}
+    /* persóny — nižšie fotky, kompaktnejšie karty */
+    .persona .photo{height:78px;}
+    .persona .pbody{padding:9px 11px 11px;}
+    .persona h3{font-size:14px;}
+    .persona p{font-size:11.5px;}
+    /* slnko zatlačené do rohu + menšie navigačné šípky */
     .title-sun{width:190px;height:190px;left:-72px;top:-72px;
       box-shadow:0 18px 50px -14px rgba(255,179,0,.45);}
-    /* navigačné šípky na mobile výrazne menšie */
     .navbtns{right:16px;bottom:22px;gap:9px;}
     .navbtns button{width:44px;height:44px;font-size:19px;border-width:2px;}
   }

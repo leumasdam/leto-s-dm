@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leto s dm — Letná e-mailová kampaň 2026</title>
+<title>Leto s DM — Letná e-mailová kampaň 2026</title>
 <style>
   :root{
     --navy:#003a78; --navy-deep:#002b54; --blue:#0a6fc2;
@@ -19,7 +19,7 @@
   *{box-sizing:border-box;margin:0;padding:0;}
   html,body{height:100%;overflow-x:hidden;}
   body{
-    font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     color:var(--ink); background:var(--navy-deep);
     -webkit-font-smoothing:antialiased;
   }
@@ -133,11 +133,11 @@
 
   /* progress + nav */
   .progress{position:fixed;top:0;left:0;height:4px;background:var(--yellow);z-index:60;transition:width .2s;}
-  .navbtns{position:fixed;right:52px;bottom:50px;z-index:60;display:flex;flex-direction:row;gap:14px;}
+  .navbtns{position:fixed;right:64px;bottom:62px;z-index:60;display:flex;flex-direction:row;gap:11px;}
   .navbtns button{
-    width:70px;height:70px;border-radius:50%;border:3px solid rgba(255,255,255,.85);cursor:pointer;
-    background:var(--navy);color:#fff;font-size:32px;font-weight:800;line-height:1;
-    box-shadow:0 16px 34px -8px rgba(0,40,90,.5);transition:transform .12s,background .12s;
+    width:50px;height:50px;border-radius:50%;border:2px solid rgba(255,255,255,.85);cursor:pointer;
+    background:var(--navy);color:#fff;font-size:22px;font-weight:800;line-height:1;
+    box-shadow:0 12px 28px -8px rgba(0,40,90,.5);transition:transform .12s,background .12s;
     display:flex;align-items:center;justify-content:center;
   }
   .navbtns button:hover{background:var(--yellow);color:var(--navy);transform:scale(1.08);}
@@ -454,13 +454,19 @@
     .deck{scroll-snap-type:y proximity;}
     /* kompaktnejší mobil — čo najviac obsahu na jednu obrazovku */
     :root{--pad-x:22px;}
-    .s-head{padding:13px var(--pad-x) 7px;}
+    .s-head{padding:11px var(--pad-x) 6px;}
     .s-body{padding:7px var(--pad-x);}
-    .s-foot{padding:7px 0 13px;margin:0 var(--pad-x);}
+    .s-foot{padding:6px 0 11px;margin:0 var(--pad-x);}
+    /* menšie texty hlavičky a pätičky — len na telefóne */
+    .s-logo{height:17px;}
+    .s-head-div{height:13px;}
+    .s-head-r{font-size:8px;}
+    .kicker{font-size:8.5px;}
+    .s-foot-tag{font-size:8px;}
+    .s-foot-no{font-size:8.5px;}
     h2{font-size:23px;line-height:1.14;}
     h3{font-size:16px;}
     .lead{font-size:13.5px;line-height:1.5;}
-    .kicker{font-size:10px;}
     .grid{gap:9px;}
     .card{padding:13px;border-radius:15px;}
     .card.pad-lg{padding:15px;}
@@ -512,8 +518,8 @@
     /* slnko zatlačené do rohu + menšie navigačné šípky */
     .title-sun{width:190px;height:190px;left:-72px;top:-72px;
       box-shadow:0 18px 50px -14px rgba(255,179,0,.45);}
-    .navbtns{right:16px;bottom:22px;gap:9px;}
-    .navbtns button{width:44px;height:44px;font-size:19px;border-width:2px;}
+    .navbtns{right:14px;bottom:16px;gap:7px;}
+    .navbtns button{width:34px;height:34px;font-size:15px;border-width:2px;}
   }
 
 </style>
@@ -529,8 +535,8 @@
     <div class="s-body">
       <div class="s-inner">
         <div class="kicker">Letná e-mailová kampaň 2026 &nbsp;·&nbsp; Stratégia · Systém · Automatizácia · Dizajn</div>
-        <h1 style="margin-top:14px;">Leto s dm<br><span style="color:var(--yellow);">Od prvého lúča<br>po posledný festival.</span></h1>
-        <p class="lead" style="margin-top:18px;">Koncept letnej e-mailovej kampane pre dm — od nápadu a segmentov až po automatizáciu, vizuály a meranie výsledkov.</p>
+        <h1 style="margin-top:14px;">Leto s DM<br><span style="color:var(--yellow);">Od prvého lúča<br>po posledný festival.</span></h1>
+        <p class="lead" style="margin-top:18px;">Koncept letnej e-mailovej kampane pre DM — od nápadu a segmentov až po automatizáciu, vizuály a meranie výsledkov.</p>
         <p class="title-author">Pripravil: Samuel Zenko &nbsp;·&nbsp; Máj 2026 &nbsp;·&nbsp; Portfólio — e-mail marketing &amp; kampaňová stratégia</p>
         <p class="title-tip">Tip: listujte šípkami ← → alebo bodkami vpravo. Obsah na ďalšom slide je klikateľný.</p>
       </div>
@@ -542,7 +548,7 @@
   <section class="slide">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">Obsah prezentácie</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
@@ -556,7 +562,7 @@
           <div class="agenda-item" data-go="9"><div class="n">05</div><div><div class="tt">Mechaniky &amp; segmentové svety</div><div class="ts">Gamifikácia, personalizácia, vizuály segmentov</div></div></div>
           <div class="agenda-item" data-go="11"><div class="n">06</div><div><div class="tt">Varianty &amp; detaily NL</div><div class="ts">3 kľúčové newslettery rozpísané</div></div></div>
           <div class="agenda-item" data-go="15"><div class="n">07</div><div><div class="tt">Copywriting &amp; callouty</div><div class="ts">Úderné letné texty</div></div></div>
-          <div class="agenda-item" data-go="16"><div class="n">08</div><div><div class="tt">Vizuálna identita &amp; ukážka</div><div class="ts">dm brand v e-maile + funkčný výstup</div></div></div>
+          <div class="agenda-item" data-go="16"><div class="n">08</div><div><div class="tt">Vizuálna identita &amp; ukážka</div><div class="ts">DM brand v e-maile + funkčný výstup</div></div></div>
           <div class="agenda-item" data-go="18"><div class="n">09</div><div><div class="tt">Harmonogram</div><div class="ts">Kalendár jún – august</div></div></div>
           <div class="agenda-item" data-go="19"><div class="n">10</div><div><div class="tt">Meranie &amp; ďalšie kroky</div><div class="ts">KPI a čo nasleduje</div></div></div>
         </div>
@@ -573,7 +579,7 @@
   <section class="slide">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">01 — Východisko &amp; ciele</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
@@ -582,12 +588,12 @@
         <div class="grid g3" style="margin-top:18px;">
           <div class="card"><div class="ico">☀️</div><h3>Sezónny dopyt</h3><p>Opaľovacia kozmetika, after-sun, cestovné balenia, repelenty — kategórie, ktoré inokedy nepredáte.</p></div>
           <div class="card"><div class="ico">🎒</div><h3>Zmena rytmu</h3><p>Dovolenky, festivaly, deti doma. Zákazník nakupuje inak — a inokedy. E-mail to vie načasovať.</p></div>
-          <div class="card"><div class="ico">💛</div><h3>Priestor pre vzťah</h3><p>Leto je „ľahká" sezóna. Ideálny čas budovať vernosť cez Svet výhod dm, nie len tlačiť zľavy.</p></div>
+          <div class="card"><div class="ico">💛</div><h3>Priestor pre vzťah</h3><p>Leto je „ľahká" sezóna. Ideálny čas budovať vernosť cez Svet výhod DM, nie len tlačiť zľavy.</p></div>
         </div>
         <h3 style="margin-top:20px;">Ciele kampane</h3>
         <div class="grid g4" style="margin-top:10px;">
           <div class="card"><div class="big">+18 %</div><p>medziročný obrat letných kategórií z e-mailu</p></div>
-          <div class="card"><div class="big">+25 %</div><p>nárast zapojených odberateľov vo Svete výhod dm</p></div>
+          <div class="card"><div class="big">+25 %</div><p>nárast zapojených odberateľov vo Svete výhod DM</p></div>
           <div class="card"><div class="big">35 %+</div><p>priemerný open rate naprieč sériou</p></div>
           <div class="card"><div class="big">&lt; 0,3 %</div><p>miera odhlásení — relevancia pred frekvenciou</p></div>
         </div>
@@ -604,7 +610,7 @@
   <section class="slide">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">02 — Cieľové skupiny</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
@@ -629,7 +635,7 @@
           </div>
           <div class="card persona">
             <div class="photo" style="background-image:url('img-rodina-aftersun.png');"><span class="role">Vernosť</span></div>
-            <div class="pbody"><h3>Zberateľ výhod</h3><p>Naprieč vekom. Reaguje na body a personalizované zľavy. Srdce Sveta výhod dm.</p></div>
+            <div class="pbody"><h3>Zberateľ výhod</h3><p>Naprieč vekom. Reaguje na body a personalizované zľavy. Srdce Sveta výhod DM.</p></div>
           </div>
         </div>
         <div class="card" style="margin-top:14px;display:flex;align-items:center;gap:16px;">
@@ -649,7 +655,7 @@
   <section class="slide">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">03 — Veľká myšlienka</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
@@ -658,8 +664,8 @@
           <div class="glow"></div>
           <div style="position:relative;z-index:2;">
             <div class="kicker" style="color:var(--yellow);">Big idea</div>
-            <div class="quote" style="margin-top:8px;">„Leto má 92 dní.<br>dm je pri každom z nich."</div>
-            <p class="sub">Kampaň nie je séria zliav — je to <b style="color:#fff;">sprievodca letom</b>. Každý newsletter je jedna kapitola: príprava, festivaly, dovolenka, mesto, doznievanie. Zákazník neotvára reklamu, otvára ďalšiu časť svojho leta. A dm je tá samozrejmá vec, ktorá tam celý čas je.</p>
+            <div class="quote" style="margin-top:8px;">„Leto má 92 dní.<br>DM je pri každom z nich."</div>
+            <p class="sub">Kampaň nie je séria zliav — je to <b style="color:#fff;">sprievodca letom</b>. Každý newsletter je jedna kapitola: príprava, festivaly, dovolenka, mesto, doznievanie. Zákazník neotvára reklamu, otvára ďalšiu časť svojho leta. A DM je tá samozrejmá vec, ktorá tam celý čas je.</p>
           </div>
         </div>
         <div class="grid g3" style="margin-top:14px;">
@@ -680,7 +686,7 @@
   <section class="slide mint">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">03 — Logika celku</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
@@ -718,7 +724,7 @@
   <section class="slide">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">04 — Newsletteringový systém</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
@@ -726,9 +732,9 @@
         <p class="lead">Séria nie je ručná práca — väčšina beží sama. Od prihlásenia cez rozdelenie podľa záujmu až po samostatný tok pre neaktívnych odberateľov. Správna správa, správnemu človeku, v správny čas.</p>
         <div class="arch">
           <div class="arch-top">
-            <div class="arch-box"><div class="ab-t">Nový odberateľ</div><div class="ab-d">Prihlásenie cez web alebo dm aplikáciu</div></div>
+            <div class="arch-box"><div class="ab-t">Nový odberateľ</div><div class="ab-d">Prihlásenie cez web alebo DM aplikáciu</div></div>
             <div class="arch-conn"></div>
-            <div class="arch-box welcome"><div class="ab-t">✉️ Vitaj v dm</div><div class="ab-d">Poďakovanie + predstavenie výhod · odoslanie ihneď</div></div>
+            <div class="arch-box welcome"><div class="ab-t">✉️ Vitaj v DM</div><div class="ab-d">Poďakovanie + predstavenie výhod · odoslanie ihneď</div></div>
             <div class="arch-conn"></div>
             <div class="arch-box seg"><div class="ab-t">🏷️ Segmentácia záujmov</div><div class="ab-d">Na základe preferencií z NL 0 alebo správania</div></div>
             <div class="arch-conn"></div>
@@ -761,7 +767,7 @@
             <div class="arch-col" style="--c:#f0b400;--cb:#fff8e0;">
               <div class="ac-box ac-seg"><div class="t">🏙️ Mestský typ + Vernosť</div><div class="d">Osvieženie, akcie, body</div></div>
               <div class="arch-conn"></div>
-              <div class="ac-box ac-nl"><div class="t">Mestské leto &amp; výhody NL</div><div class="d">NL 4 + dm akcie</div></div>
+              <div class="ac-box ac-nl"><div class="t">Mestské leto &amp; výhody NL</div><div class="d">NL 4 + DM akcie</div></div>
               <div class="arch-conn"></div>
               <div class="ac-box ac-cond"><div class="t">Interakcia? otvorenie / klik</div></div>
               <div class="arch-branch"><div class="br yes">Áno → pokračuje v sérii</div><div class="br no">Nie → re-engagement</div></div>
@@ -794,7 +800,7 @@
   <section class="slide">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">04 — Kampaňová mapa</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
@@ -811,7 +817,7 @@
           </div>
           <div class="map-thread">
             <div class="ic">🏆</div>
-            <p><b>Spojovacia niť — Letná cesta výhod:</b> každý newsletter odomyká pečiatku v rámci Sveta výhod dm. Kto „prejde leto" s dm, v NL 5 si vyberá finálnu odmenu. Dôvod otvárať každý jeden e-mail.</p>
+            <p><b>Spojovacia niť — Letná cesta výhod:</b> každý newsletter odomyká pečiatku v rámci Sveta výhod DM. Kto „prejde leto" s DM, v NL 5 si vyberá finálnu odmenu. Dôvod otvárať každý jeden e-mail.</p>
           </div>
           <div class="map-auto">
             <div class="a"><h3>⚡ Uvítací rad</h3><p>Nový odberateľ → 3-mailový onboarding.</p></div>
@@ -833,7 +839,7 @@
   <section class="slide">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">04 — Automatizácia podľa fáz</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
@@ -896,7 +902,7 @@
   <section class="slide">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">05 — Mechaniky &amp; personalizácia</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
@@ -915,7 +921,7 @@
             <div class="ico" style="background:#ffe1f0;color:var(--pink);">👤</div><h3>Personalizácia &amp; dynamický obsah</h3>
             <ul class="clean">
               <li><b>Segmentový hero blok</b> — iný vizuál a produkt pre Emu, rodinu, beauty.</li>
-              <li><b>Oslovenie menom</b> + zostatok bodov vo Svete výhod dm priamo v e-maile.</li>
+              <li><b>Oslovenie menom</b> + zostatok bodov vo Svete výhod DM priamo v e-maile.</li>
               <li><b>Geo / počasie blok</b> — „u vás bude 31 °C — nezabudni na SPF".</li>
             </ul>
           </div>
@@ -949,7 +955,7 @@
   <section class="slide">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">05 — Segmentové svety</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
@@ -969,7 +975,7 @@
             <div class="wimg" style="background-image:url('img-rodina-balenie.png');"><span class="wtag">👨‍👩‍👧 Rodina</span></div>
             <div class="wbody">
               <h3>Rodinný svet</h3>
-              <div class="wmeta">Akcent: dm modrá · NL 1 &amp; NL 3</div>
+              <div class="wmeta">Akcent: DM modrá · NL 1 &amp; NL 3</div>
               <p>Detské SPF, lekárnička, dmBio snacky na cesty, checklist do kufra. Pokojný, praktický tón — „leto bez starostí".</p>
               <div class="wtags"><span class="pill">Dovolenka</span><span class="pill">Deti</span><span class="pill">Checklist</span></div>
             </div>
@@ -997,7 +1003,7 @@
   <section class="slide">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">06 — Varianty newsletterov</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
@@ -1020,14 +1026,14 @@
             <span class="pill m">Formát C · Vzťahový</span>
             <h3 style="margin-top:10px;">Komunita &amp; vernosť</h3>
             <p>Teaser, súťaž, spätná väzba, bodová odmena, obsah z active beauty. <b>Použitie:</b> NL 0, NL 5.</p>
-            <div style="margin-top:8px;font-size:11.5px;color:var(--muted);"><b>Mechanika:</b> Svet výhod dm, UGC, prieskum.</div>
+            <div style="margin-top:8px;font-size:11.5px;color:var(--muted);"><b>Mechanika:</b> Svet výhod DM, UGC, prieskum.</div>
           </div>
         </div>
         <div class="card" style="margin-top:14px;">
           <h3 style="font-size:15px;">Spoločná kostra každého e-mailu</h3>
           <div class="comp-demo" style="margin-top:10px;">
             <span class="pill">Preheader</span><span style="color:var(--muted);">→</span>
-            <span class="pill">Logo dm + vlnka</span><span style="color:var(--muted);">→</span>
+            <span class="pill">Logo DM + vlnka</span><span style="color:var(--muted);">→</span>
             <span class="pill">Hero (segmentový)</span><span style="color:var(--muted);">→</span>
             <span class="pill">Hlavný blok / mechanika</span><span style="color:var(--muted);">→</span>
             <span class="pill">Produktové karty</span><span style="color:var(--muted);">→</span>
@@ -1049,7 +1055,7 @@
   <section class="slide">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">06 — Detail newslettera · Formát A</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
@@ -1094,7 +1100,7 @@
   <section class="slide">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">06 — Detail newslettera · Formát B</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
@@ -1139,7 +1145,7 @@
   <section class="slide">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">06 — Detail newslettera · Formát B</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
@@ -1184,12 +1190,12 @@
   <section class="slide navy">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm" style="filter:brightness(0) invert(1);"><div class="s-head-div"></div><span class="kicker">07 — Copywriting</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
         <h2 style="color:#fff;">Úderné letné callouty</h2>
-        <p class="lead">Predmety e-mailov a hero headliny, ktoré zastavia palec. Krátke, konkrétne, s ľudským tónom dm — „tu som človekom".</p>
+        <p class="lead">Predmety e-mailov a hero headliny, ktoré zastavia palec. Krátke, konkrétne, s ľudským tónom DM — „tu som človekom".</p>
         <div class="grid g3" style="margin-top:16px;gap:14px;">
           <div class="callout co-yellow"><div class="ctxt">„Slnko už balí kufre. Ty tiež?"</div><div class="cmeta" style="color:#7a5a00;">NL 1 · hero / predmet</div></div>
           <div class="callout co-pink"><div class="ctxt">„Trblietky nie sú len na Vianoce."</div><div class="cmeta" style="color:#ffd9ee;">NL 2 · festival hero</div></div>
@@ -1199,7 +1205,7 @@
           <div class="callout co-red"><div class="ctxt">„Festival prežiješ. Otázka je, ako budeš na fotkách."</div><div class="cmeta" style="color:#ffd2d7;">NL 2 · predmet B</div></div>
           <div class="callout co-yellow"><div class="ctxt">„After-sun nie je luxus. Je to ospravedlnenie tvojej pokožke."</div><div class="cmeta" style="color:#7a5a00;">NL 5 · doznievanie leta</div></div>
           <div class="callout co-navy" style="border:1px solid rgba(255,255,255,.15);"><div class="ctxt">„Ostávaš v meste? Leto sa dá aj na balkóne."</div><div class="cmeta">NL 4 · leto v meste</div></div>
-          <div class="callout co-mint"><div class="ctxt">„Prejdi leto s dm — odmena ťa čaká v auguste."</div><div class="cmeta" style="color:#d4f5e5;">vernostná niť · cez celú sériu</div></div>
+          <div class="callout co-mint"><div class="ctxt">„Prejdi leto s DM — odmena ťa čaká v auguste."</div><div class="cmeta" style="color:#d4f5e5;">vernostná niť · cez celú sériu</div></div>
         </div>
         <div class="continuity">
           <span class="lbl">Kde sme — veľká myšlienka v jednej vete</span>
@@ -1214,17 +1220,17 @@
   <section class="slide">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">08 — Vizuálna identita</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
-        <h2>dm brand v e-maile — pravidlá aplikácie</h2>
-        <p class="lead">Vychádza z reálnej identity dm: modrá ako základ, žlto-červená vlnka ako podpis, vzdušné svetlé pozadia, biele zaoblené karty a priateľský tón.</p>
+        <h2>DM brand v e-maile — pravidlá aplikácie</h2>
+        <p class="lead">Vychádza z reálnej identity DM: modrá ako základ, žlto-červená vlnka ako podpis, vzdušné svetlé pozadia, biele zaoblené karty a priateľský tón.</p>
         <div class="two-col" style="margin-top:14px;">
           <div>
             <h3 style="font-size:15px;margin-bottom:8px;">Farebná paleta</h3>
             <div class="grid g4" style="gap:9px;">
-              <div class="swatch" style="background:#003a78;color:#fff;">dm modrá<br>#003A78</div>
+              <div class="swatch" style="background:#003a78;color:#fff;">DM modrá<br>#003A78</div>
               <div class="swatch" style="background:#0a6fc2;color:#fff;">modrá svetlá<br>#0A6FC2</div>
               <div class="swatch" style="background:#ffcc00;color:#5a4200;">žltá vlnka<br>#FFCC00</div>
               <div class="swatch" style="background:#e2001a;color:#fff;">červená vlnka<br>#E2001A</div>
@@ -1260,7 +1266,7 @@
                 <span class="pill p">Novinka</span>
                 <span class="pill m">dmBio</span>
                 <span class="pill r">−20 %</span>
-                <span class="pill">Svet výhod dm</span>
+                <span class="pill">Svet výhod DM</span>
               </div>
               <div style="margin-top:11px;background:#fff;border-radius:12px;padding:11px;border:1px solid var(--line);">
                 <div style="font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);">Produktová karta</div>
@@ -1268,7 +1274,7 @@
                 <p style="font-size:11.5px;color:var(--muted);">Vzdušné odsadenie, krátky popis, jedno jasné CTA.</p>
               </div>
             </div>
-            <p style="font-size:11.5px;color:var(--muted);margin-top:8px;"><b>Pozn.:</b> v deku aj v ukážke je použité reálne logo dm; v produkcii sa berie oficiálny súbor z brand manuálu.</p>
+            <p style="font-size:11.5px;color:var(--muted);margin-top:8px;"><b>Pozn.:</b> v deku aj v ukážke je použité reálne logo DM; v produkcii sa berie oficiálny súbor z brand manuálu.</p>
           </div>
         </div>
         <div class="continuity">
@@ -1284,20 +1290,20 @@
   <section class="slide">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">08 — Hotová ukážka</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
-        <h2>Funkčný newsletter — „Leto s dm"</h2>
+        <h2>Funkčný newsletter — „Leto s DM"</h2>
         <p class="lead">Reálny, e-mailovo bezpečný HTML newsletter (table layout, inline štýly, responzívny) postavený presne na tejto identite. Súbor je súčasťou odovzdania.</p>
         <div class="two-col" style="margin-top:14px;">
           <div class="card pad-lg">
             <h3>Čo ukážka obsahuje</h3>
             <ul class="clean" style="margin-top:5px;">
-              <li>Reálne logo dm + žlto-červená vlnka ako podpis brandu.</li>
-              <li>Hero „Leto s dm" s jasným CTA a preheader textom.</li>
+              <li>Reálne logo DM + žlto-červená vlnka ako podpis brandu.</li>
+              <li>Hero „Leto s DM" s jasným CTA a preheader textom.</li>
               <li>Kartové bloky: Balea Sun, alverde, dmBio — vzdušné, zaoblené.</li>
-              <li>Promo pruh −20 % naviazaný na Svet výhod dm.</li>
+              <li>Promo pruh −20 % naviazaný na Svet výhod DM.</li>
               <li>Vernostný pruh + teaser ďalšieho dielu — niť série v e-maile.</li>
               <li>Plne responzívne — overené na desktop aj mobil.</li>
             </ul>
@@ -1333,7 +1339,7 @@
   <section class="slide">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">09 — Harmonogram</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
@@ -1389,7 +1395,7 @@
   <section class="slide navy">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm" style="filter:brightness(0) invert(1);"><div class="s-head-div"></div><span class="kicker">10 — Meranie &amp; ďalšie kroky</span></div>
-      <div class="s-head-r">Leto s dm · 2026</div>
+      <div class="s-head-r">Leto s DM · 2026</div>
     </div>
     <div class="s-body">
       <div class="s-inner">
@@ -1427,7 +1433,7 @@
         </div>
         <div class="continuity">
           <span class="lbl">Kde sme — kruh sa uzatvára</span>
-          <p><b>Tieto čísla sú presne tie ciele zo slidu 3.</b> Kampaň sa nimi začala a končí ich meraním — to z nej robí celok: stratégiu, systém aj výstup. Ďakujem za pozornosť — leto s dm môže začať. ☀️</p>
+          <p><b>Tieto čísla sú presne tie ciele zo slidu 3.</b> Kampaň sa nimi začala a končí ich meraním — to z nej robí celok: stratégiu, systém aj výstup. Ďakujem za pozornosť — leto s DM môže začať. ☀️</p>
         </div>
       </div>
     </div>

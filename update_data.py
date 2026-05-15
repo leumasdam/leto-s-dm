@@ -2,9 +2,12 @@
 """
 update_data.py — generuje data.json z reálnych Google Trends SK dát.
 
-Pre každý keyword porovná priemerný záujem v lete (jún–august) vs. január toho
-istého roka a vyráta % nárast. Výsledok zapíše do data.json (zachová ostatné
-polia ako openTimes, ak existujú).
+Metodológia (sezónny index):
+  Pre každý keyword stiahneme celoročný Trends index (týždenné body)
+  a vypočítame, o koľko % je priemer letných týždňov (jún–august)
+  nad priemerom celého roka.
+
+  → "summer vs. annual average" — štandardný marketingový sezónny index.
 
 Použitie:
     pip install -r requirements.txt
@@ -28,12 +31,8 @@ except ImportError:
 
 # ---- konfigurácia ----
 # Každá položka = (display label, search query).
-# Display label sa ukáže v slide; query je čo posielame do Google Trends.
-#
-# POZOR: SK trh je malý — niektoré úzke queries (napr. "krém na opaľovanie")
-# nemajú dosť search volume na to, aby Trends vrátil dáta. Používame
-# širšie/populárnejšie termy. Ak chceš iné, daj sem termy, ktoré reálne
-# vidíš v Google Trends s nenulovým grafom.
+# SK trh je malý — niektoré úzke queries nemajú dosť dát. Používame
+# širšie populárne termy s preukázateľným SK signálom.
 KEYWORDS = [
     ("Opaľovací krém",        "opaľovací krém"),
     ("SPF",                   "SPF"),
@@ -43,51 +42,57 @@ KEYWORDS = [
     ("Kufor / cestovné",      "kufor"),
 ]
 
-# Pre referenčné porovnanie použijeme posledný uzavretý rok (aby všetky mesiace mali dáta).
+# Referenčný rok — posledný uzavretý rok (všetky mesiace majú dáta).
 YEAR = date.today().year - 1
-SUMMER_RANGE = f"{YEAR}-06-01 {YEAR}-08-31"
-BASELINE_RANGE = f"{YEAR}-01-01 {YEAR}-01-31"
 
 GEO = "SK"
-SLEEP_BETWEEN_REQUESTS = 5.0  # sekundy — Google trends rate-limituje (skús zvýšiť ak 429)
-SORT_DESCENDING = True        # najväčší nárast hore (lepší vizuál)
+SLEEP_BETWEEN_REQUESTS = 5.0  # sekundy — Google trends rate-limituje
+SORT_DESCENDING = True
 
 DATA_PATH = Path(__file__).parent / "data.json"
 
 
-def fetch_average_interest(pytrends: TrendReq, keyword: str, timeframe: str) -> float:
-    """Priemerný Google Trends index (0–100) pre keyword v danom časovom okne."""
+def fetch_year_series(pytrends: TrendReq, keyword: str, year: int):
+    """Stiahne celoročnú Trends timeseries pre keyword v SK. None ak prázdne."""
+    timeframe = f"{year}-01-01 {year}-12-31"
     try:
         pytrends.build_payload([keyword], timeframe=timeframe, geo=GEO)
         df = pytrends.interest_over_time()
         if df is None or df.empty:
-            return 0.0
-        col = df[keyword]
+            return None
+        # filtruj nedokončené týždne na konci
         if "isPartial" in df.columns:
-            col = col[~df["isPartial"]]
-        return float(col.mean()) if len(col) else 0.0
+            df = df[~df["isPartial"]]
+        return df[keyword]
     except Exception as e:
-        print(f"  ⚠ Trends fetch zlyhal pre '{keyword}' / {timeframe}: {e}", file=sys.stderr)
-        return 0.0
+        print(f"  ⚠ Trends fetch zlyhal pre '{keyword}': {e}", file=sys.stderr)
+        return None
 
 
-def percent_change(summer: float, baseline: float) -> int:
-    # Žiadne dáta v oboch oknách — nemá zmysel počítať.
-    if summer <= 0 and baseline <= 0:
-        return 0
-    # Letné okno má dáta, baseline nie → growth z prakticky nuly. Použijeme
-    # floor 1.0 pre stabilný výpočet; cap na +999 % aby čísla nelietali.
-    if baseline <= 0:
-        return min(999, int(round(summer / 1.0 * 100)))
-    # Štandardný výpočet (môže byť aj záporný — pokles).
-    return int(round((summer - baseline) / baseline * 100))
+def seasonal_lift_percent(series) -> tuple:
+    """Vráti (summer_avg, year_avg, lift_percent).
+    lift_percent = o koľko % je leto (jún–aug) nad celoročným priemerom.
+    """
+    if series is None or len(series) == 0:
+        return (0.0, 0.0, 0)
+    year_avg = float(series.mean())
+    summer_mask = (series.index.month >= 6) & (series.index.month <= 8)
+    summer_series = series[summer_mask]
+    if len(summer_series) == 0:
+        return (0.0, year_avg, 0)
+    summer_avg = float(summer_series.mean())
+    if year_avg <= 0:
+        # Celoročný priemer je 0 — nemôžeme normalizovať
+        return (summer_avg, year_avg, 0)
+    lift = int(round((summer_avg - year_avg) / year_avg * 100))
+    return (summer_avg, year_avg, lift)
 
 
 def main() -> int:
-    print(f"Sťahujem Google Trends SK pre {len(KEYWORDS)} kľúčových slov…")
-    print(f"  Letné okno:    {SUMMER_RANGE}")
-    print(f"  Baseline:      {BASELINE_RANGE}")
+    print(f"Sťahujem Google Trends SK · sezónny index pre {len(KEYWORDS)} kľúčových slov…")
+    print(f"  Rok:           {YEAR}")
     print(f"  Geo:           {GEO}")
+    print(f"  Metodológia:   priemer letných týždňov (jún–aug) vs. celoročný priemer")
     print()
 
     pytrends = TrendReq(hl="sk-SK", tz=120)
@@ -95,24 +100,22 @@ def main() -> int:
     results = []
     for label, query in KEYWORDS:
         print(f"  → {label}  (query: '{query}')")
-        summer_avg = fetch_average_interest(pytrends, query, SUMMER_RANGE)
+        series = fetch_year_series(pytrends, query, YEAR)
         time.sleep(SLEEP_BETWEEN_REQUESTS)
-        baseline_avg = fetch_average_interest(pytrends, query, BASELINE_RANGE)
-        time.sleep(SLEEP_BETWEEN_REQUESTS)
-        change = percent_change(summer_avg, baseline_avg)
-        print(f"    leto={summer_avg:.1f}  január={baseline_avg:.1f}  zmena={'+' if change >= 0 else ''}{change} %")
-        results.append({"label": label, "change": change})
+        summer_avg, year_avg, lift = seasonal_lift_percent(series)
+        sign = "+" if lift >= 0 else ""
+        print(f"    leto={summer_avg:.1f}  rok={year_avg:.1f}  index={sign}{lift} %")
+        results.append({"label": label, "change": lift})
 
-    # Sanity check — potrebujeme aspoň 2 keywords s pozitívnym nárastom, inak
-    # je dáta-set prakticky prázdny.
+    # Sanity check — potrebujeme aspoň 2 keywords s pozitívnym sezónnym indexom.
     positive = sum(1 for r in results if r["change"] > 0)
     if positive < 2:
-        print(f"\n✗ Iba {positive}/{len(results)} keywords má pozitívny letný nárast.", file=sys.stderr)
+        print(f"\n✗ Iba {positive}/{len(results)} keywords má pozitívny sezónny index.", file=sys.stderr)
         print("  Pravdepodobne 429 / nízky SK search volume. Skús o ~15 min alebo uprav KEYWORDS.", file=sys.stderr)
         print("  data.json som nezmenil.", file=sys.stderr)
         return 1
-    # Odfiltrujeme tie, čo nemajú pozitívny letný signál — slide ukazuje "nárast vs. január".
-    # Pre negatívne výsledky (kufor v zime > leto) by sme potrebovali iný vizuál.
+
+    # Slide ukazuje "leto vs ročný priemer" — necháme len pozitívne.
     results = [r for r in results if r["change"] > 0]
 
     if SORT_DESCENDING:
@@ -127,7 +130,7 @@ def main() -> int:
 
     new_data = {
         "lastUpdated": date.today().isoformat(),
-        "source": f"Google Trends SK · {YEAR} (jún–august vs. január) · auto-update",
+        "source": f"Google Trends SK · {YEAR} (leto vs. ročný priemer) · auto-update",
         "trends": results,
         "openTimes": existing.get("openTimes", [
             {"slot": "utorok 9–11 h", "percent": 28},

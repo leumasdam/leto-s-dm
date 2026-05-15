@@ -429,7 +429,17 @@
 
   /* data slide — bars + závery */
   .dbars{display:flex;flex-direction:column;gap:9px;}
-  .dbar{display:grid;grid-template-columns:160px 1fr 70px;align-items:center;gap:11px;font-size:13px;}
+  .dbar{display:grid;grid-template-columns:140px 1fr 56px 76px;align-items:center;gap:10px;font-size:13px;}
+  .dbar-spark{height:22px;opacity:.85;}
+  .dbar-spark svg{width:100%;height:100%;display:block;overflow:visible;}
+  .dbar-spark .line{fill:none;stroke:#ffcc00;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;}
+  .dbar-spark .area{fill:rgba(255,204,0,.18);}
+  .dbar-light .dbar-spark .line{stroke:var(--navy);}
+  .dbar-light .dbar-spark .area{fill:rgba(0,58,120,.12);}
+  /* Related queries tag cloud */
+  .rel-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;}
+  .rel-tag{background:var(--mint-light);color:#0d6b44;font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;}
+  .rel-tag small{font-weight:500;color:rgba(13,107,68,.65);font-size:9.5px;letter-spacing:.02em;}
   .dbar-l{color:rgba(255,255,255,.92);}
   .dbar-light .dbar-l{color:var(--ink);}
   .dbar-t{height:10px;background:rgba(255,255,255,.18);border-radius:5px;overflow:hidden;}
@@ -849,9 +859,9 @@
             <div class="data-panel-label" style="color:#ffcc00;">Google Trends SK · jún–august</div>
             <h3 style="color:#fff;margin-top:6px;">Sezónne vyhľadávania</h3>
             <div class="dbars" data-bind="trends" style="margin-top:12px;">
-              <div class="dbar"><span class="dbar-l">Repelent</span><div class="dbar-t"><div class="dbar-f" style="width:96%;"></div></div><span class="dbar-v">+458 %</span></div>
-              <div class="dbar"><span class="dbar-l">SPF</span><div class="dbar-t"><div class="dbar-f" style="width:32%;"></div></div><span class="dbar-v">+129 %</span></div>
-              <div class="dbar"><span class="dbar-l">Balea (dm brand)</span><div class="dbar-t"><div class="dbar-f" style="width:22%;"></div></div><span class="dbar-v">+85 %</span></div>
+              <div class="dbar"><span class="dbar-l">Repelent</span><div class="dbar-t"><div class="dbar-f" style="width:96%;"></div></div><span class="dbar-v">+458 %</span><span class="dbar-spark"></span></div>
+              <div class="dbar"><span class="dbar-l">SPF</span><div class="dbar-t"><div class="dbar-f" style="width:32%;"></div></div><span class="dbar-v">+129 %</span><span class="dbar-spark"></span></div>
+              <div class="dbar"><span class="dbar-l">Balea (dm brand)</span><div class="dbar-t"><div class="dbar-f" style="width:22%;"></div></div><span class="dbar-v">+85 %</span><span class="dbar-spark"></span></div>
             </div>
           </div>
 
@@ -860,9 +870,9 @@
               <div class="data-panel-label" style="color:var(--blue);">Behaviorálne dáta · e-mail marketing</div>
               <h3 style="margin-top:6px;">Kedy sa newsletter otvára najviac</h3>
               <div class="dbars dbar-light" data-bind="openTimes" style="margin-top:10px;">
-                <div class="dbar dbar-light"><span class="dbar-l">utorok 9–11 h</span><div class="dbar-t"><div class="dbar-f" style="width:82%;background:var(--navy);"></div></div><span class="dbar-v">28 %</span></div>
-                <div class="dbar dbar-light"><span class="dbar-l">streda 10–12 h</span><div class="dbar-t"><div class="dbar-f" style="width:68%;background:var(--navy);"></div></div><span class="dbar-v">23 %</span></div>
-                <div class="dbar dbar-light"><span class="dbar-l">nedeľa 19–21 h</span><div class="dbar-t"><div class="dbar-f" style="width:54%;background:var(--navy);"></div></div><span class="dbar-v">18 %</span></div>
+                <div class="dbar dbar-light"><span class="dbar-l">utorok 9–11 h</span><div class="dbar-t"><div class="dbar-f" style="width:82%;background:var(--navy);"></div></div><span class="dbar-v">28 %</span><span class="dbar-spark"></span></div>
+                <div class="dbar dbar-light"><span class="dbar-l">streda 10–12 h</span><div class="dbar-t"><div class="dbar-f" style="width:68%;background:var(--navy);"></div></div><span class="dbar-v">23 %</span><span class="dbar-spark"></span></div>
+                <div class="dbar dbar-light"><span class="dbar-l">nedeľa 19–21 h</span><div class="dbar-t"><div class="dbar-f" style="width:54%;background:var(--navy);"></div></div><span class="dbar-v">18 %</span><span class="dbar-spark"></span></div>
               </div>
             </div>
             <div class="card pad-lg" style="background:#fdf2f8;border-color:#e6007e;">
@@ -873,6 +883,17 @@
                 <li><b>Grape festival · august</b> — pík glow makeupu a glitter produktov</li>
                 <li><b>Dovolenkové týždne 28.–31.</b> — SPF kulminuje týždeň pred odchodom</li>
               </ul>
+            </div>
+            <div class="card pad-lg" style="background:var(--mint-light);border-color:var(--mint);">
+              <div class="data-panel-label" style="color:#0d6b44;">🔎 Súvisiace vyhľadávania · top SK</div>
+              <h3 style="margin-top:6px;">Čo k tomu Slováci ďalej hľadajú</h3>
+              <div class="rel-tags" data-bind="topRelated">
+                <span class="rel-tag">spf 50 <small>·</small></span>
+                <span class="rel-tag">balea sun <small>·</small></span>
+                <span class="rel-tag">kúpalisko <small>·</small></span>
+                <span class="rel-tag">repelent na komáre <small>·</small></span>
+                <span class="rel-tag">after sun gél <small>·</small></span>
+              </div>
             </div>
           </div>
         </div>
@@ -1935,6 +1956,23 @@
       document.querySelectorAll('[data-bind="source"]').forEach(el => el.textContent = D.source || '');
       document.querySelectorAll('[data-bind="trendsCount"]').forEach(el => el.textContent = (D.trends || []).length);
 
+      // Helper: sparkline SVG path z weekly array
+      const sparkline = (weekly) => {
+        if (!Array.isArray(weekly) || weekly.length < 2) return '';
+        const W = 76, H = 22, n = weekly.length;
+        const maxV = Math.max(...weekly, 1);
+        const minV = Math.min(...weekly, 0);
+        const range = Math.max(1, maxV - minV);
+        const pts = weekly.map((v, i) => {
+          const x = (i / (n - 1)) * W;
+          const y = H - 1 - ((v - minV) / range) * (H - 2);
+          return `${x.toFixed(1)},${y.toFixed(1)}`;
+        });
+        const areaPath = `M 0,${H} L ${pts.join(' L ')} L ${W},${H} Z`;
+        const linePath = `M ${pts.join(' L ')}`;
+        return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><path class="area" d="${areaPath}"/><path class="line" d="${linePath}"/></svg>`;
+      };
+
       // Trends bars
       const trendsHost = document.querySelector('[data-bind="trends"]');
       if (trendsHost && Array.isArray(D.trends) && D.trends.length) {
@@ -1942,7 +1980,7 @@
         trendsHost.innerHTML = D.trends.map(t => {
           const w = Math.max(8, Math.round(t.change / max * 96));
           const sign = t.change >= 0 ? '+' : '';
-          return `<div class="dbar"><span class="dbar-l">${t.label}</span><div class="dbar-t"><div class="dbar-f" style="width:${w}%;"></div></div><span class="dbar-v">${sign}${t.change} %</span></div>`;
+          return `<div class="dbar"><span class="dbar-l">${t.label}</span><div class="dbar-t"><div class="dbar-f" style="width:${w}%;"></div></div><span class="dbar-v">${sign}${t.change} %</span><span class="dbar-spark">${sparkline(t.weekly)}</span></div>`;
         }).join('');
       }
 
@@ -1952,8 +1990,16 @@
         const max = Math.max(...D.openTimes.map(o => o.percent));
         openHost.innerHTML = D.openTimes.map(o => {
           const w = Math.max(8, Math.round(o.percent / max * 82));
-          return `<div class="dbar dbar-light"><span class="dbar-l">${o.slot}</span><div class="dbar-t"><div class="dbar-f" style="width:${w}%;background:var(--navy);"></div></div><span class="dbar-v">${o.percent} %</span></div>`;
+          return `<div class="dbar dbar-light"><span class="dbar-l">${o.slot}</span><div class="dbar-t"><div class="dbar-f" style="width:${w}%;background:var(--navy);"></div></div><span class="dbar-v">${o.percent} %</span><span class="dbar-spark"></span></div>`;
         }).join('');
+      }
+
+      // Related queries — tag cloud
+      const relHost = document.querySelector('[data-bind="topRelated"]');
+      if (relHost && Array.isArray(D.topRelated) && D.topRelated.length) {
+        relHost.innerHTML = D.topRelated.map(r =>
+          `<span class="rel-tag">${r.q} <small>${r.v ? r.v : ''}</small></span>`
+        ).join('');
       }
     } catch (e) {
       console.warn('[data.json] hydration failed:', e);

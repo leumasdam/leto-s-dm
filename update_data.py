@@ -48,7 +48,7 @@ KEYWORDS = [
     ("Kúpalisko",             "kúpalisko"),
     ("Dovolenka",             "dovolenka"),
     ("Chorvátsko",            "Chorvátsko"),
-    ("Klimatizácia",          "klimatizácia"),
+    ("Deodorant",             "deodorant"),
 ]
 
 # 3-ročný baseline — priemer cez 3 uzavreté roky pre stabilnejšie hodnoty.

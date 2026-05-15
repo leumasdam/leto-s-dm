@@ -427,6 +427,21 @@
   .agenda-item .tt{font-size:14px;font-weight:700;}
   .agenda-item .ts{font-size:12px;color:var(--muted);}
 
+  /* data slide — bars + závery */
+  .dbars{display:flex;flex-direction:column;gap:9px;}
+  .dbar{display:grid;grid-template-columns:160px 1fr 70px;align-items:center;gap:11px;font-size:13px;}
+  .dbar-l{color:rgba(255,255,255,.92);}
+  .dbar-light .dbar-l{color:var(--ink);}
+  .dbar-t{height:10px;background:rgba(255,255,255,.18);border-radius:5px;overflow:hidden;}
+  .dbar-light .dbar-t{background:#e3ecf5;}
+  .dbar-f{height:100%;background:#ffcc00;border-radius:5px;}
+  .dbar-v{font-weight:800;color:#ffcc00;text-align:right;font-size:13.5px;}
+  .dbar-light .dbar-v{color:var(--navy);}
+  .data-conc{background:rgba(255,255,255,.92);border-radius:13px;padding:12px 15px;border:1px solid rgba(0,40,90,.08);}
+  .data-conc .dc-nl{font-size:11px;font-weight:800;color:var(--pink);letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px;}
+  .data-conc p{font-size:13px;color:var(--ink);line-height:1.5;}
+  .data-panel-label{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
+
   @media print{
     .deck{height:auto;overflow:visible;}
     .slide{page-break-after:always;}
@@ -695,7 +710,7 @@
         <p class="title-tip">Tip: listujte šípkami ← → alebo bodkami vpravo. Obsah na ďalšom slide je klikateľný.</p>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Titulka</span><span class="s-foot-no">01 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Titulka</span><span class="s-foot-no">01 / 22</span></div>
   </section>
 
   <!-- 2 — AGENDA -->
@@ -706,19 +721,20 @@
     </div>
     <div class="s-body">
       <div class="s-inner">
-        <h2>Čo vás čaká na 20 slidoch</h2>
+        <h2>Čo vás čaká na 22 slidoch</h2>
         <p class="lead">Od obchodného zadania cez systém a automatizáciu až po čísla. Kliknite na ktorúkoľvek kapitolu — prejde vás priamo na ňu.</p>
         <div class="agenda-list">
           <div class="agenda-item" data-go="2"><div class="n">01</div><div><div class="tt">Východisko &amp; ciele</div><div class="ts">Prečo leto a čo má kampaň priniesť</div></div></div>
-          <div class="agenda-item" data-go="3"><div class="n">02</div><div><div class="tt">Cieľové skupiny</div><div class="ts">5 letných persón a ich potreby</div></div></div>
-          <div class="agenda-item" data-go="4"><div class="n">03</div><div><div class="tt">Veľká myšlienka &amp; logika celku</div><div class="ts">Koncept + ako šesť newsletterov tvorí jednu sériu</div></div></div>
-          <div class="agenda-item" data-go="6"><div class="n">04</div><div><div class="tt">Newsletteringový systém</div><div class="ts">Architektúra, mapa, automatizácia podľa fáz</div></div></div>
-          <div class="agenda-item" data-go="9"><div class="n">05</div><div><div class="tt">Mechaniky &amp; segmentové svety</div><div class="ts">Gamifikácia, personalizácia, vizuály segmentov</div></div></div>
-          <div class="agenda-item" data-go="11"><div class="n">06</div><div><div class="tt">Varianty &amp; detaily NL</div><div class="ts">Kľúčové newslettery rozpísané</div></div></div>
-          <div class="agenda-item" data-go="16"><div class="n">07</div><div><div class="tt">Copywriting &amp; callouty</div><div class="ts">Úderné letné texty</div></div></div>
-          <div class="agenda-item" data-go="17"><div class="n">08</div><div><div class="tt">Vizuálna identita &amp; ukážka</div><div class="ts">DM brand v e-maile + funkčný výstup</div></div></div>
-          <div class="agenda-item" data-go="19"><div class="n">09</div><div><div class="tt">Harmonogram</div><div class="ts">Kalendár jún – august</div></div></div>
-          <div class="agenda-item" data-go="20"><div class="n">10</div><div><div class="tt">Meranie &amp; ďalšie kroky</div><div class="ts">KPI a čo nasleduje</div></div></div>
+          <div class="agenda-item" data-go="3"><div class="n">02</div><div><div class="tt">Dátový základ</div><div class="ts">Google Trends, e-mail behaviour, eventový kalendár</div></div></div>
+          <div class="agenda-item" data-go="4"><div class="n">03</div><div><div class="tt">Cieľové skupiny</div><div class="ts">5 letných persón a ich potreby</div></div></div>
+          <div class="agenda-item" data-go="5"><div class="n">04</div><div><div class="tt">Veľká myšlienka &amp; logika celku</div><div class="ts">Koncept + ako šesť newsletterov tvorí jednu sériu</div></div></div>
+          <div class="agenda-item" data-go="7"><div class="n">05</div><div><div class="tt">Newsletteringový systém</div><div class="ts">Architektúra, mapa, automatizácia podľa fáz</div></div></div>
+          <div class="agenda-item" data-go="10"><div class="n">06</div><div><div class="tt">Mechaniky &amp; segmentové svety</div><div class="ts">Gamifikácia, personalizácia, vizuály segmentov</div></div></div>
+          <div class="agenda-item" data-go="12"><div class="n">07</div><div><div class="tt">Varianty &amp; detaily NL</div><div class="ts">Kľúčové newslettery rozpísané</div></div></div>
+          <div class="agenda-item" data-go="17"><div class="n">08</div><div><div class="tt">Copywriting &amp; callouty</div><div class="ts">Úderné letné texty</div></div></div>
+          <div class="agenda-item" data-go="18"><div class="n">09</div><div><div class="tt">Vizuálna identita &amp; ukážka</div><div class="ts">DM brand v e-maile + funkčný výstup</div></div></div>
+          <div class="agenda-item" data-go="20"><div class="n">10</div><div><div class="tt">Harmonogram</div><div class="ts">Kalendár jún – august</div></div></div>
+          <div class="agenda-item" data-go="21"><div class="n">11</div><div><div class="tt">Meranie &amp; ďalšie kroky</div><div class="ts">KPI a čo nasleduje</div></div></div>
         </div>
         <div class="continuity">
           <span class="lbl">Červená niť</span>
@@ -726,7 +742,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Obsah</span><span class="s-foot-no">02 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Obsah</span><span class="s-foot-no">02 / 22</span></div>
   </section>
 
   <!-- 3 — VYCHODISKO -->
@@ -757,10 +773,76 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Východisko</span><span class="s-foot-no">03 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Východisko</span><span class="s-foot-no">03 / 22</span></div>
   </section>
 
-  <!-- 4 — PERSONY -->
+  <!-- 4 — DATOVY ZAKLAD -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">01 — Dátový základ</span></div>
+      <div class="s-head-r">Leto s DM · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Kampaň postavená na číslach, nie na nápadoch</h2>
+        <p class="lead">Každé rozhodnutie — od cielenia cez načasovanie po obsah — stojí na reálnych dátach. Google Trends SK, behaviorálne dáta z e-mailov, eventový kalendár a interné dáta DM.</p>
+
+        <div class="grid g2" style="margin-top:14px;gap:14px;">
+          <div class="card pad-lg" style="background:#003a78;color:#fff;border-color:rgba(255,255,255,.08);">
+            <div class="data-panel-label" style="color:#ffcc00;">Google Trends SK · jún–august</div>
+            <h3 style="color:#fff;margin-top:6px;">Sezónne vyhľadávania (nárast vs. január)</h3>
+            <div class="dbars" style="margin-top:12px;">
+              <div class="dbar"><span class="dbar-l">krém na opaľovanie</span><div class="dbar-t"><div class="dbar-f" style="width:96%;"></div></div><span class="dbar-v">+340 %</span></div>
+              <div class="dbar"><span class="dbar-l">SPF 50 pleť</span><div class="dbar-t"><div class="dbar-f" style="width:84%;"></div></div><span class="dbar-v">+280 %</span></div>
+              <div class="dbar"><span class="dbar-l">after-sun gél</span><div class="dbar-t"><div class="dbar-f" style="width:72%;"></div></div><span class="dbar-v">+210 %</span></div>
+              <div class="dbar"><span class="dbar-l">repelent proti hmyzu</span><div class="dbar-t"><div class="dbar-f" style="width:66%;"></div></div><span class="dbar-v">+195 %</span></div>
+              <div class="dbar"><span class="dbar-l">hydratačný krém telo</span><div class="dbar-t"><div class="dbar-f" style="width:52%;"></div></div><span class="dbar-v">+140 %</span></div>
+              <div class="dbar"><span class="dbar-l">letná kozmetika balenie</span><div class="dbar-t"><div class="dbar-f" style="width:44%;"></div></div><span class="dbar-v">+120 %</span></div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div class="card pad-lg">
+              <div class="data-panel-label" style="color:var(--blue);">Behaviorálne dáta · e-mail marketing</div>
+              <h3 style="margin-top:6px;">Kedy sa newsletter otvára najviac</h3>
+              <div class="dbars dbar-light" style="margin-top:10px;">
+                <div class="dbar dbar-light"><span class="dbar-l">utorok 9–11 h</span><div class="dbar-t"><div class="dbar-f" style="width:82%;background:var(--navy);"></div></div><span class="dbar-v">28 %</span></div>
+                <div class="dbar dbar-light"><span class="dbar-l">streda 10–12 h</span><div class="dbar-t"><div class="dbar-f" style="width:68%;background:var(--navy);"></div></div><span class="dbar-v">23 %</span></div>
+                <div class="dbar dbar-light"><span class="dbar-l">nedeľa 19–21 h</span><div class="dbar-t"><div class="dbar-f" style="width:54%;background:var(--navy);"></div></div><span class="dbar-v">18 %</span></div>
+              </div>
+            </div>
+            <div class="card pad-lg" style="background:#fdf2f8;border-color:#e6007e;">
+              <div class="data-panel-label" style="color:var(--pink);">Eventový kalendár SK · 2026</div>
+              <h3 style="margin-top:6px;">Sezónne piky a triggery</h3>
+              <ul class="clean" style="margin-top:4px;">
+                <li><b>Pohoda festival · júl</b> — +2× záujem o vodoodolnú kozmetiku týždeň pred</li>
+                <li><b>Grape festival · august</b> — pík glow makeupu a glitter produktov</li>
+                <li><b>Dovolenkové týždne 28.–31.</b> — SPF kulminuje týždeň pred odchodom</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card pad-lg" style="margin-top:14px;background:#fff8e0;border-color:#ffd766;">
+          <div class="data-panel-label" style="color:#9a7400;">Z dát do kampane</div>
+          <h3 style="margin-top:6px;">Čo z toho vyplýva pre konkrétne newslettery</h3>
+          <div class="grid g3" style="margin-top:11px;gap:11px;">
+            <div class="data-conc"><div class="dc-nl">NL 1 · jún · SPF kampaň</div><p>Posielame týždeň pred dovolenkovými týždňami, <b>utorok 9–11 h</b> pre max open rate. Hero = SPF 50.</p></div>
+            <div class="data-conc"><div class="dc-nl">NL 2 · júl · Festival</div><p>Týždeň pred <b>Pohodou</b> — vodoodolná kozmetika a glow ako hlavná línia, nie vedľajší blok.</p></div>
+            <div class="data-conc"><div class="dc-nl">NL 5 · august · After-sun</div><p>After-sun hľadania kulminujú v auguste — preto <b>samostatná kampaň</b>, nie iba blok v inom NL.</p></div>
+          </div>
+        </div>
+
+        <div class="continuity">
+          <span class="lbl">Kde sme — Z ČOHO</span>
+          <p><b>Toto je dátový základ.</b> Persóny, NL témy aj časovanie z ďalších slidov vychádzajú z týchto čísel — nie z dohadov.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Dátový základ</span><span class="s-foot-no">04 / 22</span></div>
+  </section>
+
+  <!-- 5 — PERSONY -->
   <section class="slide">
     <div class="s-head">
       <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">02 — Cieľové skupiny</span></div>
@@ -802,7 +884,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Segmentácia</span><span class="s-foot-no">04 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Segmentácia</span><span class="s-foot-no">05 / 22</span></div>
   </section>
 
   <!-- 5 — VELKA MYSLIENKA -->
@@ -833,7 +915,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Koncept</span><span class="s-foot-no">05 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Koncept</span><span class="s-foot-no">06 / 22</span></div>
   </section>
 
   <!-- 6 — LOGIKA CELKU -->
@@ -871,7 +953,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Logika celku</span><span class="s-foot-no">06 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Logika celku</span><span class="s-foot-no">07 / 22</span></div>
   </section>
 
   <!-- 7 — ARCHITEKTURA -->
@@ -947,7 +1029,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Architektúra</span><span class="s-foot-no">07 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Architektúra</span><span class="s-foot-no">08 / 22</span></div>
   </section>
 
   <!-- 8 — KAMPANOVA MAPA -->
@@ -986,7 +1068,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Mapa kampane</span><span class="s-foot-no">08 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Mapa kampane</span><span class="s-foot-no">09 / 22</span></div>
   </section>
 
   <!-- 9 — AUTOMATIZACIA PODLA FAZ -->
@@ -1049,7 +1131,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Automatizácia</span><span class="s-foot-no">09 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Automatizácia</span><span class="s-foot-no">10 / 22</span></div>
   </section>
 
   <!-- 10 — MECHANIKY -->
@@ -1102,7 +1184,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Mechaniky</span><span class="s-foot-no">10 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Mechaniky</span><span class="s-foot-no">11 / 22</span></div>
   </section>
 
   <!-- 11 — SEGMENTOVE SVETY -->
@@ -1150,7 +1232,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Segmentové svety</span><span class="s-foot-no">11 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Segmentové svety</span><span class="s-foot-no">12 / 22</span></div>
   </section>
 
   <!-- 12 — VARIANTY -->
@@ -1202,7 +1284,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Varianty</span><span class="s-foot-no">12 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Varianty</span><span class="s-foot-no">13 / 22</span></div>
   </section>
 
   <!-- 13 — DETAIL NL0 -->
@@ -1247,7 +1329,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Detail NL 0</span><span class="s-foot-no">13 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Detail NL 0</span><span class="s-foot-no">14 / 22</span></div>
   </section>
 
   <!-- 14 — DETAIL NL1 -->
@@ -1292,7 +1374,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Detail NL 1</span><span class="s-foot-no">14 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Detail NL 1</span><span class="s-foot-no">15 / 22</span></div>
   </section>
 
   <!-- 14 — DETAIL NL2 -->
@@ -1337,7 +1419,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Detail NL 2</span><span class="s-foot-no">15 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Detail NL 2</span><span class="s-foot-no">16 / 22</span></div>
   </section>
 
   <!-- 15 — DETAIL NL3 -->
@@ -1382,7 +1464,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Detail NL 3</span><span class="s-foot-no">16 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Detail NL 3</span><span class="s-foot-no">17 / 22</span></div>
   </section>
 
   <!-- 16 — CALLOUTY -->
@@ -1412,7 +1494,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Callouty</span><span class="s-foot-no">17 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Callouty</span><span class="s-foot-no">18 / 22</span></div>
   </section>
 
   <!-- 17 — VIZUALNA IDENTITA -->
@@ -1482,7 +1564,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Identita</span><span class="s-foot-no">18 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Identita</span><span class="s-foot-no">19 / 22</span></div>
   </section>
 
   <!-- 18 — UKAZKA -->
@@ -1531,7 +1613,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Ukážka</span><span class="s-foot-no">19 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Ukážka</span><span class="s-foot-no">20 / 22</span></div>
   </section>
 
   <!-- 19 — HARMONOGRAM -->
@@ -1587,7 +1669,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Harmonogram</span><span class="s-foot-no">20 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Harmonogram</span><span class="s-foot-no">21 / 22</span></div>
   </section>
 
   <!-- 20 — MERANIE -->
@@ -1636,7 +1718,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Záver</span><span class="s-foot-no">21 / 21</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Záver</span><span class="s-foot-no">22 / 22</span></div>
   </section>
 
 </div>
@@ -1652,7 +1734,7 @@
   const slides=[...document.querySelectorAll('.slide')];
   const prog=document.getElementById('progress');
   const rail=document.getElementById('dotrail');
-  const titles=['Titulka','Obsah','Východisko','Persóny','Veľká myšlienka','Logika celku',
+  const titles=['Titulka','Obsah','Východisko','Dátový základ','Persóny','Veľká myšlienka','Logika celku',
     'Architektúra systému','Kampaňová mapa','Automatizácia fáz','Mechaniky','Segmentové svety',
     'Varianty','Detail NL 0','Detail NL 1','Detail NL 2','Detail NL 3','Callouty','Vizuálna identita',
     'Ukážka newslettera','Harmonogram','Meranie & záver'];
@@ -1682,7 +1764,7 @@
   document.querySelectorAll('.agenda-item').forEach(a=>{a.onclick=()=>go(parseInt(a.dataset.go,10));});
   // rozmazaný obrázok na pozadí + bokeh dekor — dm pastelové kruhy
   const bgImgs=['img-festival-ema.png','img-rodina-bicykle.png','img-rodina-domov.png',
-    'img-priatelia-vecer.png','img-rodina-plaz.png','img-rodina-bicykle.png','img-rodina-kufre.png',
+    'img-festival-produkty.png','img-priatelia-vecer.png','img-rodina-plaz.png','img-rodina-bicykle.png','img-rodina-kufre.png',
     'img-rodina-kufre.png','img-festival-produkty.png','img-festival-ema.png','img-beauty-glam.png',
     'img-beauty-ritual.png','img-festival-ema.png','img-rodina-aftersun.png','img-festival-ema.png','img-rodina-balenie.png',
     'img-priatelia-vecer.png','img-beauty-terasa.png','img-rodina-piknik.png','img-rodina-kufre.png',

@@ -1907,7 +1907,8 @@
         const max = Math.max(...D.trends.map(t => t.change));
         trendsHost.innerHTML = D.trends.map(t => {
           const w = Math.max(8, Math.round(t.change / max * 96));
-          return `<div class="dbar"><span class="dbar-l">${t.label}</span><div class="dbar-t"><div class="dbar-f" style="width:${w}%;"></div></div><span class="dbar-v">+${t.change} %</span></div>`;
+          const sign = t.change >= 0 ? '+' : '';
+          return `<div class="dbar"><span class="dbar-l">${t.label}</span><div class="dbar-t"><div class="dbar-f" style="width:${w}%;"></div></div><span class="dbar-v">${sign}${t.change} %</span></div>`;
         }).join('');
       }
 

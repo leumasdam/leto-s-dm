@@ -572,6 +572,13 @@
     .continuity .lbl{white-space:normal;font-size:10.5px;}
     .continuity p{font-size:12px;margin:0;}
 
+    /* Globálne collapse 2-stĺpcových gridov na 1-stĺpcové (mobile) */
+    .g2,.g3,.worlds{grid-template-columns:1fr !important;}
+    .ch-map{grid-template-columns:1fr !important;}
+    .ch-spokes{grid-template-columns:1fr 1fr !important;}
+    .ch-center{padding:18px 16px !important;}
+    .ab-grid,.persona-preview,.kpi-grid,.wc-grid{grid-template-columns:1fr !important;}
+
     /* Slide 4 data grid — horizontal scroll on mobile */
     .data-scroll-hint{display:block;font-size:10.5px;font-weight:800;letter-spacing:.05em;color:var(--pink);text-align:center;margin-top:10px;text-transform:uppercase;animation:scroll-hint-pulse 2.5s ease-in-out infinite;}
     @keyframes scroll-hint-pulse{0%,100%{opacity:.55;transform:translateX(0);}50%{opacity:1;transform:translateX(3px);}}

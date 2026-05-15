@@ -1,18 +1,54 @@
 {
   "lastUpdated": "2026-05-15",
-  "source": "Google Trends SK · 2025 (jún–august vs. január) · auto-update",
+  "source": "Google Trends SK · 2025 (leto vs. ročný priemer) · auto-update",
   "trends": [
     {
+      "label": "After-sun",
+      "change": 204
+    },
+    {
+      "label": "Kúpalisko",
+      "change": 171
+    },
+    {
       "label": "Repelent",
-      "change": 458
+      "change": 130
+    },
+    {
+      "label": "Chorvátsko",
+      "change": 111
+    },
+    {
+      "label": "Festival",
+      "change": 107
+    },
+    {
+      "label": "Plavky",
+      "change": 77
+    },
+    {
+      "label": "Klimatizácia",
+      "change": 73
+    },
+    {
+      "label": "Dovolenka",
+      "change": 56
     },
     {
       "label": "SPF",
-      "change": 129
+      "change": 47
+    },
+    {
+      "label": "Nivea",
+      "change": 13
     },
     {
       "label": "Balea (dm brand)",
-      "change": 85
+      "change": 8
+    },
+    {
+      "label": "Opaľovací krém",
+      "change": 4
     }
   ],
   "openTimes": [

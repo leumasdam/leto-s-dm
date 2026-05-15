@@ -441,6 +441,27 @@
   .data-conc .dc-nl{font-size:11px;font-weight:800;color:var(--pink);letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px;}
   .data-conc p{font-size:13px;color:var(--ink);line-height:1.5;}
   .data-panel-label{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
+  /* data slide — refresh button + tooltip */
+  .data-refresh{background:none;border:none;cursor:pointer;font-size:13px;font-weight:800;
+    color:var(--mint);padding:0 2px;line-height:1;transition:transform .3s;
+    font-family:inherit;}
+  .data-refresh:hover{color:var(--navy);transform:rotate(180deg);}
+  .data-refresh.spinning{animation:dr-spin 1s linear infinite;color:var(--blue);}
+  @keyframes dr-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  .data-info{position:relative;display:inline-flex;cursor:help;margin-left:3px;}
+  .data-info-i{font-size:12px;color:var(--blue);font-weight:800;}
+  .data-info .data-tip{
+    visibility:hidden;opacity:0;position:absolute;left:50%;bottom:calc(100% + 8px);
+    transform:translateX(-50%);width:340px;
+    background:var(--navy);color:#fff;font-size:11.5px;font-weight:400;line-height:1.5;
+    padding:11px 14px;border-radius:10px;box-shadow:var(--shadow);
+    transition:opacity .15s;z-index:10;text-transform:none;letter-spacing:0;
+    pointer-events:none;
+  }
+  .data-info .data-tip b{color:var(--yellow);font-weight:800;}
+  .data-info .data-tip::after{content:"";position:absolute;left:50%;top:100%;transform:translateX(-50%);
+    border:6px solid transparent;border-top-color:var(--navy);}
+  .data-info:hover .data-tip,.data-info:focus .data-tip{visibility:visible;opacity:1;}
 
   /* cross-channel slide */
   .pin-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px;}
@@ -806,7 +827,22 @@
       <div class="s-inner">
         <h2>Kampaň postavená na číslach, nie na nápadoch</h2>
         <p class="lead">Každé rozhodnutie — od cielenia cez načasovanie po obsah — stojí na reálnych dátach. Google Trends SK, behaviorálne dáta z e-mailov, eventový kalendár a interné dáta DM.</p>
-        <p class="data-meta" style="margin-top:6px;font-size:11.5px;color:var(--muted);font-weight:600;">⟳ <span data-bind="lastUpdated">Aktualizované 15.05.2026</span> · <span data-bind="source">Google Trends SK · 2025 · auto-update</span></p>
+        <p class="data-meta" style="margin-top:6px;font-size:11.5px;color:var(--muted);font-weight:600;">
+          <button class="data-refresh" title="Refreshnúť dáta">⟳</button>
+          <span data-bind="lastUpdated">Aktualizované 15.05.2026</span>
+          · <span data-bind="trendsCount">3</span> keywords
+          · <span data-bind="source">Google Trends SK · 2025 · auto-update</span>
+          <span class="data-info" tabindex="0">
+            <span class="data-info-i">ⓘ</span>
+            <span class="data-tip">
+              <b>Metodika:</b> Pre každý keyword stiahneme celoročnú Google Trends timeseries (SK). Sezónny index = (priemer letných týždňov − celoročný priemer) ÷ celoročný priemer × 100.
+              <br><br>
+              <b>Aktualizácia:</b> automaticky každý pondelok 06:00 UTC cez GitHub Action. Manuálne klikni na ⟳.
+              <br><br>
+              <b>Pozn.:</b> SK trh má nízky search volume — keywords bez signálu skript odfiltruje.
+            </span>
+          </span>
+        </p>
 
         <div class="grid g2" style="margin-top:14px;gap:14px;">
           <div class="card pad-lg" style="background:#003a78;color:#fff;border-color:rgba(255,255,255,.08);">
@@ -1897,6 +1933,7 @@
       };
       document.querySelectorAll('[data-bind="lastUpdated"]').forEach(el => el.textContent = fmtDate(D.lastUpdated));
       document.querySelectorAll('[data-bind="source"]').forEach(el => el.textContent = D.source || '');
+      document.querySelectorAll('[data-bind="trendsCount"]').forEach(el => el.textContent = (D.trends || []).length);
 
       // Trends bars
       const trendsHost = document.querySelector('[data-bind="trends"]');
@@ -1925,6 +1962,15 @@
   hydrateData();
   // re-hydrate keď sa stránka vráti z BFCache (back/forward nav)
   window.addEventListener('pageshow', e => { if (e.persisted) hydrateData(); });
+  // manuálny refresh — klik na ⟳
+  document.querySelectorAll('.data-refresh').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      btn.classList.add('spinning');
+      await hydrateData();
+      // krátka delay nech užívateľ vidí, že sa niečo dialo
+      setTimeout(() => btn.classList.remove('spinning'), 700);
+    });
+  });
 </script>
 </body>
 </html>

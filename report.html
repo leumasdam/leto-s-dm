@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Týždenný report · Leto s dm</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <style>
+    :root{
+      --navy:#003a78;--navy-deep:#00224a;--ink:#1a2536;--muted:#5a6877;
+      --pink:#e6007e;--mint:#1faa6f;--yellow:#ffcc00;--blue:#0a6fc2;
+      --bg:#f5f7fb;--card:#ffffff;--border:rgba(0,40,90,.1);
+      --ok:#1faa6f;--great:#0a8a55;--warn:#e25050;
+    }
+    *{box-sizing:border-box;}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;}
+    .container{max-width:980px;margin:0 auto;padding:24px 28px 60px;}
+
+    /* Header */
+    .rpt-header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px;padding-bottom:18px;border-bottom:2px solid var(--border);}
+    .rpt-brand{display:flex;align-items:center;gap:14px;}
+    .rpt-logo{width:48px;height:32px;object-fit:contain;}
+    .rpt-brand-l{display:flex;flex-direction:column;line-height:1.2;}
+    .rpt-eyebrow{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--pink);text-transform:uppercase;}
+    .rpt-title{font-size:22px;font-weight:900;color:var(--navy-deep);}
+    .rpt-toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+    .lang-toggle{display:flex;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:3px;}
+    .lang-toggle button{background:transparent;border:none;padding:6px 12px;border-radius:7px;font-size:12.5px;font-weight:700;color:var(--muted);cursor:pointer;font-family:inherit;}
+    .lang-toggle button.active{background:var(--navy);color:#fff;}
+    .btn-print{background:var(--navy);color:#fff;border:none;padding:8px 14px;border-radius:9px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px;}
+    .btn-print:hover{background:var(--navy-deep);}
+
+    /* Meta bar */
+    .rpt-meta{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:22px;}
+    .rpt-meta b{color:var(--navy-deep);font-weight:700;}
+
+    /* AI Summary */
+    .ai-summary{background:linear-gradient(135deg,#003a78 0%,#0a6fc2 100%);color:#fff;padding:20px 24px;border-radius:14px;margin-bottom:20px;position:relative;overflow:hidden;}
+    .ai-summary::before{content:"";position:absolute;top:-30px;right:-30px;width:160px;height:160px;background:radial-gradient(circle,rgba(255,204,0,.25) 0%,transparent 70%);}
+    .ai-label{font-size:11px;font-weight:800;letter-spacing:.08em;color:#ffcc00;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px;position:relative;}
+    .ai-body{font-size:15px;line-height:1.65;font-weight:500;position:relative;}
+    .ai-body b{color:#ffcc00;}
+
+    /* KPI cards */
+    .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px;}
+    .kpi-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
+    .kpi-label{font-size:11px;font-weight:800;letter-spacing:.05em;color:var(--muted);text-transform:uppercase;}
+    .kpi-value{font-size:28px;font-weight:900;color:var(--navy-deep);margin:4px 0 2px;font-variant-numeric:tabular-nums;}
+    .kpi-delta{font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:4px;}
+    .kpi-delta.up{color:var(--ok);}
+    .kpi-delta.down{color:var(--warn);}
+    .kpi-delta.flat{color:var(--muted);}
+
+    /* Section headings */
+    h2.rpt-h2{font-size:15px;font-weight:800;color:var(--navy-deep);letter-spacing:.04em;text-transform:uppercase;margin:24px 0 12px;display:flex;align-items:center;gap:8px;}
+    h2.rpt-h2::before{content:"";display:inline-block;width:4px;height:18px;background:var(--pink);border-radius:2px;}
+
+    /* NL performance table */
+    .nl-table{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+    .nl-row{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr 1fr 0.7fr;align-items:center;padding:10px 14px;font-size:12.5px;}
+    .nl-row.head{background:#f5f7fb;font-size:10.5px;font-weight:800;letter-spacing:.05em;color:var(--muted);text-transform:uppercase;}
+    .nl-row:not(.head){border-top:1px solid rgba(0,40,90,.06);}
+    .nl-lbl{font-weight:700;color:var(--navy-deep);}
+    .v-ok{color:var(--ok);font-weight:700;font-variant-numeric:tabular-nums;}
+    .v-great{color:var(--great);font-weight:800;font-variant-numeric:tabular-nums;}
+    .v-warn{color:var(--warn);font-weight:700;font-variant-numeric:tabular-nums;}
+    .v-score{font-weight:800;padding:3px 8px;border-radius:6px;text-align:center;font-size:12px;background:rgba(0,40,90,.05);}
+    .v-score.v-ok{background:rgba(31,170,111,.12);}
+    .v-score.v-great{background:rgba(10,138,85,.18);}
+    .v-score.v-warn{background:rgba(226,80,80,.12);}
+
+    /* Wins & concerns */
+    .wc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    .wc-col{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
+    .wc-col.wins{border-color:rgba(31,170,111,.3);background:rgba(31,170,111,.04);}
+    .wc-col.concerns{border-color:rgba(226,80,80,.3);background:rgba(226,80,80,.04);}
+    .wc-title{font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px;}
+    .wc-col.wins .wc-title{color:var(--ok);}
+    .wc-col.concerns .wc-title{color:var(--warn);}
+    .wc-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;}
+    .wc-list li{display:flex;gap:10px;font-size:12.5px;line-height:1.5;}
+    .wc-list b{color:var(--navy-deep);}
+    .wc-bullet{flex-shrink:0;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;}
+    .wins .wc-bullet{background:var(--ok);}
+    .concerns .wc-bullet{background:var(--warn);}
+
+    /* Trends mini */
+    .trend-mini{display:grid;grid-template-columns:1.5fr 1fr 70px;gap:12px;align-items:center;padding:8px 12px;font-size:12.5px;border-top:1px solid rgba(0,40,90,.05);}
+    .trend-mini:first-child{border-top:0;}
+    .trend-mini-lbl{color:var(--navy-deep);font-weight:700;}
+    .trend-mini-val{color:var(--mint);font-weight:800;font-variant-numeric:tabular-nums;}
+    .trend-mini-spark{height:24px;}
+
+    /* Footer */
+    .rpt-footer{margin-top:32px;padding-top:18px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.6;}
+    .rpt-footer a{color:var(--navy);}
+
+    /* Responsive */
+    @media (max-width:720px){
+      .kpi-grid{grid-template-columns:repeat(2,1fr);}
+      .wc-grid{grid-template-columns:1fr;}
+      .nl-row{grid-template-columns:1.5fr repeat(5,1fr);font-size:11px;padding:8px 10px;}
+    }
+
+    /* Print */
+    @media print{
+      body{background:#fff;}
+      .container{max-width:none;padding:8mm 8mm 12mm;}
+      .rpt-toolbar{display:none;}
+      .ai-summary{background:#003a78 !important;color:#fff !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+      .nl-table, .wc-col, .kpi-card, .nl-row.head{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+      h2.rpt-h2{page-break-after:avoid;}
+      .nl-table, .wc-grid, .ai-summary{page-break-inside:avoid;}
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header class="rpt-header">
+    <div class="rpt-brand">
+      <img class="rpt-logo" src="dm-logo.png" alt="dm">
+      <div class="rpt-brand-l">
+        <div class="rpt-eyebrow" data-i18n="eyebrow">Týždenný report</div>
+        <div class="rpt-title">Leto s dm · <span data-bind="week">KW 20 · 11.–17.5.2026</span></div>
+      </div>
+    </div>
+    <div class="rpt-toolbar">
+      <div class="lang-toggle" id="langToggle">
+        <button class="active" data-lang="sk">SK</button>
+        <button data-lang="de">DE</button>
+        <button data-lang="en">EN</button>
+      </div>
+      <button class="btn-print" onclick="window.print()" data-i18n="print">📄 Stiahnuť ako PDF</button>
+    </div>
+  </header>
+
+  <div class="rpt-meta">
+    <div><b data-i18n="audience">Pre:</b> Austria management board</div>
+    <div><b data-i18n="generated">Vygenerované:</b> <span data-bind="generated">15.05.2026 06:00 UTC</span></div>
+    <div><b data-i18n="source">Zdroj:</b> Mailchimp Retail benchmark 2024 · GA4 retail · Google Trends SK</div>
+    <div><b data-i18n="cadence">Cadence:</b> <span data-i18n="weekly">každý pondelok · auto</span></div>
+  </div>
+
+  <div class="ai-summary">
+    <div class="ai-label">🤖 <span data-i18n="aiLabel">AI Executive Summary</span></div>
+    <div class="ai-body" data-bind="aiSummary">
+      Séria <b>Leto s dm</b> je v polovici a darí sa jej nad benchmark — priemerný open rate <b>37,6 %</b> ťahá najmä NL 2 (Festival kvíz, <b>45,2 %</b>), ktorý možno mechanikou replikovať pre NL 4 (Cestovka, momentálne pod priemerom). Atribuovaný výnos kampane stúpol týždeň-na-týždeň o <b>+18 %</b> na <b>3 762 €</b>, ROAS sa pohybuje na <b>8,4×</b>. Top growing search query je <i>after-sun</i> (+211 %), čo potvrdzuje načasovanie NL 5 (Beauty rituál) na budúci týždeň.
+    </div>
+  </div>
+
+  <h2 class="rpt-h2" data-i18n="kpiHeading">Hlavné KPI</h2>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label" data-i18n="kpiOpen">Open rate</div>
+      <div class="kpi-value" data-bind="kpiOpen">37,6 %</div>
+      <div class="kpi-delta up">▲ +2,3 pp <span data-i18n="vsLastWeek" style="color:var(--muted);font-weight:500;">vs. minulý týždeň</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label" data-i18n="kpiCtr">CTR</div>
+      <div class="kpi-value" data-bind="kpiCtr">7,1 %</div>
+      <div class="kpi-delta up">▲ +0,8 pp <span data-i18n="vsLastWeek" style="color:var(--muted);font-weight:500;">vs. minulý týždeň</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label" data-i18n="kpiConv">Konverzia</div>
+      <div class="kpi-value" data-bind="kpiConv">3,9 %</div>
+      <div class="kpi-delta up">▲ +0,3 pp <span data-i18n="vsLastWeek" style="color:var(--muted);font-weight:500;">vs. minulý týždeň</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label" data-i18n="kpiRevenue">Atribuovaný výnos</div>
+      <div class="kpi-value" data-bind="kpiRevenue">3 762 €</div>
+      <div class="kpi-delta up">▲ +18,2 % <span data-i18n="vsLastWeek" style="color:var(--muted);font-weight:500;">vs. minulý týždeň</span></div>
+    </div>
+  </div>
+
+  <h2 class="rpt-h2" data-i18n="nlHeading">Newsletter performance</h2>
+  <div class="nl-table">
+    <div class="nl-row head"><span></span><span>Open</span><span>CTR</span><span>Unsub</span><span data-i18n="conv">Konv.</span><span data-i18n="score">Skóre</span></div>
+    <div class="nl-row"><span class="nl-lbl">NL 0 — Welcome</span><span class="v-ok">42,1 %</span><span class="v-ok">8,3 %</span><span>0,12 %</span><span class="v-ok">4,8 %</span><span class="v-score v-ok">94</span></div>
+    <div class="nl-row"><span class="nl-lbl">NL 1 — <span data-i18n="nl1">Slnečná pohotovosť</span></span><span class="v-ok">38,4 %</span><span class="v-ok">7,1 %</span><span>0,18 %</span><span class="v-ok">3,9 %</span><span class="v-score v-ok">87</span></div>
+    <div class="nl-row"><span class="nl-lbl">NL 2 — <span data-i18n="nl2">Festival kvíz</span></span><span class="v-great">45,2 %</span><span class="v-great">9,8 %</span><span>0,24 %</span><span class="v-great">5,2 %</span><span class="v-score v-great">96</span></div>
+    <div class="nl-row"><span class="nl-lbl">NL 3 — <span data-i18n="nl3">Rodinný checklist</span></span><span class="v-ok">35,1 %</span><span class="v-ok">6,2 %</span><span>0,28 %</span><span class="v-ok">3,4 %</span><span class="v-score v-ok">79</span></div>
+    <div class="nl-row"><span class="nl-lbl">NL 4 — <span data-i18n="nl4">Cestovka</span></span><span class="v-warn">27,8 %</span><span class="v-warn">3,9 %</span><span class="v-warn">0,42 %</span><span>2,1 %</span><span class="v-score v-warn">58</span></div>
+    <div class="nl-row"><span class="nl-lbl">NL 5 — <span data-i18n="nl5">Beauty rituál</span></span><span class="v-ok">36,9 %</span><span class="v-ok">7,4 %</span><span>0,15 %</span><span class="v-ok">4,1 %</span><span class="v-score v-ok">88</span></div>
+  </div>
+
+  <h2 class="rpt-h2" data-i18n="wcHeading">Wins &amp; concerns</h2>
+  <div class="wc-grid">
+    <div class="wc-col wins">
+      <div class="wc-title" data-i18n="winsLabel">✓ Top 3 wins</div>
+      <ul class="wc-list">
+        <li><span class="wc-bullet">1</span><div><b>NL 2 Festival kvíz</b> má <b>+96 skóre</b>, najvyššie v sérii. Open 45,2 % je 12 pp nad sériovým priemerom.</div></li>
+        <li><span class="wc-bullet">2</span><div><b>After-sun</b> Google Trends letí na <b>+211 %</b> sezónny lift — perfect timing pre NL 5 (next week).</div></li>
+        <li><span class="wc-bullet">3</span><div>Atribuovaný výnos <b>+18,2 %</b> WoW pri stabilných nákladoch → <b>ROAS 8,4×</b>.</div></li>
+      </ul>
+    </div>
+    <div class="wc-col concerns">
+      <div class="wc-title" data-i18n="concernsLabel">⚠ Top 3 concerns</div>
+      <ul class="wc-list">
+        <li><span class="wc-bullet">1</span><div><b>NL 4 Cestovka</b> open rate 27,8 % je <b>28 % pod priemerom</b>. Akcia: revízia subject line pre druhú vlnu.</div></li>
+        <li><span class="wc-bullet">2</span><div>Unsub rate NL 4 je <b>0,42 %</b> — 75 % nad cieľom <b>0,3 %</b>. Audit segmentu, prípadne suppression rule.</div></li>
+        <li><span class="wc-bullet">3</span><div>Pinterest <code style="background:rgba(226,80,80,.1);padding:1px 5px;border-radius:3px;">trends:read</code> API access zamietnutý — Pinterest panel beží na curated Predicts 2026 namiesto live API.</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="rpt-h2" data-i18n="trendsHeading">Google Trends · Top 3 sezónne</h2>
+  <div class="nl-table" id="trendsMini">
+    <div class="trend-mini"><span class="trend-mini-lbl">After-sun</span><span class="trend-mini-val">+211 %</span><svg class="trend-mini-spark" viewBox="0 0 100 24"><path d="M0,20 L20,18 L40,15 L55,4 L65,2 L75,8 L100,20" stroke="#1faa6f" stroke-width="2" fill="none"/></svg></div>
+    <div class="trend-mini"><span class="trend-mini-lbl">Kúpalisko</span><span class="trend-mini-val">+180 %</span><svg class="trend-mini-spark" viewBox="0 0 100 24"><path d="M0,20 L20,19 L40,16 L55,6 L65,3 L75,9 L100,21" stroke="#1faa6f" stroke-width="2" fill="none"/></svg></div>
+    <div class="trend-mini"><span class="trend-mini-lbl">Repelent</span><span class="trend-mini-val">+151 %</span><svg class="trend-mini-spark" viewBox="0 0 100 24"><path d="M0,21 L20,20 L40,15 L55,8 L65,5 L75,11 L100,22" stroke="#1faa6f" stroke-width="2" fill="none"/></svg></div>
+  </div>
+
+  <div class="rpt-footer">
+    <span data-i18n="footer">Auto-generované GitHub Action každý pondelok 06:00 UTC z</span>
+    <a href="https://github.com/leumasdam/leto-s-dm" target="_blank" rel="noopener">leumasdam/leto-s-dm</a> ·
+    <a href="prezentacia.html" data-i18n="backLink">← Späť na prezentáciu</a>
+  </div>
+
+</div>
+
+<script>
+  // === i18n ===
+  const i18n = {
+    sk: {
+      eyebrow: "Týždenný report",
+      print: "📄 Stiahnuť ako PDF",
+      audience: "Pre:",
+      generated: "Vygenerované:",
+      source: "Zdroj:",
+      cadence: "Cadence:",
+      weekly: "každý pondelok · auto",
+      aiLabel: "AI Executive Summary",
+      kpiHeading: "Hlavné KPI",
+      kpiOpen: "Open rate",
+      kpiCtr: "CTR",
+      kpiConv: "Konverzia",
+      kpiRevenue: "Atribuovaný výnos",
+      vsLastWeek: "vs. minulý týždeň",
+      nlHeading: "Newsletter performance",
+      conv: "Konv.",
+      score: "Skóre",
+      nl1: "Slnečná pohotovosť",
+      nl2: "Festival kvíz",
+      nl3: "Rodinný checklist",
+      nl4: "Cestovka",
+      nl5: "Beauty rituál",
+      wcHeading: "Wins & concerns",
+      winsLabel: "✓ Top 3 wins",
+      concernsLabel: "⚠ Top 3 concerns",
+      trendsHeading: "Google Trends · Top 3 sezónne",
+      footer: "Auto-generované GitHub Action každý pondelok 06:00 UTC z",
+      backLink: "← Späť na prezentáciu"
+    },
+    de: {
+      eyebrow: "Wochenbericht",
+      print: "📄 Als PDF speichern",
+      audience: "Für:",
+      generated: "Erstellt:",
+      source: "Quelle:",
+      cadence: "Frequenz:",
+      weekly: "jeden Montag · auto",
+      aiLabel: "KI-Zusammenfassung",
+      kpiHeading: "Haupt-KPIs",
+      kpiOpen: "Öffnungsrate",
+      kpiCtr: "Klickrate",
+      kpiConv: "Conversion",
+      kpiRevenue: "Zugeordneter Umsatz",
+      vsLastWeek: "vs. Vorwoche",
+      nlHeading: "Newsletter-Performance",
+      conv: "Konv.",
+      score: "Score",
+      nl1: "Sonnen-Bereitschaft",
+      nl2: "Festival-Quiz",
+      nl3: "Familien-Checkliste",
+      nl4: "Reisebüro",
+      nl5: "Beauty-Ritual",
+      wcHeading: "Erfolge & Risiken",
+      winsLabel: "✓ Top 3 Erfolge",
+      concernsLabel: "⚠ Top 3 Risiken",
+      trendsHeading: "Google Trends · Top 3 saisonal",
+      footer: "Auto-generiert von GitHub Action jeden Montag 06:00 UTC aus",
+      backLink: "← Zurück zur Präsentation"
+    },
+    en: {
+      eyebrow: "Weekly Report",
+      print: "📄 Save as PDF",
+      audience: "For:",
+      generated: "Generated:",
+      source: "Source:",
+      cadence: "Cadence:",
+      weekly: "every Monday · auto",
+      aiLabel: "AI Executive Summary",
+      kpiHeading: "Key KPIs",
+      kpiOpen: "Open rate",
+      kpiCtr: "CTR",
+      kpiConv: "Conversion",
+      kpiRevenue: "Attributed revenue",
+      vsLastWeek: "vs. last week",
+      nlHeading: "Newsletter performance",
+      conv: "Conv.",
+      score: "Score",
+      nl1: "Sunny Readiness",
+      nl2: "Festival Quiz",
+      nl3: "Family Checklist",
+      nl4: "Travel Edition",
+      nl5: "Beauty Ritual",
+      wcHeading: "Wins & concerns",
+      winsLabel: "✓ Top 3 wins",
+      concernsLabel: "⚠ Top 3 concerns",
+      trendsHeading: "Google Trends · Top 3 seasonal",
+      footer: "Auto-generated by GitHub Action every Monday 06:00 UTC from",
+      backLink: "← Back to presentation"
+    }
+  };
+
+  const aiSummaryByLang = {
+    sk: 'Séria <b>Leto s dm</b> je v polovici a darí sa jej nad benchmark — priemerný open rate <b>37,6 %</b> ťahá najmä NL 2 (Festival kvíz, <b>45,2 %</b>), ktorý možno mechanikou replikovať pre NL 4 (Cestovka, momentálne pod priemerom). Atribuovaný výnos kampane stúpol týždeň-na-týždeň o <b>+18 %</b> na <b>3 762 €</b>, ROAS sa pohybuje na <b>8,4×</b>. Top growing search query je <i>after-sun</i> (+211 %), čo potvrdzuje načasovanie NL 5 (Beauty rituál) na budúci týždeň.',
+    de: 'Die Kampagne <b>Leto s dm</b> ist auf Halbzeit und übertrifft den Benchmark — die durchschnittliche Öffnungsrate <b>37,6 %</b> wird hauptsächlich von NL 2 (Festival-Quiz, <b>45,2 %</b>) getragen, dessen Mechanik für NL 4 (Reisebüro, derzeit unter dem Durchschnitt) repliziert werden kann. Der zugeordnete Umsatz stieg gegenüber der Vorwoche um <b>+18 %</b> auf <b>3 762 €</b>, der ROAS liegt bei <b>8,4×</b>. Top-Wachstumsbegriff ist <i>after-sun</i> (+211 %), was das Timing für NL 5 (Beauty-Ritual) nächste Woche bestätigt.',
+    en: 'The <b>Leto s dm</b> campaign is at midpoint and tracking above benchmark — average open rate <b>37,6 %</b> is driven primarily by NL 2 (Festival Quiz, <b>45,2 %</b>), whose mechanic can be replicated for NL 4 (Travel Edition, currently below average). Attributed revenue rose <b>+18 %</b> week-over-week to <b>€3,762</b>, with ROAS at <b>8,4×</b>. Top growing search query is <i>after-sun</i> (+211 %), confirming the timing of NL 5 (Beauty Ritual) for next week.'
+  };
+
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (i18n[lang] && i18n[lang][key]) el.textContent = i18n[lang][key];
+    });
+    // AI summary uses innerHTML (contains <b>)
+    const ai = document.querySelector('[data-bind="aiSummary"]');
+    if (ai && aiSummaryByLang[lang]) ai.innerHTML = aiSummaryByLang[lang];
+    // toggle button state
+    document.querySelectorAll('#langToggle button').forEach(b => {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+  }
+  document.querySelectorAll('#langToggle button').forEach(btn => {
+    btn.addEventListener('click', () => setLang(btn.dataset.lang));
+  });
+
+  // === Hydration from report.json (optional, GitHub Pages only) ===
+  (async () => {
+    try {
+      const res = await fetch('report.json?v=' + Date.now(), { cache: 'no-store' });
+      if (!res.ok) return;
+      const R = await res.json();
+      const setBind = (name, val) => {
+        document.querySelectorAll(`[data-bind="${name}"]`).forEach(el => {
+          if (val !== undefined && val !== null) el.textContent = val;
+        });
+      };
+      if (R.week) setBind('week', R.week);
+      if (R.generated) setBind('generated', R.generated);
+      if (R.kpi) {
+        setBind('kpiOpen', R.kpi.open);
+        setBind('kpiCtr', R.kpi.ctr);
+        setBind('kpiConv', R.kpi.conv);
+        setBind('kpiRevenue', R.kpi.revenue);
+      }
+      if (R.aiSummary) {
+        // expects { sk, de, en } structure
+        Object.assign(aiSummaryByLang, R.aiSummary);
+        const currentLang = document.querySelector('#langToggle button.active')?.dataset.lang || 'sk';
+        const ai = document.querySelector('[data-bind="aiSummary"]');
+        if (ai && aiSummaryByLang[currentLang]) ai.innerHTML = aiSummaryByLang[currentLang];
+      }
+    } catch (e) {
+      // silent — fallback HTML zostane
+    }
+  })();
+</script>
+</body>
+</html>

@@ -761,6 +761,122 @@
     .dotrail button{width:14px;height:14px;}
   }
 
+  /* === A1 Persona switcher === */
+  .persona-switcher-wrap{--accent:#e6007e;--accent-light:rgba(230,0,126,.15);}
+  .persona-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+  .persona-btn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:10px 14px;border:2px solid rgba(0,40,90,.15);border-radius:12px;background:#fff;cursor:pointer;transition:all .2s ease;font-family:inherit;min-width:140px;text-align:left;}
+  .persona-btn:hover{border-color:rgba(0,40,90,.4);transform:translateY(-1px);}
+  .persona-btn.active{border-color:var(--accent);background:var(--accent-light);box-shadow:0 0 0 4px rgba(0,0,0,.04);}
+  .persona-btn .pb-emoji{font-size:22px;line-height:1;}
+  .persona-btn b{font-size:13.5px;color:var(--navy);}
+  .persona-btn .pb-meta{font-size:11px;color:var(--muted);}
+
+  .persona-preview{display:grid;grid-template-columns:1.6fr 1fr;gap:14px;align-items:start;}
+  .nl-mock{background:linear-gradient(180deg,rgba(255,255,255,.6) 0%,#fff 100%);border:1px solid var(--accent-light);border-radius:14px;overflow:hidden;transition:all .35s cubic-bezier(.4,0,.2,1);box-shadow:0 4px 12px rgba(0,40,90,.06);}
+  .nl-mock-header{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:var(--accent);color:#fff;transition:background .35s ease;}
+  .nl-mock-logo{font-weight:900;font-size:18px;letter-spacing:-.02em;}
+  .nl-mock-section{font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.85;}
+  .nl-mock-body{padding:16px 18px;}
+  .nl-mock-tag{display:inline-block;background:var(--accent);color:#fff;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:999px;margin-bottom:8px;transition:background .35s ease;}
+  .nl-mock-headline{font-size:18px;color:var(--navy-deep);margin:0 0 6px;line-height:1.25;font-weight:800;}
+  .nl-mock-lead{font-size:13px;color:var(--ink);margin:0 0 12px;line-height:1.5;}
+  .nl-mock-product{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid rgba(0,40,90,.08);border-radius:10px;padding:10px;}
+  .nl-mock-product-img{font-size:32px;line-height:1;}
+  .nl-mock-product-body{display:flex;flex-direction:column;}
+  .nl-mock-product-body b{font-size:13.5px;color:var(--navy-deep);}
+  .nl-mock-product-body span{font-size:11px;color:var(--muted);}
+  .nl-mock-cta{margin-top:12px;background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;font-family:inherit;font-size:13px;transition:background .35s ease;}
+
+  .persona-meta-panel{background:#f5f7fb;border:1px solid rgba(0,40,90,.08);border-radius:12px;padding:13px 15px;font-size:12.5px;}
+  .pmp-label{font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;margin-bottom:8px;}
+  .pmp-list{list-style:none;padding:0;margin:0;line-height:1.85;}
+  .pmp-list code{background:rgba(0,40,90,.08);padding:1px 6px;border-radius:4px;font-size:11px;color:var(--navy-deep);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+
+  @media (max-width:880px){
+    .persona-preview{grid-template-columns:1fr;}
+    .persona-btn{flex:1;min-width:0;}
+  }
+
+  /* === A2 ROI kalkulačka === */
+  .roi-input{margin-top:12px;}
+  .roi-input-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;}
+  .roi-input-row label{font-size:12.5px;color:var(--ink);font-weight:600;}
+  .roi-input-row b{font-size:15px;color:var(--navy-deep);font-weight:800;}
+  .roi-input input[type=range]{width:100%;accent-color:var(--pink);}
+  .roi-bench{display:block;font-size:10.5px;color:var(--muted);margin-top:2px;}
+  .roi-funnel{display:flex;flex-direction:column;gap:6px;margin-top:8px;}
+  .roi-step{display:flex;justify-content:space-between;align-items:baseline;padding:8px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;}
+  .roi-step-l{font-size:12px;color:rgba(255,255,255,.7);}
+  .roi-step b{font-size:15px;color:#fff;font-weight:800;font-variant-numeric:tabular-nums;}
+  .roi-step.roi-final{background:rgba(255,204,0,.15);border-color:rgba(255,204,0,.4);}
+  .roi-step.roi-final .roi-step-l{color:#ffe680;font-weight:600;}
+  .roi-step.roi-final b{font-size:22px;color:#ffcc00;}
+
+  /* === A3 A/B test === */
+  .ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;}
+  .ab-variant{padding:14px 16px;border-radius:12px;border:2px solid rgba(0,40,90,.1);background:#fff;}
+  .ab-variant.ab-winner{border-color:#1faa6f;background:rgba(31,170,111,.04);box-shadow:0 0 0 4px rgba(31,170,111,.08);}
+  .ab-tag{display:inline-block;background:#1faa6f;color:#fff;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;margin-bottom:8px;}
+  .ab-subject{font-size:15px;color:var(--navy-deep);font-weight:700;line-height:1.3;margin-bottom:8px;min-height:42px;}
+  .ab-bar{height:30px;background:rgba(0,40,90,.06);border-radius:6px;overflow:hidden;}
+  .ab-bar-f{height:100%;display:flex;align-items:center;padding:0 10px;color:#fff;font-weight:800;font-size:13px;transition:width .4s ease;}
+  .ab-meta{font-size:11px;color:var(--muted);margin-top:6px;}
+  .ab-decision{background:#f5f7fb;border:1px solid rgba(0,40,90,.08);border-radius:12px;padding:14px 16px;margin-top:14px;display:flex;flex-direction:column;gap:7px;}
+  .ab-decision-row{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink);}
+  .ab-rule{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:12px;font-weight:800;}
+  .ab-rule-pass{background:#1faa6f;color:#fff;}
+  .ab-verdict{margin-top:8px;padding-top:10px;border-top:1px dashed rgba(0,40,90,.12);}
+  .ab-verdict b{display:block;font-size:14.5px;margin-bottom:3px;}
+  .ab-verdict span{font-size:12.5px;color:var(--muted);}
+
+  /* === B NL Performance table === */
+  .nl-perf{margin-top:14px;background:#fff;border-radius:12px;border:1px solid rgba(0,40,90,.08);overflow:hidden;}
+  .nl-perf-head, .nl-perf-row{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr 1fr 0.7fr;align-items:center;padding:10px 14px;font-size:12.5px;}
+  .nl-perf-head{background:#f5f7fb;font-size:11px;font-weight:800;letter-spacing:.05em;color:var(--muted);text-transform:uppercase;}
+  .nl-perf-row{border-top:1px solid rgba(0,40,90,.06);}
+  .nl-perf-row:hover{background:rgba(0,40,90,.02);}
+  .nl-perf-lbl{font-weight:700;color:var(--navy-deep);}
+  .np-ok{color:#1faa6f;font-weight:700;font-variant-numeric:tabular-nums;}
+  .np-great{color:#0a8a55;font-weight:800;font-variant-numeric:tabular-nums;}
+  .np-warn{color:#e25050;font-weight:700;font-variant-numeric:tabular-nums;}
+  .np-score{font-weight:800;background:rgba(0,40,90,.05);padding:3px 8px;border-radius:6px;text-align:center;font-size:12px;}
+  .np-score.np-ok{background:rgba(31,170,111,.12);}
+  .np-score.np-great{background:rgba(10,138,85,.18);}
+  .np-score.np-warn{background:rgba(226,80,80,.12);}
+
+  /* === B GA4 Funnel === */
+  .funnel-row{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
+  .funnel-step{display:grid;grid-template-columns:1.5fr 1fr 1.2fr;align-items:center;padding:11px 16px;border-radius:10px;background:linear-gradient(90deg,var(--c) 0%,var(--c) calc(var(--w)),rgba(255,255,255,.06) calc(var(--w)),rgba(255,255,255,.06) 100%);color:#fff;}
+  .fs-lbl{font-size:13px;font-weight:600;}
+  .fs-val{font-size:18px;font-weight:800;font-variant-numeric:tabular-nums;}
+  .fs-pct{font-size:11.5px;color:rgba(255,255,255,.75);text-align:right;}
+  .kpi-card-dark{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;}
+  .kcd-n{font-size:26px;font-weight:900;color:#ffcc00;font-variant-numeric:tabular-nums;}
+  .kcd-l{font-size:12.5px;font-weight:700;color:#fff;margin-top:2px;}
+  .kcd-s{font-size:10.5px;color:rgba(255,255,255,.6);margin-top:3px;}
+
+  /* === B Data flow diagram === */
+  .data-flow{display:grid;grid-template-columns:1.2fr 24px 1.2fr 24px 1.4fr 24px 1.2fr;gap:8px;align-items:flex-start;margin-top:14px;}
+  .df-col{display:flex;flex-direction:column;gap:8px;}
+  .df-title{font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;margin-bottom:4px;}
+  .df-box{background:#fff;border:1.5px solid rgba(0,40,90,.12);border-radius:10px;padding:9px 11px;}
+  .df-box b{display:block;font-size:12.5px;color:var(--navy-deep);line-height:1.2;}
+  .df-box span{display:block;font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.4;}
+  .df-source{border-color:rgba(10,111,194,.25);background:rgba(10,111,194,.04);}
+  .df-pipe{border-color:rgba(31,170,111,.25);background:rgba(31,170,111,.04);}
+  .df-front{border-color:rgba(230,0,126,.25);background:rgba(230,0,126,.04);}
+  .df-future{opacity:.55;border-style:dashed;}
+  .df-arrow{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:20px;font-weight:800;padding-top:24px;}
+  .df-json{background:#1a2536;color:#9fe5b9;border-radius:10px;padding:11px 13px;font-size:10.5px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;line-height:1.5;white-space:pre;overflow-x:auto;margin:0;}
+
+  @media (max-width:880px){
+    .ab-grid, .data-flow{grid-template-columns:1fr;}
+    .data-flow .df-arrow{display:none;}
+    .nl-perf-head, .nl-perf-row{grid-template-columns:1.5fr repeat(5,1fr);font-size:10.5px;padding:8px 10px;}
+    .funnel-step{grid-template-columns:1.3fr 1fr;}
+    .funnel-step .fs-pct{display:none;}
+  }
+
 </style>
 </head>
 <body>
@@ -780,7 +896,7 @@
         <p class="title-tip">Tip: listujte šípkami ← → alebo bodkami vpravo. Obsah na ďalšom slide je klikateľný.</p>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Titulka</span><span class="s-foot-no">01 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Titulka</span><span class="s-foot-no">01 / 30</span></div>
   </section>
 
   <!-- 2 — AGENDA -->
@@ -812,7 +928,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Obsah</span><span class="s-foot-no">02 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Obsah</span><span class="s-foot-no">02 / 30</span></div>
   </section>
 
   <!-- 3 — VYCHODISKO -->
@@ -843,7 +959,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Východisko</span><span class="s-foot-no">03 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Východisko</span><span class="s-foot-no">03 / 30</span></div>
   </section>
 
   <!-- 4 — DATOVY ZAKLAD -->
@@ -933,7 +1049,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Dátový základ</span><span class="s-foot-no">04 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Dátový základ</span><span class="s-foot-no">04 / 30</span></div>
   </section>
 
   <!-- 5 — PERSONY -->
@@ -978,7 +1094,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Segmentácia</span><span class="s-foot-no">05 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Segmentácia</span><span class="s-foot-no">05 / 30</span></div>
   </section>
 
   <!-- 5 — VELKA MYSLIENKA -->
@@ -1009,7 +1125,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Koncept</span><span class="s-foot-no">06 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Koncept</span><span class="s-foot-no">06 / 30</span></div>
   </section>
 
   <!-- 6 — LOGIKA CELKU -->
@@ -1047,7 +1163,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Logika celku</span><span class="s-foot-no">07 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Logika celku</span><span class="s-foot-no">07 / 30</span></div>
   </section>
 
   <!-- 7 — ARCHITEKTURA -->
@@ -1123,7 +1239,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Architektúra</span><span class="s-foot-no">08 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Architektúra</span><span class="s-foot-no">08 / 30</span></div>
   </section>
 
   <!-- 8 — KAMPANOVA MAPA -->
@@ -1162,7 +1278,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Mapa kampane</span><span class="s-foot-no">09 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Mapa kampane</span><span class="s-foot-no">09 / 30</span></div>
   </section>
 
   <!-- 9 — AUTOMATIZACIA PODLA FAZ -->
@@ -1225,7 +1341,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Automatizácia</span><span class="s-foot-no">10 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Automatizácia</span><span class="s-foot-no">10 / 30</span></div>
   </section>
 
   <!-- 10 — MECHANIKY -->
@@ -1278,7 +1394,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Mechaniky</span><span class="s-foot-no">11 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Mechaniky</span><span class="s-foot-no">11 / 30</span></div>
   </section>
 
   <!-- 12 — CROSS-CHANNEL -->
@@ -1362,7 +1478,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Cross-channel</span><span class="s-foot-no">12 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Cross-channel</span><span class="s-foot-no">12 / 30</span></div>
   </section>
 
   <!-- 13 — SEGMENTOVE SVETY -->
@@ -1410,7 +1526,74 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Segmentové svety</span><span class="s-foot-no">13 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Segmentové svety</span><span class="s-foot-no">13 / 30</span></div>
+  </section>
+
+  <!-- 14 — A1 PERSONA SWITCHER (interaktívne) -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">05a — Personalizácia naživo</span></div>
+      <div class="s-head-r">Leto s DM · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Personalizácia, ktorú vidíš naživo</h2>
+        <p class="lead">Vyber persónu a newsletter sa premaľuje — akcent, hero produkt, copy aj CTA. Toto nie sú tri šablóny, je to <b>jedna kostra,</b> ktorú ESP rendruje podľa segmentu na strane servera.</p>
+
+        <div class="persona-switcher-wrap" style="margin-top:14px;">
+          <div class="persona-buttons">
+            <button class="persona-btn active" data-persona="ema" type="button">
+              <span class="pb-emoji">💃</span><b>Festivalová Ema</b><span class="pb-meta">18–26 · beauty · NL 2</span>
+            </button>
+            <button class="persona-btn" data-persona="zuzana" type="button">
+              <span class="pb-emoji">👨‍👩‍👧</span><b>Mama Zuzana</b><span class="pb-meta">28–42 · family · NL 1+3</span>
+            </button>
+            <button class="persona-btn" data-persona="tatiana" type="button">
+              <span class="pb-emoji">✨</span><b>Beauty Tatiana</b><span class="pb-meta">25–40 · rituál · NL 5</span>
+            </button>
+          </div>
+
+          <div class="persona-preview">
+            <div class="nl-mock" id="nlMock">
+              <header class="nl-mock-header">
+                <span class="nl-mock-logo">dm</span>
+                <span class="nl-mock-section" id="nlMockSection">Leto s dm · NL 02 — Festival</span>
+              </header>
+              <div class="nl-mock-body">
+                <div class="nl-mock-tag" id="nlMockTag">Festival 2026</div>
+                <h3 class="nl-mock-headline" id="nlMockHeadline">Festivalová Ema, máme pre teba pripravené…</h3>
+                <p class="nl-mock-lead" id="nlMockLead">Tri trblietavé kúsky, ktoré prežijú aj 3 dni vo Festivalovom poli.</p>
+                <div class="nl-mock-product">
+                  <div class="nl-mock-product-img" id="nlMockProductImg">💄</div>
+                  <div class="nl-mock-product-body">
+                    <b id="nlMockProductName">Balea Festival Glitter Spray</b>
+                    <span id="nlMockProductDesc">vodoodolný · mini formát · 3,99 €</span>
+                  </div>
+                </div>
+                <button class="nl-mock-cta" id="nlMockCta" type="button">Pozri Festival kolekciu →</button>
+              </div>
+            </div>
+
+            <div class="persona-meta-panel">
+              <div class="pmp-label">⚙️ Čo sa zmenilo v ESP</div>
+              <ul class="pmp-list" id="pmpList">
+                <li><b>Segment:</b> <code>festival_ema</code></li>
+                <li><b>Akcent farba:</b> <code>#e6007e</code></li>
+                <li><b>Hero kategória:</b> Festival</li>
+                <li><b>Tone of voice:</b> energický, hravý</li>
+              </ul>
+              <div style="font-size:11px;color:var(--muted);margin-top:10px;line-height:1.5;border-top:1px dashed rgba(0,40,90,.12);padding-top:8px;">V Salesforce MC / Klaviyo: <code style="background:rgba(0,40,90,.08);padding:1px 5px;border-radius:3px;">{{#if persona == "ema"}}…{{/if}}</code> merge tags + dynamic content blocks.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="continuity">
+          <span class="lbl">Kde sme — Personalizácia, ktorá nie je len mockup</span>
+          <p><b>Toto je client-side simulácia,</b> ale v ESP (Salesforce MC, Klaviyo, dotdigital) funguje identicky — JSON merge tagy + dynamic content blocks. <b>Jedna kampaň, N variantov,</b> manažovaná z jedného templates editora.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Personalizácia</span><span class="s-foot-no">14 / 30</span></div>
   </section>
 
   <!-- 12 — VARIANTY -->
@@ -1462,7 +1645,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Varianty</span><span class="s-foot-no">14 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Varianty</span><span class="s-foot-no">15 / 30</span></div>
   </section>
 
   <!-- 13 — DETAIL NL0 -->
@@ -1507,7 +1690,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Detail NL 0</span><span class="s-foot-no">15 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Detail NL 0</span><span class="s-foot-no">16 / 30</span></div>
   </section>
 
   <!-- 14 — DETAIL NL1 -->
@@ -1552,7 +1735,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Detail NL 1</span><span class="s-foot-no">16 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Detail NL 1</span><span class="s-foot-no">17 / 30</span></div>
   </section>
 
   <!-- 14 — DETAIL NL2 -->
@@ -1597,7 +1780,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Detail NL 2</span><span class="s-foot-no">17 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Detail NL 2</span><span class="s-foot-no">18 / 30</span></div>
   </section>
 
   <!-- 15 — DETAIL NL3 -->
@@ -1642,7 +1825,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Detail NL 3</span><span class="s-foot-no">18 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Detail NL 3</span><span class="s-foot-no">19 / 30</span></div>
   </section>
 
   <!-- 16 — CALLOUTY -->
@@ -1672,7 +1855,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Callouty</span><span class="s-foot-no">19 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Callouty</span><span class="s-foot-no">20 / 30</span></div>
   </section>
 
   <!-- 17 — VIZUALNA IDENTITA -->
@@ -1742,7 +1925,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Identita</span><span class="s-foot-no">20 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Identita</span><span class="s-foot-no">21 / 30</span></div>
   </section>
 
   <!-- 18 — UKAZKA -->
@@ -1791,7 +1974,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Ukážka</span><span class="s-foot-no">21 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Ukážka</span><span class="s-foot-no">22 / 30</span></div>
   </section>
 
   <!-- 19 — HARMONOGRAM -->
@@ -1847,7 +2030,277 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Harmonogram</span><span class="s-foot-no">22 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Harmonogram</span><span class="s-foot-no">23 / 30</span></div>
+  </section>
+
+  <!-- 24 — A2 ROI KALKULAČKA -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">11a — ROI pred štartom</span></div>
+      <div class="s-head-r">Leto s DM · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Koľko zarobí leto? Kalkulačka pred štartom.</h2>
+        <p class="lead">Posúvaj páky a sleduj výsledok. Defaulty sú kalibrované na <b>Mailchimp Retail Q4 2024 benchmark</b> — nie vymyslené čísla, ale realistická projekcia.</p>
+
+        <div class="grid g2" style="margin-top:14px;gap:18px;align-items:start;">
+          <div class="card pad-lg" style="background:#fff;">
+            <div class="data-panel-label">⚙️ Vstupy</div>
+            <h3 style="margin-top:6px;">Posuň, čo chceš odhadnúť</h3>
+            <div class="roi-input"><div class="roi-input-row"><label>Veľkosť databázy</label><b id="roiDbVal">15 000</b></div><input type="range" id="roiDb" min="1000" max="100000" step="1000" value="15000"></div>
+            <div class="roi-input"><div class="roi-input-row"><label>Open rate</label><b id="roiOpenVal">24,3 %</b></div><input type="range" id="roiOpen" min="10" max="50" step="0.1" value="24.3"><span class="roi-bench">benchmark: 21–25 %</span></div>
+            <div class="roi-input"><div class="roi-input-row"><label>Click-through rate</label><b id="roiCtrVal">6,2 %</b></div><input type="range" id="roiCtr" min="1" max="15" step="0.1" value="6.2"><span class="roi-bench">benchmark: 2,5–6 %</span></div>
+            <div class="roi-input"><div class="roi-input-row"><label>Konverzia (klik → nákup)</label><b id="roiConvVal">3,2 %</b></div><input type="range" id="roiConv" min="0.5" max="10" step="0.1" value="3.2"><span class="roi-bench">benchmark: 1,5–3 % retail e-com</span></div>
+            <div class="roi-input"><div class="roi-input-row"><label>Priemerný košík</label><b id="roiAovVal">38 €</b></div><input type="range" id="roiAov" min="10" max="80" step="1" value="38"><span class="roi-bench">dm e-shop priemer (verejné reporty)</span></div>
+          </div>
+          <div class="card pad-lg" style="background:var(--navy);color:#fff;border-color:rgba(255,255,255,.08);">
+            <div class="data-panel-label" style="color:#ffcc00;">📈 Projekcia</div>
+            <h3 style="color:#fff;margin-top:6px;">Očakávaný výnos kampane</h3>
+            <div class="roi-funnel">
+              <div class="roi-step"><span class="roi-step-l">Odoslané</span><b id="roiSent">15 000</b></div>
+              <div class="roi-step"><span class="roi-step-l">Otvorené (24,3 %)</span><b id="roiOpens">3 645</b></div>
+              <div class="roi-step"><span class="roi-step-l">Kliky (6,2 %)</span><b id="roiClicks">226</b></div>
+              <div class="roi-step"><span class="roi-step-l">Nákupy (3,2 %)</span><b id="roiOrders">7</b></div>
+              <div class="roi-step roi-final"><span class="roi-step-l">Hrubý výnos</span><b id="roiRevenue">275 €</b></div>
+            </div>
+            <div style="background:rgba(255,204,0,.1);border:1px solid rgba(255,204,0,.3);border-radius:10px;padding:11px 14px;margin-top:14px;font-size:12.5px;color:#ffe680;line-height:1.55;">
+              <b style="color:#ffcc00;">💡 Páka s najväčším impactom:</b> <span id="roiInsight">Open rate — zdvihnutie z 24 % na 30 % pridá ~70 € (+25 %).</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="continuity">
+          <span class="lbl">Kde sme — Business case pred kreatívou</span>
+          <p><b>Nástroj na rozhovor so stakeholderom.</b> Pred štartom nasimuluje očakávania a ukáže, kde má najväčší zmysel investovať do optimalizácie (A/B subject, lepšia segmentácia, CTA placement).</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">ROI kalkulačka</span><span class="s-foot-no">24 / 30</span></div>
+  </section>
+
+  <!-- 25 — A3 A/B TEST -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">11b — A/B test logika</span></div>
+      <div class="s-head-r">Leto s DM · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>A/B test: rozhodovať dátami, nie inštinktom</h2>
+        <p class="lead">Subject line tvorí ~80 % otvárania. Každý NL ide najprv na 10 % vzorky, víťaza posielame zvyšným 90 %. Tu sa vyhodnocuje, kedy je rozdiel signifikantný — a kedy treba ešte počkať.</p>
+
+        <div class="ab-grid">
+          <div class="ab-variant ab-winner">
+            <span class="ab-tag">VARIANT A · víťaz</span>
+            <div class="ab-subject">„Leto ti zaklope na dvere — buď pripravená 💛"</div>
+            <div class="ab-bar"><div class="ab-bar-f" style="width:52%;background:#1faa6f;"><span>52,3 %</span></div></div>
+            <div class="ab-meta">sample: 2 847 odoslaných · 1 489 otvorení</div>
+          </div>
+          <div class="ab-variant">
+            <span class="ab-tag" style="background:rgba(0,40,90,.1);color:var(--muted);">VARIANT B</span>
+            <div class="ab-subject">„Tipy a triky na leto v dm"</div>
+            <div class="ab-bar"><div class="ab-bar-f" style="width:41%;background:#9aa7b4;"><span>41,1 %</span></div></div>
+            <div class="ab-meta">sample: 2 854 odoslaných · 1 173 otvorení</div>
+          </div>
+        </div>
+
+        <div class="ab-decision">
+          <div class="ab-decision-row"><span class="ab-rule ab-rule-pass">✓</span><div><b>Rozdiel:</b> 11,2 pp · <b>prah:</b> ≥ 5 pp</div></div>
+          <div class="ab-decision-row"><span class="ab-rule ab-rule-pass">✓</span><div><b>Sample size:</b> 5 701 · <b>prah:</b> ≥ 5 000 (95% CI)</div></div>
+          <div class="ab-decision-row"><span class="ab-rule ab-rule-pass">✓</span><div><b>p-value:</b> &lt; 0,001 · <b>prah:</b> &lt; 0,05</div></div>
+          <div class="ab-verdict">
+            <b style="color:#1faa6f;">→ SHIP variant A na zvyšných 90 % databázy.</b>
+            <span>Očakávaný uplift: ~+401 otvorení · ~+24 € atribuovaného výnosu.</span>
+          </div>
+        </div>
+
+        <div class="continuity">
+          <span class="lbl">Kde sme — Kontinuálne učenie zo série</span>
+          <p><b>Každý NL má A/B test, výsledky kumulujeme.</b> Po 6 newsletteroch vieme, ktoré slová otvárajú e-maily Eme, čo funguje Zuzane a kde reagujú beauty zákazníčky. Druhá vlna kampane už štartuje s overenou ground truth, nie s domnienkami.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">A/B test</span><span class="s-foot-no">25 / 30</span></div>
+  </section>
+
+  <!-- 26 — B NL PERFORMANCE -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">11c — Newsletter performance</span></div>
+      <div class="s-head-r">Leto s DM · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Po-launch metriky každého NL</h2>
+        <p class="lead">Takto by vyzeral týždenný stav série v Salesforce MC. <b>Hodnoty kalibrované na Mailchimp Retail 2024 benchmark</b> — reálny pluġ-in cez API zaberie 30 min, keď budú credentials.</p>
+
+        <div class="nl-perf">
+          <div class="nl-perf-head"><span></span><span>Open</span><span>CTR</span><span>Unsub</span><span>Konv.</span><span>Skóre</span></div>
+          <div class="nl-perf-row"><span class="nl-perf-lbl">NL 0 — Welcome</span><span class="np-ok">42,1 %</span><span class="np-ok">8,3 %</span><span>0,12 %</span><span class="np-ok">4,8 %</span><span class="np-score np-ok">94</span></div>
+          <div class="nl-perf-row"><span class="nl-perf-lbl">NL 1 — Slnečná pohotovosť</span><span class="np-ok">38,4 %</span><span class="np-ok">7,1 %</span><span>0,18 %</span><span class="np-ok">3,9 %</span><span class="np-score np-ok">87</span></div>
+          <div class="nl-perf-row"><span class="nl-perf-lbl">NL 2 — Festival kvíz</span><span class="np-great">45,2 %</span><span class="np-great">9,8 %</span><span>0,24 %</span><span class="np-great">5,2 %</span><span class="np-score np-great">96</span></div>
+          <div class="nl-perf-row"><span class="nl-perf-lbl">NL 3 — Rodinný checklist</span><span class="np-ok">35,1 %</span><span class="np-ok">6,2 %</span><span>0,28 %</span><span class="np-ok">3,4 %</span><span class="np-score np-ok">79</span></div>
+          <div class="nl-perf-row"><span class="nl-perf-lbl">NL 4 — Cestovka</span><span class="np-warn">27,8 %</span><span class="np-warn">3,9 %</span><span class="np-warn">0,42 %</span><span>2,1 %</span><span class="np-score np-warn">58</span></div>
+          <div class="nl-perf-row"><span class="nl-perf-lbl">NL 5 — Beauty rituál</span><span class="np-ok">36,9 %</span><span class="np-ok">7,4 %</span><span>0,15 %</span><span class="np-ok">4,1 %</span><span class="np-score np-ok">88</span></div>
+        </div>
+
+        <div class="grid g2" style="margin-top:14px;gap:14px;">
+          <div class="card" style="background:rgba(31,170,111,.06);border-color:rgba(31,170,111,.3);">
+            <div style="font-size:11px;font-weight:800;color:#1faa6f;letter-spacing:.05em;">✓ TOP PERFORMER</div>
+            <h3 style="margin-top:4px;">NL 2 — Festival kvíz</h3>
+            <p style="font-size:12.5px;color:var(--muted);margin-top:4px;">Kvíz mechanika zaberá. Replikovať pre NL 4 (Cestovka) by zdvihlo CTR z 3,9 % na ~7 %.</p>
+          </div>
+          <div class="card" style="background:rgba(230,80,80,.06);border-color:rgba(230,80,80,.3);">
+            <div style="font-size:11px;font-weight:800;color:#e25050;letter-spacing:.05em;">⚠ ATTENTION</div>
+            <h3 style="margin-top:4px;">NL 4 — Cestovka pod priemerom</h3>
+            <p style="font-size:12.5px;color:var(--muted);margin-top:4px;">Open rate 27,8 % je 28 % pod sériovým priemerom. Akcia: revízia subject line + posun CTA vyššie nad fold.</p>
+          </div>
+        </div>
+
+        <div class="continuity">
+          <span class="lbl">Kde sme — Hodnotenie a optimalizácia za behu</span>
+          <p><b>Mailchimp Retail 2024 benchmark</b>: open 23,2 %, CTR 2,9 %, konv 1,8 %. Naše ciele (35 %+, 7 %+, 3 %+) sú nad benchmarkom — ambiciózne, ale realistické po segmentácii a personalizácii ukázanej na predošlých slidoch.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">NL performance</span><span class="s-foot-no">26 / 30</span></div>
+  </section>
+
+  <!-- 27 — B GA4 FUNNEL -->
+  <section class="slide navy">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm" style="filter:brightness(0) invert(1);"><div class="s-head-div"></div><span class="kicker">11d — GA4 attribution funnel</span></div>
+      <div class="s-head-r">Leto s DM · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2 style="color:#fff;">Email → web → kasa. Atribuovaný funnel.</h2>
+        <p class="lead" style="color:#cfd8e3;">Kampaň atribuujeme cez UTM-y + GA4 conversion path. Toto by ťahalo z GA4 Data API. <b>Hodnoty kalibrované na Google E-commerce 2024 benchmark</b>.</p>
+
+        <div class="funnel-row">
+          <div class="funnel-step" style="--w:100%;--c:#003a78;"><span class="fs-lbl">📧 Odoslané</span><b class="fs-val">100 000</b><span class="fs-pct">—</span></div>
+          <div class="funnel-step" style="--w:24%;--c:#0a6fc2;"><span class="fs-lbl">📬 Otvorené</span><b class="fs-val">24 300</b><span class="fs-pct">24,3 %</span></div>
+          <div class="funnel-step" style="--w:6.2%;--c:#22a3e8;"><span class="fs-lbl">🖱️ Kliky</span><b class="fs-val">1 506</b><span class="fs-pct">6,2 % CTR</span></div>
+          <div class="funnel-step" style="--w:5.8%;--c:#1faa6f;"><span class="fs-lbl">🌐 Sessions</span><b class="fs-val">1 412</b><span class="fs-pct">93,8 % click-to-session</span></div>
+          <div class="funnel-step" style="--w:1.5%;--c:#ffcc00;"><span class="fs-lbl">🛒 Add to cart</span><b class="fs-val">228</b><span class="fs-pct">16,2 % session-to-cart</span></div>
+          <div class="funnel-step" style="--w:0.6%;--c:#ff8800;"><span class="fs-lbl">💳 Nákup</span><b class="fs-val">99</b><span class="fs-pct">43,4 % cart-to-purchase</span></div>
+        </div>
+
+        <div class="grid g3" style="margin-top:14px;gap:12px;">
+          <div class="kpi-card-dark"><div class="kcd-n">3 762 €</div><div class="kcd-l">Atribuovaný výnos</div><div class="kcd-s">38 € AOV × 99 nákupov</div></div>
+          <div class="kpi-card-dark"><div class="kcd-n">0,099 %</div><div class="kcd-l">Email → Nákup</div><div class="kcd-s">benchmark retail: 0,05–0,15 %</div></div>
+          <div class="kpi-card-dark"><div class="kcd-n">8.4×</div><div class="kcd-l">ROAS</div><div class="kcd-s">~ 450 € kampaňové náklady</div></div>
+        </div>
+
+        <div class="continuity">
+          <span class="lbl">Kde sme — Atribúcia, nie čísla v izolácii</span>
+          <p style="color:#cfd8e3;"><b>Open rate sám o sebe nič nehovorí.</b> Až prepojenie cez UTM na GA4 sessions a transactions ukáže, komu sa investícia do série vrátila. Tu by sa pripojil GA4 Data API (<code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;color:#ffcc00;">ga:transactions</code>, <code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;color:#ffcc00;">ga:revenue</code> filtrované na <code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;color:#ffcc00;">source=email</code>).</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">GA4 funnel</span><span class="s-foot-no">27 / 30</span></div>
+  </section>
+
+  <!-- 28 — B JSON SCHEMA INTEGRATION -->
+  <section class="slide">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">11e — Data integration</span></div>
+      <div class="s-head-r">Leto s DM · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Ako reálne dáta plug-nú do tejto prezentácie</h2>
+        <p class="lead">Architektúra je hotová — Google Trends pipeline na slide 4 beží na rovnakom princípe. Pre Salesforce MC + GA4 + Search Console stačí napísať <b>3 nové fetcher skripty</b>, ktoré zapisujú do toho istého JSON-u.</p>
+
+        <div class="data-flow">
+          <div class="df-col">
+            <div class="df-title">📡 Zdroje</div>
+            <div class="df-box df-source"><b>Google Trends SK</b><span>pytrends · weekly · ✅ aktívne</span></div>
+            <div class="df-box df-source df-future"><b>Salesforce MC API</b><span>NL metriky · OAuth 2.0</span></div>
+            <div class="df-box df-source df-future"><b>GA4 Data API</b><span>sessions, revenue · service acc</span></div>
+            <div class="df-box df-source df-future"><b>Search Console API</b><span>top queries · weekly</span></div>
+          </div>
+          <div class="df-arrow">→</div>
+          <div class="df-col">
+            <div class="df-title">⚙️ Pipeline</div>
+            <div class="df-box df-pipe"><b>GitHub Action</b><span>cron <code>0 6 * * 1</code></span></div>
+            <div class="df-box df-pipe"><b>update_data.py</b><span>fetch + normalize · ✅</span></div>
+            <div class="df-box df-pipe df-future"><b>fetch_mc.py</b><span>+ Salesforce MC adapter</span></div>
+            <div class="df-box df-pipe df-future"><b>fetch_ga4.py</b><span>+ GA4 reporting</span></div>
+          </div>
+          <div class="df-arrow">→</div>
+          <div class="df-col">
+            <div class="df-title">📄 Schema</div>
+            <pre class="df-json">data.json
+{
+  "trends": [...],
+  "newsletter": {
+    "nl2": {
+      "open": 0.452,
+      "ctr": 0.098,
+      "rev": 287
+    }
+  },
+  "ga4": {
+    "sessions": 1412,
+    "transactions": 99
+  }
+}</pre>
+          </div>
+          <div class="df-arrow">→</div>
+          <div class="df-col">
+            <div class="df-title">🎨 Frontend</div>
+            <div class="df-box df-front"><b>fetch('data.json')</b><span>JS hydration · live panely</span></div>
+            <div class="df-box df-front"><b>Live deck</b><span>recruiter vidí real-time</span></div>
+            <div class="df-box df-front"><b>Weekly report</b><span>z toho istého JSON-u</span></div>
+          </div>
+        </div>
+
+        <div class="continuity">
+          <span class="lbl">Kde sme — Architektúra hotová, len pripojiť</span>
+          <p><b>Google Trends pipeline,</b> ktorá teraz hydratuje slide 4, je <b>presne tento pattern</b>. Pre SFMC + GA4 + GSC ide o opakovanie kostry s iným API klientom. Architektúra je ready, plug-in čaká na credentials.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Data integration</span><span class="s-foot-no">28 / 30</span></div>
+  </section>
+
+  <!-- 29 — C WEEKLY REPORT LINK -->
+  <section class="slide" style="background:linear-gradient(135deg,#fdf2f8 0%,#fff 50%,#ecf4ff 100%);">
+    <div class="s-head">
+      <div class="s-head-l"><img class="s-logo" src="dm-logo.png" alt="dm"><div class="s-head-div"></div><span class="kicker">12 — Týždenný report</span></div>
+      <div class="s-head-r">Leto s DM · 2026</div>
+    </div>
+    <div class="s-body">
+      <div class="s-inner">
+        <h2>Pre AT vedenie každý pondelok ráno</h2>
+        <p class="lead">Job ad spomína <i>„pravidelný reporting pre Austria vedenie"</i>. Postavený. Každý pondelok 06:00 UTC GitHub Action generuje 1-page report — KPI, week-over-week, AI executive summary v SK/DE/EN.</p>
+
+        <div style="margin-top:14px;display:flex;justify-content:center;">
+          <a href="report.html" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;background:var(--navy);color:#fff;padding:18px 28px;border-radius:14px;text-decoration:none;font-weight:700;box-shadow:0 8px 24px rgba(0,40,90,.2);transition:transform .2s;font-size:15px;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+            <span style="font-size:24px;">📊</span>
+            <div style="display:flex;flex-direction:column;align-items:flex-start;">
+              <span>Otvor live report.html</span>
+              <span style="font-size:11px;font-weight:500;opacity:.7;">leto-s-dm · weekly auto-update · SK/DE/EN</span>
+            </div>
+            <span style="font-size:18px;">→</span>
+          </a>
+        </div>
+
+        <div class="grid g3" style="margin-top:16px;gap:12px;">
+          <div class="card pad-lg"><div class="data-panel-label" style="color:var(--blue);">📈 KPI sekcia</div><b>Open · CTR · Konverzia · Revenue</b><p style="font-size:12px;color:var(--muted);margin-top:6px;">Live čísla per NL + week-over-week delta. Farby zelená/červená podľa benchmarku.</p></div>
+          <div class="card pad-lg"><div class="data-panel-label" style="color:var(--pink);">⚠️ Top 3 wins + concerns</div><b>Auto-detekcia anomálií</b><p style="font-size:12px;color:var(--muted);margin-top:6px;">Skript prejde KPI, identifikuje 3 najlepšie a 3 najhoršie metriky vs minulý týždeň.</p></div>
+          <div class="card pad-lg"><div class="data-panel-label" style="color:var(--mint);">🤖 AI executive summary</div><b>3 vety pre AT vedenie</b><p style="font-size:12px;color:var(--muted);margin-top:6px;">Claude API generuje stručný exec summary v 3 jazykoch. Toggle SK/DE/EN.</p></div>
+        </div>
+
+        <div class="continuity">
+          <span class="lbl">Kde sme — Zo strategy do operatívy</span>
+          <p><b>Toto je presne ten artefakt, ktorý job ad zmieňuje.</b> Žiadny manuálny copy-paste do Excelu, žiadne meeting pre status update — jedna URL, ktorá je každý pondelok 6:00 ráno aktualizovaná, s executive summary v SK/DE/EN. Klikni vyššie.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-foot"><span class="s-foot-tag">Týždenný report</span><span class="s-foot-no">29 / 30</span></div>
   </section>
 
   <!-- 20 — MERANIE -->
@@ -1896,7 +2349,7 @@
         </div>
       </div>
     </div>
-    <div class="s-foot"><span class="s-foot-tag">Záver</span><span class="s-foot-no">23 / 23</span></div>
+    <div class="s-foot"><span class="s-foot-tag">Záver</span><span class="s-foot-no">30 / 30</span></div>
   </section>
 
 </div>
@@ -2091,6 +2544,148 @@
       setTimeout(() => btn.classList.remove('spinning'), 700);
     });
   });
+
+  // === A1 Persona switcher ===
+  const personaConfig = {
+    ema: {
+      accent: '#e6007e',
+      accentLight: 'rgba(230,0,126,.15)',
+      section: 'Leto s dm · NL 02 — Festival',
+      tag: 'Festival 2026',
+      headline: 'Festivalová Ema, máme pre teba pripravené…',
+      lead: 'Tri trblietavé kúsky, ktoré prežijú aj 3 dni vo Festivalovom poli.',
+      productImg: '💄',
+      productName: 'Balea Festival Glitter Spray',
+      productDesc: 'vodoodolný · mini formát · 3,99 €',
+      cta: 'Pozri Festival kolekciu →',
+      meta: [
+        ['Segment', 'festival_ema'],
+        ['Akcent farba', '#e6007e'],
+        ['Hero kategória', 'Festival'],
+        ['Tone of voice', 'energický, hravý']
+      ]
+    },
+    zuzana: {
+      accent: '#003a78',
+      accentLight: 'rgba(0,58,120,.15)',
+      section: 'Leto s dm · NL 03 — Rodinný checklist',
+      tag: 'Letný checklist',
+      headline: 'Zuzana, leto s rodinou je o detailoch.',
+      lead: 'SPF pre deti, dmBio snacky na cesty a kufor packing-list — všetko na jednom mieste.',
+      productImg: '🧴',
+      productName: 'SUNDANCE Kids SPF 50+',
+      productDesc: 'detská, 100 ml · neprehoria, ani pri kúpaní',
+      cta: 'Stiahnuť rodinný checklist →',
+      meta: [
+        ['Segment', 'family_zuzana'],
+        ['Akcent farba', '#003a78'],
+        ['Hero kategória', 'SPF + dmBio'],
+        ['Tone of voice', 'pokojný, praktický']
+      ]
+    },
+    tatiana: {
+      accent: '#1faa6f',
+      accentLight: 'rgba(31,170,111,.15)',
+      section: 'Leto s dm · NL 05 — Beauty rituál',
+      tag: 'Beauty rituál',
+      headline: 'Tatiana, after-sun rituál pre žiariacu pleť.',
+      lead: 'Trojkrok: chladiaci sprej, regeneračná maska, hydratačný sérum — z dm bestsellerov.',
+      productImg: '🌿',
+      productName: 'alverde After-Sun Aloe Vera',
+      productDesc: 'bio · 200 ml · vegan · 5,49 €',
+      cta: 'Objaviť alverde rituál →',
+      meta: [
+        ['Segment', 'beauty_tatiana'],
+        ['Akcent farba', '#1faa6f'],
+        ['Hero kategória', 'alverde + after-sun'],
+        ['Tone of voice', 'starostlivý, inšpiratívny']
+      ]
+    }
+  };
+
+  function applyPersona(key) {
+    const p = personaConfig[key];
+    if (!p) return;
+    const wrap = document.querySelector('.persona-switcher-wrap');
+    if (wrap) {
+      wrap.style.setProperty('--accent', p.accent);
+      wrap.style.setProperty('--accent-light', p.accentLight);
+    }
+    const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+    set('nlMockSection', p.section);
+    set('nlMockTag', p.tag);
+    set('nlMockHeadline', p.headline);
+    set('nlMockLead', p.lead);
+    set('nlMockProductImg', p.productImg);
+    set('nlMockProductName', p.productName);
+    set('nlMockProductDesc', p.productDesc);
+    set('nlMockCta', p.cta);
+    const metaHost = document.getElementById('pmpList');
+    if (metaHost) {
+      metaHost.innerHTML = p.meta.map(([k, v]) => `<li><b>${k}:</b> <code>${v}</code></li>`).join('');
+    }
+  }
+
+  document.querySelectorAll('.persona-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.persona-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyPersona(btn.dataset.persona);
+    });
+  });
+
+  // === A2 ROI kalkulačka ===
+  const roiInputs = {
+    db: document.getElementById('roiDb'),
+    open: document.getElementById('roiOpen'),
+    ctr: document.getElementById('roiCtr'),
+    conv: document.getElementById('roiConv'),
+    aov: document.getElementById('roiAov')
+  };
+  const fmtInt = n => Math.round(n).toLocaleString('sk-SK').replace(/,/g, ' ');
+  const fmtPct = n => n.toFixed(1).replace('.', ',') + ' %';
+  const fmtEur = n => Math.round(n).toLocaleString('sk-SK').replace(/,/g, ' ') + ' €';
+
+  function recalcROI() {
+    if (!roiInputs.db) return;
+    const db = +roiInputs.db.value;
+    const open = +roiInputs.open.value;
+    const ctr = +roiInputs.ctr.value;
+    const conv = +roiInputs.conv.value;
+    const aov = +roiInputs.aov.value;
+    document.getElementById('roiDbVal').textContent = fmtInt(db);
+    document.getElementById('roiOpenVal').textContent = fmtPct(open);
+    document.getElementById('roiCtrVal').textContent = fmtPct(ctr);
+    document.getElementById('roiConvVal').textContent = fmtPct(conv);
+    document.getElementById('roiAovVal').textContent = aov + ' €';
+
+    const opens = db * open / 100;
+    const clicks = opens * ctr / 100;
+    const orders = clicks * conv / 100;
+    const revenue = orders * aov;
+
+    document.getElementById('roiSent').textContent = fmtInt(db);
+    document.getElementById('roiOpens').textContent = `${fmtInt(opens)} (${fmtPct(open)})`;
+    document.getElementById('roiClicks').textContent = `${fmtInt(clicks)} (${fmtPct(ctr)})`;
+    document.getElementById('roiOrders').textContent = `${fmtInt(orders)} (${fmtPct(conv)})`;
+    document.getElementById('roiRevenue').textContent = fmtEur(revenue);
+
+    // dynamic insight — najsilnejšia páka
+    const baseline = revenue;
+    const dbBoost = (db * 1.1) * (open/100) * (ctr/100) * (conv/100) * aov;
+    const openBoost = db * Math.min(50, open + 6)/100 * (ctr/100) * (conv/100) * aov;
+    const ctrBoost = db * (open/100) * Math.min(15, ctr + 2)/100 * (conv/100) * aov;
+    const convBoost = db * (open/100) * (ctr/100) * Math.min(10, conv + 1)/100 * aov;
+    const opts = [
+      { lbl: `+10 % v databáze pridá ~${fmtEur(dbBoost - baseline)} (+${((dbBoost/baseline - 1)*100).toFixed(0)} %).`, gain: dbBoost - baseline },
+      { lbl: `+6 pp open rate pridá ~${fmtEur(openBoost - baseline)} (+${((openBoost/baseline - 1)*100).toFixed(0)} %).`, gain: openBoost - baseline },
+      { lbl: `+2 pp CTR pridá ~${fmtEur(ctrBoost - baseline)} (+${((ctrBoost/baseline - 1)*100).toFixed(0)} %).`, gain: ctrBoost - baseline },
+      { lbl: `+1 pp konverzia pridá ~${fmtEur(convBoost - baseline)} (+${((convBoost/baseline - 1)*100).toFixed(0)} %).`, gain: convBoost - baseline }
+    ].sort((a,b) => b.gain - a.gain);
+    document.getElementById('roiInsight').textContent = opts[0].lbl;
+  }
+  Object.values(roiInputs).forEach(inp => inp && inp.addEventListener('input', recalcROI));
+  recalcROI();
 </script>
 </body>
 </html>

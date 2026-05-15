@@ -1,0 +1,171 @@
+{
+  "generated": "2026-05-15 06:00 UTC",
+  "week": "KW 20 · 11.–17.5.2026",
+  "kpi": {
+    "open": "37,7 %",
+    "ctr": "7,2 %",
+    "conv": "3,9 %",
+    "revenue": "4 179 €"
+  },
+  "deltas": {
+    "open_pp": -0.11333333333334394,
+    "ctr_pp": 0.07166666666666544,
+    "conv_pp": 0.08499999999999996,
+    "revenue_pct": 3.481681572020512
+  },
+  "nl_metrics": [
+    {
+      "id": "nl0",
+      "label": "NL 0 — Welcome",
+      "open": 43.07,
+      "ctr": 8.49,
+      "unsub": 0.14,
+      "conv": 5.0,
+      "score": 93
+    },
+    {
+      "id": "nl1",
+      "label": "NL 1 — Slnečná pohotovosť",
+      "open": 38.73,
+      "ctr": 7.5,
+      "unsub": 0.21,
+      "conv": 3.94,
+      "score": 85
+    },
+    {
+      "id": "nl2",
+      "label": "NL 2 — Festival kvíz",
+      "open": 44.99,
+      "ctr": 10.29,
+      "unsub": 0.21,
+      "conv": 5.11,
+      "score": 99
+    },
+    {
+      "id": "nl3",
+      "label": "NL 3 — Rodinný checklist",
+      "open": 34.98,
+      "ctr": 5.91,
+      "unsub": 0.27,
+      "conv": 3.6,
+      "score": 78
+    },
+    {
+      "id": "nl4",
+      "label": "NL 4 — Cestovka",
+      "open": 27.63,
+      "ctr": 4.03,
+      "unsub": 0.44,
+      "conv": 2.1,
+      "score": 55
+    },
+    {
+      "id": "nl5",
+      "label": "NL 5 — Beauty rituál",
+      "open": 37.08,
+      "ctr": 6.94,
+      "unsub": 0.12,
+      "conv": 3.95,
+      "score": 89
+    }
+  ],
+  "wins": [
+    "NL 2 — Festival kvíz má skóre 99, najvyššie v sérii (open 45.0 %).",
+    "Top sezónny signál: After-sun (+211 %).",
+    "Atribuovaný výnos drží trajektóriu — ROAS nad cieľom 5×."
+  ],
+  "concerns": [
+    "NL 4 — Cestovka open rate 27.6 % len +19 % vs benchmark — revízia subject line.",
+    "Unsub rate NL 4 — Cestovka 0.44 % nad cieľom 0,30 %.",
+    "Pinterest trends:read API zamietnutý — panel beží na curated Predicts 2026."
+  ],
+  "top_trend": {
+    "label": "After-sun",
+    "change": 211,
+    "weekly": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      39.7,
+      33.3,
+      0.0,
+      0.0,
+      51.7,
+      46.7,
+      21.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      16.3,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      21.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "related": [
+      {
+        "q": "bioderma after sun",
+        "v": 100
+      },
+      {
+        "q": "nivea after sun",
+        "v": 59
+      },
+      {
+        "q": "bioderma photoderm after sun",
+        "v": 49
+      },
+      {
+        "q": "after sun film",
+        "v": 41
+      },
+      {
+        "q": "aftersun",
+        "v": 25
+      }
+    ]
+  },
+  "aiSummary": {
+    "sk": "Séria <b>Leto s dm</b> beží nad benchmarkom — priemerný open rate <b>37,7 %</b> ťahá najmä <b>NL 2 — Festival kvíz</b> (45.0 %). Podpriemer: NL 4 — Cestovka (27.6 %) — replikovať mechaniku top performer-a. Atribuovaný výnos <b>4 179 €</b>, top sezónny signál <i>After-sun</i> potvrdzuje načasovanie.",
+    "de": "Die Kampagne <b>Leto s dm</b> übertrifft den Benchmark — durchschnittliche Öffnungsrate <b>37 7 %</b> wird hauptsächlich von <b>NL 2 — Festival kvíz</b> (45.0 %) getragen. Underperformer: NL 4 — Cestovka (27.6 %) — Mechanik vom Top-Performer übernehmen. Zugeordneter Umsatz <b>4 179 €</b>  Top-Trend <i>After-sun</i> bestätigt das Timing.",
+    "en": "The <b>Leto s dm</b> campaign tracks above benchmark — average open rate <b>37,7 %</b> driven primarily by <b>NL 2 — Festival kvíz</b> (45.0 %). Underperformer: NL 4 — Cestovka (27.6 %) — replicate the top-performer mechanic. Attributed revenue <b>€4,179</b>, top trend <i>After-sun</i> confirms timing."
+  },
+  "_meta": {
+    "source": "Mailchimp Retail benchmark 2024 (jitter mock) + Google Trends SK · auto",
+    "ai_provider": "template-fallback"
+  }
+}

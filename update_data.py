@@ -51,8 +51,10 @@ KEYWORDS = [
     ("Klimatizácia",          "klimatizácia"),
 ]
 
-# Referenčný rok — posledný uzavretý rok (všetky mesiace majú dáta).
-YEAR = date.today().year - 1
+# 3-ročný baseline — priemer cez 3 uzavreté roky pre stabilnejšie hodnoty.
+# Trends index má ~±20 % šum medzi behmi; priemerovanie cez 3 roky to sploští.
+END_YEAR = date.today().year - 1
+START_YEAR = END_YEAR - 2  # napr. 2022–2024
 
 GEO = "SK"
 SLEEP_BETWEEN_REQUESTS = 5.0  # sekundy — Google trends rate-limituje
@@ -61,18 +63,33 @@ SORT_DESCENDING = True
 DATA_PATH = Path(__file__).parent / "data.json"
 
 
-def fetch_year_series(pytrends: TrendReq, keyword: str, year: int):
-    """Stiahne celoročnú Trends timeseries pre keyword v SK. None ak prázdne."""
-    timeframe = f"{year}-01-01 {year}-12-31"
+def fetch_multi_year_pattern(pytrends: TrendReq, keyword: str, start_year: int, end_year: int):
+    """Stiahne viacročnú Trends timeseries a vráti priemerný 52-týždňový sezónny
+    vzor (priemer cez všetky kompletné roky position-by-position).
+    Vracia (pattern_52w, n_years_used) alebo None ak prázdne."""
+    timeframe = f"{start_year}-01-01 {end_year}-12-31"
     try:
         pytrends.build_payload([keyword], timeframe=timeframe, geo=GEO)
         df = pytrends.interest_over_time()
         if df is None or df.empty:
             return None
-        # filtruj nedokončené týždne na konci
         if "isPartial" in df.columns:
             df = df[~df["isPartial"]]
-        return df[keyword]
+        s = df[keyword]
+        if len(s) == 0:
+            return None
+        # Po rokoch → každý uzavretý rok skrátiť na 52 týždňov → priemer
+        years = sorted(set(s.index.year))
+        year_arrays = []
+        for y in years:
+            yr = s[s.index.year == y].values
+            if len(yr) >= 50:  # min. takmer kompletný rok
+                year_arrays.append(list(yr[:52]))  # trim na 52
+        if not year_arrays:
+            return None
+        # Position-by-position priemer
+        pattern = [sum(col) / len(col) for col in zip(*year_arrays)]
+        return (pattern, len(year_arrays))
     except Exception as e:
         print(f"  ⚠ Trends fetch zlyhal pre '{keyword}': {e}", file=sys.stderr)
         return None
@@ -94,20 +111,17 @@ def fetch_related_top(pytrends: TrendReq, keyword: str, top_n: int = 5):
         return []
 
 
-def seasonal_lift_percent(series) -> tuple:
-    """Vráti (summer_avg, year_avg, lift_percent).
-    lift_percent = o koľko % je leto (jún–aug) nad celoročným priemerom.
+def seasonal_lift_from_pattern(pattern_52w) -> tuple:
+    """Vráti (summer_avg, year_avg, lift_percent) z 52-týždňového vzoru.
+    Leto = týždne 22–35 (cca 1.6. – 1.9.).
     """
-    if series is None or len(series) == 0:
+    if pattern_52w is None or len(pattern_52w) < 12:
         return (0.0, 0.0, 0)
-    year_avg = float(series.mean())
-    summer_mask = (series.index.month >= 6) & (series.index.month <= 8)
-    summer_series = series[summer_mask]
-    if len(summer_series) == 0:
-        return (0.0, year_avg, 0)
-    summer_avg = float(summer_series.mean())
+    year_avg = sum(pattern_52w) / len(pattern_52w)
+    # ISO týždne 22–35 ≈ jún (1.6.) až koniec augusta
+    summer_slice = pattern_52w[21:35]  # indices 21..34 = weeks 22..35
+    summer_avg = sum(summer_slice) / len(summer_slice)
     if year_avg <= 0:
-        # Celoročný priemer je 0 — nemôžeme normalizovať
         return (summer_avg, year_avg, 0)
     lift = int(round((summer_avg - year_avg) / year_avg * 100))
     return (summer_avg, year_avg, lift)
@@ -115,9 +129,9 @@ def seasonal_lift_percent(series) -> tuple:
 
 def main() -> int:
     print(f"Sťahujem Google Trends SK · sezónny index pre {len(KEYWORDS)} kľúčových slov…")
-    print(f"  Rok:           {YEAR}")
+    print(f"  Roky:          {START_YEAR}–{END_YEAR} (3-ročný priemer)")
     print(f"  Geo:           {GEO}")
-    print(f"  Metodológia:   priemer letných týždňov (jún–aug) vs. celoročný priemer")
+    print(f"  Metodológia:   priemer letných týždňov vs. celoročný priemer (3-y avg)")
     print()
 
     pytrends = TrendReq(hl="sk-SK", tz=120)
@@ -125,18 +139,23 @@ def main() -> int:
     results = []
     for label, query in KEYWORDS:
         print(f"  → {label}  (query: '{query}')")
-        series = fetch_year_series(pytrends, query, YEAR)
+        pat = fetch_multi_year_pattern(pytrends, query, START_YEAR, END_YEAR)
         # related queries — best-effort hneď po build_payload pre ten istý keyword
-        related = fetch_related_top(pytrends, query, top_n=5) if series is not None else []
+        related = fetch_related_top(pytrends, query, top_n=5) if pat is not None else []
         time.sleep(SLEEP_BETWEEN_REQUESTS)
-        summer_avg, year_avg, lift = seasonal_lift_percent(series)
+        if pat is None:
+            print(f"    žiadne dáta")
+            continue
+        pattern_52w, n_years = pat
+        summer_avg, year_avg, lift = seasonal_lift_from_pattern(pattern_52w)
         sign = "+" if lift >= 0 else ""
         rel_count = len(related)
-        print(f"    leto={summer_avg:.1f}  rok={year_avg:.1f}  index={sign}{lift} %  · {rel_count} related")
-        entry = {"label": label, "change": lift}
-        if series is not None:
-            # Týždenné hodnoty pre sparkline (zaokrúhlené, aby JSON nebol obrovský)
-            entry["weekly"] = [round(float(v), 1) for v in series.values]
+        print(f"    leto={summer_avg:.1f}  rok={year_avg:.1f}  index={sign}{lift} %  · {n_years}y avg · {rel_count} related")
+        entry = {
+            "label": label,
+            "change": lift,
+            "weekly": [round(float(v), 1) for v in pattern_52w],
+        }
         if related:
             entry["related"] = related
         results.append(entry)
@@ -149,8 +168,9 @@ def main() -> int:
         print("  data.json som nezmenil.", file=sys.stderr)
         return 1
 
-    # Slide ukazuje "leto vs ročný priemer" — necháme len pozitívne.
-    results = [r for r in results if r["change"] > 0]
+    # Threshold: zachovať aj mierne sub-zero (šum okolo 0). Filtrujeme len jasne
+    # winterných keywords.
+    results = [r for r in results if r["change"] >= -5]
 
     if SORT_DESCENDING:
         results.sort(key=lambda x: -x["change"])
@@ -171,7 +191,7 @@ def main() -> int:
 
     new_data = {
         "lastUpdated": date.today().isoformat(),
-        "source": f"Google Trends SK · {YEAR} (leto vs. ročný priemer) · auto-update",
+        "source": f"Google Trends SK · {START_YEAR}–{END_YEAR} priemer (leto vs. ročný priemer) · auto-update",
         "trends": results,
         "topRelated": top_related,
         "openTimes": existing.get("openTimes", [

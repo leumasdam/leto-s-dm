@@ -1,0 +1,17 @@
+{
+  "lastUpdated": "2026-05-15",
+  "source": "Ilustračné hodnoty — finálna verzia z Google Trends SK + interné dáta DM",
+  "trends": [
+    { "label": "krém na opaľovanie",    "change": 340 },
+    { "label": "SPF 50 pleť",           "change": 280 },
+    { "label": "after-sun gél",         "change": 210 },
+    { "label": "repelent proti hmyzu",  "change": 195 },
+    { "label": "hydratačný krém telo",  "change": 140 },
+    { "label": "letná kozmetika balenie","change": 120 }
+  ],
+  "openTimes": [
+    { "slot": "utorok 9–11 h",   "percent": 28 },
+    { "slot": "streda 10–12 h",  "percent": 23 },
+    { "slot": "nedeľa 19–21 h",  "percent": 18 }
+  ]
+}

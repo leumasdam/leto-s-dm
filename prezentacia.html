@@ -576,12 +576,22 @@
     .data-scroll-hint{display:block;font-size:10.5px;font-weight:800;letter-spacing:.05em;color:var(--pink);text-align:center;margin-top:10px;text-transform:uppercase;animation:scroll-hint-pulse 2.5s ease-in-out infinite;}
     @keyframes scroll-hint-pulse{0%,100%{opacity:.55;transform:translateX(0);}50%{opacity:1;transform:translateX(3px);}}
     .data-scroll-grid{display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:10px;padding:4px 18px 14px 0;margin-right:-18px;mask-image:linear-gradient(90deg,#000 0%,#000 90%,transparent 100%);-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 90%,transparent 100%);}
-    .data-scroll-grid > .card{flex:0 0 84%;scroll-snap-align:start;min-width:0;}
+    .data-scroll-grid > .card{flex:0 0 88%;scroll-snap-align:start;min-width:0;padding:13px;}
     .data-scroll-col{display:contents !important;}
-    .data-scroll-col > .card{flex:0 0 84%;scroll-snap-align:start;min-width:0;}
+    .data-scroll-col > .card{flex:0 0 88%;scroll-snap-align:start;min-width:0;padding:13px;}
     .data-scroll-grid::-webkit-scrollbar{height:6px;}
     .data-scroll-grid::-webkit-scrollbar-track{background:transparent;}
     .data-scroll-grid::-webkit-scrollbar-thumb{background:rgba(230,0,126,.3);border-radius:3px;}
+
+    /* Sezónne bary musia zmestiť všetky 4 stĺpce do úzkej karty */
+    .data-scroll-grid .dbar{grid-template-columns:84px 1fr 46px 48px;gap:5px;font-size:11.5px;}
+    .data-scroll-grid .dbar-v{font-size:11.5px;}
+    .data-scroll-grid .dbar-spark{height:20px;}
+    .data-scroll-grid .dbar-l{font-size:11.5px;line-height:1.2;}
+    .data-scroll-grid .dbars{gap:5px;}
+    .data-scroll-grid .rel-tag{font-size:10.5px;padding:3px 8px;}
+    .data-scroll-grid h3{font-size:14px;}
+    .data-scroll-grid .data-panel-label{font-size:10px;}
     .bigidea{padding:22px;border-radius:18px;}
     .bigidea .quote{font-size:25px;}
     .bigidea .sub{font-size:13px;margin-top:9px;}

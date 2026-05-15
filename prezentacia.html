@@ -1884,9 +1884,9 @@
   update();
 
   // === Tier 3 · Fáza 1: hydratácia dátového slidu z data.json ===
-  (async () => {
+  const hydrateData = async () => {
     try {
-      const res = await fetch('data.json?v=' + Date.now());
+      const res = await fetch('data.json?v=' + Date.now(), { cache: 'no-store' });
       if (!res.ok) throw new Error('data.json ' + res.status);
       const D = await res.json();
 
@@ -1921,7 +1921,10 @@
     } catch (e) {
       console.warn('[data.json] hydration failed:', e);
     }
-  })();
+  };
+  hydrateData();
+  // re-hydrate keď sa stránka vráti z BFCache (back/forward nav)
+  window.addEventListener('pageshow', e => { if (e.persisted) hydrateData(); });
 </script>
 </body>
 </html>

@@ -31,15 +31,24 @@ except ImportError:
 
 # ---- konfigurácia ----
 # Každá položka = (display label, search query).
-# SK trh je malý — niektoré úzke queries nemajú dosť dát. Používame
-# širšie populárne termy s preukázateľným SK signálom.
+# SK trh je malý — niektoré úzke queries nemajú dosť dát. Mixujeme
+# DM produktové termy + širšie sezónne lifestyle queries pre vyšší
+# hit rate. Skript automaticky odfiltruje tie, čo nemajú signál.
 KEYWORDS = [
-    ("Opaľovací krém",        "opaľovací krém"),
+    # DM / drogéria termy
     ("SPF",                   "SPF"),
     ("Balea (dm brand)",      "Balea"),
-    ("After-sun",             "after sun"),
+    ("Nivea",                 "Nivea"),
     ("Repelent",              "repelent"),
-    ("Kufor / cestovné",      "kufor"),
+    ("Opaľovací krém",        "opaľovací krém"),
+    ("After-sun",             "after sun"),
+    # Letné lifestyle / sezónne signály
+    ("Plavky",                "plavky"),
+    ("Festival",              "festival"),
+    ("Kúpalisko",             "kúpalisko"),
+    ("Dovolenka",             "dovolenka"),
+    ("Chorvátsko",            "Chorvátsko"),
+    ("Klimatizácia",          "klimatizácia"),
 ]
 
 # Referenčný rok — posledný uzavretý rok (všetky mesiace majú dáta).

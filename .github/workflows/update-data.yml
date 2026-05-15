@@ -36,11 +36,20 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [[ -n "$(git status --porcelain data.json)" ]]; then
-            git add data.json
-            git commit -m "chore(data): auto-update Google Trends SK [skip ci]"
-            git push
-            echo "✓ data.json updated"
-          else
+          if [[ -z "$(git status --porcelain data.json)" ]]; then
             echo "= data.json unchanged — Trends nevrátil nové dáta (alebo 429)"
+            exit 0
           fi
+          git add data.json
+          git commit -m "chore(data): auto-update Google Trends SK [skip ci]"
+          # Retry s rebase pre prípad race conditions s ľudskými commitmi
+          for i in 1 2 3; do
+            if git pull --rebase origin master && git push; then
+              echo "✓ data.json updated (attempt $i)"
+              exit 0
+            fi
+            echo "  push rejected, retry $i…"
+            sleep 3
+          done
+          echo "::error::push failed after 3 retries"
+          exit 1

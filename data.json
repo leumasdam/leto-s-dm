@@ -939,6 +939,19 @@
       "v": 97
     }
   ],
+  "pinterest": {
+    "region": "AT",
+    "lastUpdated": "2026-05-15",
+    "source": "Pinterest Predicts 2026 (oficiálny global trend report) · curated pre dm summer",
+    "growing": [
+      {"q": "scent stacking", "growth": 500, "note": "vrstvenie parfémov"},
+      {"q": "cool blue / frosted makeup", "growth": 150, "note": "ice-glow beauty"},
+      {"q": "glitchy glam", "growth": 100, "note": "festival makeup"},
+      {"q": "darecations", "growth": null, "note": "adventure travel"},
+      {"q": "cabbage crush", "growth": null, "note": "letné kvasené recepty"},
+      {"q": "funhaus", "growth": null, "note": "playful balkón/domov"}
+    ]
+  },
   "openTimes": [
     {
       "slot": "utorok 9–11 h",

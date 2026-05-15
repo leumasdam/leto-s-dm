@@ -495,6 +495,9 @@
   .pin-board .pin-tag{display:inline-block;background:#e6007e;color:#fff;font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-bottom:4px;}
   .pin-board b{display:block;font-size:12.5px;color:var(--navy);line-height:1.2;}
   .pin-board .pin-meta{display:block;font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.4;}
+  .pin-chip{background:#fff;color:#e6007e;border:1px solid rgba(230,0,126,.3);font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;}
+  .pin-chip small{font-weight:600;color:rgba(230,0,126,.65);font-size:9.5px;letter-spacing:.02em;}
+  .pin-chip.is-fallback{background:rgba(255,255,255,.6);border-style:dashed;color:rgba(230,0,126,.6);}
   .cc-list{display:flex;flex-direction:column;gap:7px;margin-top:11px;}
   .cc-row{display:flex;gap:11px;align-items:flex-start;background:var(--blue-mist);border-radius:10px;padding:9px 12px;}
   .cc-ic{font-size:18px;flex-shrink:0;line-height:1.1;}
@@ -1300,6 +1303,23 @@
               <div class="pin-board"><span class="pin-tag">Beauty</span><b>After-sun rituál</b><span class="pin-meta">alverde, hydratácia, glow</span></div>
               <div class="pin-board"><span class="pin-tag">Mesto</span><b>Leto v meste</b><span class="pin-meta">osvieženie, piknik, balkónová oáza</span></div>
             </div>
+
+            <div class="pin-live" data-bind="pinterest" style="margin-top:14px;padding:12px;background:rgba(230,0,126,.06);border:1px solid rgba(230,0,126,.18);border-radius:10px;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;">
+                <b style="font-size:13px;color:#e6007e;">📈 Pinterest Predicts 2026 · <span data-pin="region">AT</span> proxy</b>
+                <span style="font-size:11px;color:var(--muted);" data-pin="updated">curated · refresh mesačne</span>
+              </div>
+              <div style="margin-top:6px;font-size:12px;color:var(--muted);">Filtrované pre dm letnú kampaň z <a href="https://business.pinterest.com/pinterest-predicts/" target="_blank" rel="noopener" style="color:#e6007e;">oficiálneho Pinterest Predicts 2026</a>.</div>
+              <div class="pin-tags" data-pin="growing" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+                <span class="pin-chip">scent stacking <small>+500%</small></span>
+                <span class="pin-chip">cool blue / frosted makeup <small>+150%</small></span>
+                <span class="pin-chip">glitchy glam <small>+100%</small></span>
+                <span class="pin-chip">darecations</span>
+                <span class="pin-chip">cabbage crush</span>
+                <span class="pin-chip">funhaus</span>
+              </div>
+            </div>
+
             <ul class="clean" style="margin-top:11px;">
               <li><b>Rich Pins</b> → produkty z dm.sk priamo shoppable</li>
               <li><b>Save-to-Pinterest CTA</b> v každom newsletteri</li>
@@ -2039,6 +2059,21 @@
         relHost.innerHTML = D.topRelated.map(r =>
           `<span class="rel-tag">${r.q} <small>${r.v ? r.v : ''}</small></span>`
         ).join('');
+      }
+
+      // Pinterest Trends panel — curated z Pinterest Predicts 2026
+      if (D.pinterest && Array.isArray(D.pinterest.growing) && D.pinterest.growing.length) {
+        const P = D.pinterest;
+        document.querySelectorAll('[data-pin="region"]').forEach(el => el.textContent = P.region || 'AT');
+        document.querySelectorAll('[data-pin="updated"]').forEach(el => el.textContent = P.lastUpdated ? `curated · ${fmtDate(P.lastUpdated)}` : 'curated · refresh mesačne');
+        const growHost = document.querySelector('[data-pin="growing"]');
+        if (growHost) {
+          growHost.innerHTML = P.growing.map(g => {
+            const pct = g.growth ? ` <small>+${g.growth}%</small>` : '';
+            const note = g.note ? ` <em style="font-style:normal;color:rgba(230,0,126,.55);font-size:10px;">· ${g.note}</em>` : '';
+            return `<span class="pin-chip">${g.q}${pct}${note}</span>`;
+          }).join('');
+        }
       }
     } catch (e) {
       console.warn('[data.json] hydration failed:', e);

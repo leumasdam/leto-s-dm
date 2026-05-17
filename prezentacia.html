@@ -805,6 +805,16 @@
   .persona-btn .pb-meta{font-size:11px;color:var(--muted);}
 
   .persona-preview{display:grid;grid-template-columns:1.6fr 1fr;gap:14px;align-items:start;}
+
+  /* V2 — full image preview */
+  .persona-preview-v2{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;align-items:start;margin-top:4px;}
+  .nl-preview-frame{position:relative;border-radius:14px;overflow:hidden;background:#f5f7fb;border:1px solid var(--accent-light);box-shadow:0 8px 28px -8px rgba(0,40,90,.18);transition:box-shadow .35s ease,border-color .35s ease;max-height:64vh;}
+  .nl-preview-frame img{width:100%;height:auto;display:block;transition:opacity .25s ease;}
+  .nl-preview-frame.is-switching img{opacity:.4;}
+  @media (max-width:880px){
+    .persona-preview-v2{grid-template-columns:1fr;}
+    .nl-preview-frame{max-height:none;}
+  }
   .nl-mock{background:linear-gradient(180deg,rgba(255,255,255,.6) 0%,#fff 100%);border:1px solid var(--accent-light);border-radius:14px;overflow:hidden;transition:all .35s cubic-bezier(.4,0,.2,1);box-shadow:0 4px 12px rgba(0,40,90,.06);}
   .nl-mock-header{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:var(--accent);color:#fff;transition:background .35s ease;}
   .nl-mock-logo{font-weight:900;font-size:18px;letter-spacing:-.02em;}
@@ -1579,36 +1589,29 @@
 
         <div class="persona-switcher-wrap" style="margin-top:14px;">
           <div class="persona-buttons">
-            <button class="persona-btn active" data-persona="ema" type="button">
-              <span class="pb-emoji">💃</span><b>Festivalová Ema</b><span class="pb-meta">18–26 · beauty · NL 2</span>
+            <button class="persona-btn active" data-persona="festival" type="button">
+              <span class="pb-emoji">💃</span><b>Festival</b><span class="pb-meta">NL 2 · Ema · beauty</span>
             </button>
-            <button class="persona-btn" data-persona="zuzana" type="button">
-              <span class="pb-emoji">👨‍👩‍👧</span><b>Mama Zuzana</b><span class="pb-meta">28–42 · family · NL 1+3</span>
+            <button class="persona-btn" data-persona="welcome" type="button">
+              <span class="pb-emoji">👋</span><b>Welcome</b><span class="pb-meta">NL 0 · uvítanie</span>
             </button>
-            <button class="persona-btn" data-persona="tatiana" type="button">
-              <span class="pb-emoji">✨</span><b>Beauty Tatiana</b><span class="pb-meta">25–40 · rituál · NL 5</span>
+            <button class="persona-btn" data-persona="summer" type="button">
+              <span class="pb-emoji">☀️</span><b>Slnečná pohotovosť</b><span class="pb-meta">NL 1 · príprava</span>
+            </button>
+            <button class="persona-btn" data-persona="quiz" type="button">
+              <span class="pb-emoji">❓</span><b>Letný kvíz</b><span class="pb-meta">NL 0 · segmentácia</span>
+            </button>
+            <button class="persona-btn" data-persona="checklist" type="button">
+              <span class="pb-emoji">👨‍👩‍👧</span><b>Rodinný checklist</b><span class="pb-meta">NL 3 · Zuzana</span>
+            </button>
+            <button class="persona-btn" data-persona="city" type="button">
+              <span class="pb-emoji">🏙️</span><b>Leto v meste</b><span class="pb-meta">NL 4 · mestský typ</span>
             </button>
           </div>
 
-          <div class="persona-preview">
-            <div class="nl-mock" id="nlMock">
-              <header class="nl-mock-header">
-                <span class="nl-mock-logo">dm</span>
-                <span class="nl-mock-section" id="nlMockSection">Leto s dm · NL 02 — Festival</span>
-              </header>
-              <div class="nl-mock-body">
-                <div class="nl-mock-tag" id="nlMockTag">Festival 2026</div>
-                <h3 class="nl-mock-headline" id="nlMockHeadline">Festivalová Ema, máme pre teba pripravené…</h3>
-                <p class="nl-mock-lead" id="nlMockLead">Tri produkty, ktoré zvládnu aj trojdňový festival.</p>
-                <div class="nl-mock-product">
-                  <div class="nl-mock-product-img" id="nlMockProductImg">💄</div>
-                  <div class="nl-mock-product-body">
-                    <b id="nlMockProductName">Balea Festival Glitter Spray</b>
-                    <span id="nlMockProductDesc">vodoodolný · mini formát · 3,99 €</span>
-                  </div>
-                </div>
-                <button class="nl-mock-cta" id="nlMockCta" type="button">Pozri Festival kolekciu →</button>
-              </div>
+          <div class="persona-preview-v2">
+            <div class="nl-preview-frame">
+              <img id="nlPreviewImg" src="nl-festival-real.png" alt="Newsletter preview · Festival" loading="eager">
             </div>
 
             <div class="persona-meta-panel">
@@ -1620,6 +1623,7 @@
                 <li><b>Tone of voice:</b> energický, hravý</li>
               </ul>
               <div style="font-size:11px;color:var(--muted);margin-top:10px;line-height:1.5;border-top:1px dashed rgba(0,40,90,.12);padding-top:8px;">V Salesforce MC / Klaviyo: <code style="background:rgba(0,40,90,.08);padding:1px 5px;border-radius:3px;">{{#if persona == "ema"}}…{{/if}}</code> merge tags + dynamic content blocks.</div>
+              <div style="font-size:10.5px;color:var(--muted);margin-top:10px;font-style:italic;">Náhľady sú ilustračné mockupy postavené na reálnej dm vizuálnej identite.</div>
             </div>
           </div>
         </div>
@@ -2591,60 +2595,72 @@
     });
   });
 
-  // === A1 Persona switcher ===
+  // === A1 Persona switcher v2 — full newsletter image preview ===
   const personaConfig = {
-    ema: {
-      accent: '#e6007e',
-      accentLight: 'rgba(230,0,126,.15)',
-      section: 'Leto s dm · NL 02 — Festival',
-      tag: 'Festival 2026',
-      headline: 'Festivalová Ema, máme pre teba pripravené…',
-      lead: 'Tri produkty, ktoré zvládnu aj trojdňový festival.',
-      productImg: '💄',
-      productName: 'Balea Festival Glitter Spray',
-      productDesc: 'vodoodolný · mini formát · 3,99 €',
-      cta: 'Pozri Festival kolekciu →',
+    festival: {
+      accent: '#e6007e', accentLight: 'rgba(230,0,126,.18)',
+      img: 'nl-festival-real.png',
+      alt: 'Newsletter NL 2 · Festivalové leto s dm',
       meta: [
         ['Segment', 'festival_ema'],
-        ['Akcent farba', '#e6007e'],
-        ['Hero kategória', 'Festival'],
+        ['Akcent farba', '#e6007e (pink)'],
+        ['Hero kategória', 'Festival, beauty, glow'],
         ['Tone of voice', 'energický, hravý']
       ]
     },
-    zuzana: {
-      accent: '#003a78',
-      accentLight: 'rgba(0,58,120,.15)',
-      section: 'Leto s dm · NL 03 — Rodinný checklist',
-      tag: 'Letný checklist',
-      headline: 'Zuzana, leto s rodinou je o detailoch.',
-      lead: 'SPF pre deti, dmBio snacky na cesty a kufor packing-list — všetko na jednom mieste.',
-      productImg: '🧴',
-      productName: 'SUNDANCE Kids SPF 50+',
-      productDesc: 'detská, 100 ml · neprehoria, ani pri kúpaní',
-      cta: 'Stiahnuť rodinný checklist →',
+    welcome: {
+      accent: '#ffcc00', accentLight: 'rgba(255,204,0,.22)',
+      img: 'nl-welcome-real.png',
+      alt: 'Newsletter NL 0 · Vitajte v dm',
       meta: [
-        ['Segment', 'family_zuzana'],
-        ['Akcent farba', '#003a78'],
-        ['Hero kategória', 'SPF + dmBio'],
+        ['Segment', 'new_subscriber'],
+        ['Akcent farba', '#ffcc00 (warm)'],
+        ['Hero kategória', 'Onboarding · preferencie'],
+        ['Tone of voice', 'priateľský, uvítavajúci']
+      ]
+    },
+    summer: {
+      accent: '#0a6fc2', accentLight: 'rgba(10,111,194,.18)',
+      img: 'nl-summer-prep-real.png',
+      alt: 'Newsletter NL 1 · Ste pripravení na leto?',
+      meta: [
+        ['Segment', 'base · aktivácia'],
+        ['Akcent farba', '#0a6fc2 (dm modrá)'],
+        ['Hero kategória', 'SPF, cesty, každodenná pohoda'],
         ['Tone of voice', 'pokojný, praktický']
       ]
     },
-    tatiana: {
-      accent: '#1faa6f',
-      accentLight: 'rgba(31,170,111,.15)',
-      section: 'Leto s dm · NL 05 — Beauty rituál',
-      tag: 'Beauty rituál',
-      headline: 'Tatiana, after-sun rituál pre žiariacu pleť.',
-      lead: 'Trojkrok: chladiaci sprej, regeneračná maska, hydratačný sérum — z dm bestsellerov.',
-      productImg: '🌿',
-      productName: 'alverde After-Sun Aloe Vera',
-      productDesc: 'bio · 200 ml · vegan · 5,49 €',
-      cta: 'Objaviť alverde rituál →',
+    quiz: {
+      accent: '#0a6fc2', accentLight: 'rgba(10,111,194,.18)',
+      img: 'nl-quiz-real.png',
+      alt: 'Newsletter NL 0 · Aký ste letný typ?',
       meta: [
-        ['Segment', 'beauty_tatiana'],
-        ['Akcent farba', '#1faa6f'],
-        ['Hero kategória', 'alverde + after-sun'],
-        ['Tone of voice', 'starostlivý, inšpiratívny']
+        ['Segment', 'unknown · zber preferencií'],
+        ['Akcent farba', '#0a6fc2 (dm modrá)'],
+        ['Hero kategória', 'Kvíz · 4 typy leta'],
+        ['Tone of voice', 'spoznávací, ľahký']
+      ]
+    },
+    checklist: {
+      accent: '#f0b400', accentLight: 'rgba(240,180,0,.22)',
+      img: 'nl-checklist-real.png',
+      alt: 'Newsletter NL 3 · Letný checklist je pripravený',
+      meta: [
+        ['Segment', 'family_zuzana'],
+        ['Akcent farba', '#f0b400 (warm yellow)'],
+        ['Hero kategória', 'Checklist · SPF · rodina'],
+        ['Tone of voice', 'starostlivý, organizovaný']
+      ]
+    },
+    city: {
+      accent: '#e6007e', accentLight: 'rgba(230,0,126,.15)',
+      img: 'nl-city-real.png',
+      alt: 'Newsletter NL 4 · Leto v meste',
+      meta: [
+        ['Segment', 'urban_summer'],
+        ['Akcent farba', '#e6007e + soft pastel'],
+        ['Hero kategória', 'Osvieženie · hydratácia · po práci'],
+        ['Tone of voice', 'oddychový, ľahký']
       ]
     }
   };
@@ -2657,15 +2673,18 @@
       wrap.style.setProperty('--accent', p.accent);
       wrap.style.setProperty('--accent-light', p.accentLight);
     }
-    const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-    set('nlMockSection', p.section);
-    set('nlMockTag', p.tag);
-    set('nlMockHeadline', p.headline);
-    set('nlMockLead', p.lead);
-    set('nlMockProductImg', p.productImg);
-    set('nlMockProductName', p.productName);
-    set('nlMockProductDesc', p.productDesc);
-    set('nlMockCta', p.cta);
+    const frame = document.querySelector('.nl-preview-frame');
+    const img = document.getElementById('nlPreviewImg');
+    if (img && frame) {
+      frame.classList.add('is-switching');
+      const newImg = new Image();
+      newImg.onload = () => {
+        img.src = p.img;
+        img.alt = p.alt;
+        setTimeout(() => frame.classList.remove('is-switching'), 50);
+      };
+      newImg.src = p.img;
+    }
     const metaHost = document.getElementById('pmpList');
     if (metaHost) {
       metaHost.innerHTML = p.meta.map(([k, v]) => `<li><b>${k}:</b> <code>${v}</code></li>`).join('');

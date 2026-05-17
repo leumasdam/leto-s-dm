@@ -2087,22 +2087,28 @@
             <h3 style="margin-top:6px;">Posuň, čo chceš odhadnúť</h3>
             <div class="roi-input"><div class="roi-input-row"><label>Veľkosť databázy</label><b id="roiDbVal">15 000</b></div><input type="range" id="roiDb" min="1000" max="100000" step="1000" value="15000"></div>
             <div class="roi-input"><div class="roi-input-row"><label>Počet newsletterov v sérii</label><b id="roiNlsVal">6</b></div><input type="range" id="roiNls" min="1" max="12" step="1" value="6"><span class="roi-bench">letná séria = 6 NL · pre testovanie posuň</span></div>
-            <div class="roi-input"><div class="roi-input-row"><label>Priemerný open rate</label><b id="roiOpenVal">24,3 %</b></div><input type="range" id="roiOpen" min="10" max="50" step="0.1" value="24.3"><span class="roi-bench">benchmark: 21–25 %</span></div>
-            <div class="roi-input"><div class="roi-input-row"><label>Priemerný CTR</label><b id="roiCtrVal">6,2 %</b></div><input type="range" id="roiCtr" min="1" max="15" step="0.1" value="6.2"><span class="roi-bench">benchmark: 2,5–6 %</span></div>
-            <div class="roi-input"><div class="roi-input-row"><label>Konverzia (klik → nákup)</label><b id="roiConvVal">3,2 %</b></div><input type="range" id="roiConv" min="0.5" max="10" step="0.1" value="3.2"><span class="roi-bench">benchmark: 1,5–3 % retail e-com</span></div>
+            <div class="roi-input"><div class="roi-input-row"><label>Open rate</label><b id="roiOpenVal">24,3 %</b></div><input type="range" id="roiOpen" min="10" max="50" step="0.1" value="24.3"><span class="roi-bench">otvorení / odoslaných · benchmark: 21–25 %</span></div>
+            <div class="roi-input"><div class="roi-input-row"><label>CTOR · klik z otvorenia</label><b id="roiCtrVal">6,2 %</b></div><input type="range" id="roiCtr" min="1" max="20" step="0.1" value="6.2"><span class="roi-bench">kliky / otvorení · benchmark: 6–12 %</span></div>
+            <div class="roi-input" style="background:rgba(0,40,90,.04);padding:6px 10px;border-radius:8px;"><div class="roi-input-row"><label style="font-weight:500;color:var(--muted);">Click rate z odoslaných <span style="font-weight:400;font-style:italic;">(voliteľné)</span></label><b id="roiClickRateVal" style="color:var(--muted);">1,5 %</b></div><span class="roi-bench">automaticky vypočítané: open × CTOR</span></div>
+            <div class="roi-input"><div class="roi-input-row"><label>Konverzia po kliku</label><b id="roiConvVal">3,2 %</b></div><input type="range" id="roiConv" min="0.5" max="10" step="0.1" value="3.2"><span class="roi-bench">objednávky / kliky · benchmark: 1,5–3 % retail e-com</span></div>
             <div class="roi-input"><div class="roi-input-row"><label>Priemerný košík</label><b id="roiAovVal">38 €</b></div><input type="range" id="roiAov" min="10" max="80" step="1" value="38"><span class="roi-bench">modelová hodnota pre účely simulácie</span></div>
+            <div class="roi-input" style="margin-top:14px;border-top:1px dashed rgba(0,40,90,.15);padding-top:12px;"><div class="roi-input-row"><label>Estimated assisted uplift <span style="font-weight:400;font-style:italic;color:var(--muted);">(voliteľné)</span></label><b id="roiUpliftVal">0 %</b></div><input type="range" id="roiUplift" min="0" max="50" step="5" value="0"><span class="roi-bench">nepriamy vplyv (e-mail videl, kúpil neskôr inou cestou) · default 0 %</span></div>
           </div>
           <div class="card pad-lg" style="background:var(--navy);color:#fff;border-color:rgba(255,255,255,.08);">
             <div class="data-panel-label" style="color:#ffcc00;">📈 Projekcia · celá kampaň</div>
             <h3 style="color:#fff;margin-top:6px;"><span id="roiNlsLabel">6 newsletterov</span> · <span id="roiDbLabel">15 000</span> kontaktov</h3>
             <div class="roi-funnel">
               <div class="roi-step"><span class="roi-step-l">Celkovo odoslané (DB × NL)</span><b id="roiSent">90 000</b></div>
-              <div class="roi-step"><span class="roi-step-l">Otvorené (24,3 %)</span><b id="roiOpens">21 870</b></div>
-              <div class="roi-step"><span class="roi-step-l">Kliky (6,2 %)</span><b id="roiClicks">1 356</b></div>
-              <div class="roi-step"><span class="roi-step-l">Nákupy (3,2 %)</span><b id="roiOrders">43</b></div>
-              <div class="roi-step roi-final"><span class="roi-step-l">Hrubý výnos kampane</span><b id="roiRevenue">1 648 €</b></div>
+              <div class="roi-step"><span class="roi-step-l">Otvorené (open 24,3 %)</span><b id="roiOpens">21 870</b></div>
+              <div class="roi-step"><span class="roi-step-l">Kliky (CTOR 6,2 %)</span><b id="roiClicks">1 356</b></div>
+              <div class="roi-step"><span class="roi-step-l">Nákupy (konv. 3,2 %)</span><b id="roiOrders">43</b></div>
+              <div class="roi-step roi-final"><span class="roi-step-l">Odhadovaný direct online výnos</span><b id="roiRevenue">1 648 €</b></div>
             </div>
-            <div style="margin-top:10px;font-size:11.5px;color:rgba(255,255,255,.7);text-align:right;">≈ <b id="roiPerNl" style="color:#ffcc00;">275 €</b> z jedného newsletteru</div>
+            <div id="roiUpliftRow" style="display:none;margin-top:8px;padding:9px 12px;background:rgba(255,204,0,.08);border:1px dashed rgba(255,204,0,.3);border-radius:8px;font-size:12px;color:#ffe680;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;"><span>+ asistovaný uplift (<span id="roiUpliftPct">0</span> %)</span><b id="roiUpliftAmount" style="color:#ffcc00;font-size:14px;">+0 €</b></div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:4px;padding-top:4px;border-top:1px solid rgba(255,204,0,.2);"><span>= odhadovaný online vplyv spolu</span><b id="roiTotalWithUplift" style="color:#ffcc00;font-size:15px;">1 648 €</b></div>
+            </div>
+            <div style="margin-top:10px;font-size:11.5px;color:rgba(255,255,255,.7);text-align:right;">≈ <b id="roiPerNl" style="color:#ffcc00;">275 €</b> direct online z jedného newsletteru</div>
             <div style="background:rgba(255,204,0,.1);border:1px solid rgba(255,204,0,.3);border-radius:10px;padding:11px 14px;margin-top:14px;font-size:12.5px;color:#ffe680;line-height:1.55;">
               <b style="color:#ffcc00;">💡 Páka s najväčším impactom:</b> <span id="roiInsight">Open rate — zdvihnutie z 24 % na 30 % pridá ~420 € (+25 %).</span>
             </div>
@@ -2681,7 +2687,8 @@
     open: document.getElementById('roiOpen'),
     ctr: document.getElementById('roiCtr'),
     conv: document.getElementById('roiConv'),
-    aov: document.getElementById('roiAov')
+    aov: document.getElementById('roiAov'),
+    uplift: document.getElementById('roiUplift')
   };
   const fmtInt = n => Math.round(n).toLocaleString('sk-SK').replace(/,/g, ' ');
   const fmtPct = n => n.toFixed(1).replace('.', ',') + ' %';
@@ -2692,17 +2699,23 @@
     const db = +roiInputs.db.value;
     const nls = +roiInputs.nls.value;
     const open = +roiInputs.open.value;
-    const ctr = +roiInputs.ctr.value;
+    const ctor = +roiInputs.ctr.value;  // teraz je to CTOR — kliky / otvorenia
     const conv = +roiInputs.conv.value;
     const aov = +roiInputs.aov.value;
+    const uplift = +roiInputs.uplift.value;
 
     // Update input labels
     document.getElementById('roiDbVal').textContent = fmtInt(db);
     document.getElementById('roiNlsVal').textContent = nls;
     document.getElementById('roiOpenVal').textContent = fmtPct(open);
-    document.getElementById('roiCtrVal').textContent = fmtPct(ctr);
+    document.getElementById('roiCtrVal').textContent = fmtPct(ctor);
     document.getElementById('roiConvVal').textContent = fmtPct(conv);
     document.getElementById('roiAovVal').textContent = aov + ' €';
+    document.getElementById('roiUpliftVal').textContent = uplift + ' %';
+
+    // Vypočítaný click rate (CTR z odoslaných) = open × CTOR
+    const clickRate = (open / 100) * (ctor / 100) * 100;
+    document.getElementById('roiClickRateVal').textContent = fmtPct(clickRate);
 
     // Header context labels
     document.getElementById('roiNlsLabel').textContent = (nls === 1 ? '1 newsletter' : nls < 5 ? nls + ' newslettery' : nls + ' newsletterov');
@@ -2711,7 +2724,7 @@
     // Per-newsletter funnel
     const sentPerNl = db;
     const opensPerNl = sentPerNl * open / 100;
-    const clicksPerNl = opensPerNl * ctr / 100;
+    const clicksPerNl = opensPerNl * ctor / 100;  // CTOR math: kliky = otvorenia × CTOR
     const ordersPerNl = clicksPerNl * conv / 100;
     const revenuePerNl = ordersPerNl * aov;
 
@@ -2720,26 +2733,38 @@
     const opens = opensPerNl * nls;
     const clicks = clicksPerNl * nls;
     const orders = ordersPerNl * nls;
-    const revenue = revenuePerNl * nls;
+    const directRevenue = revenuePerNl * nls;
 
     document.getElementById('roiSent').textContent = fmtInt(sent);
-    document.getElementById('roiOpens').textContent = `${fmtInt(opens)} (${fmtPct(open)})`;
-    document.getElementById('roiClicks').textContent = `${fmtInt(clicks)} (${fmtPct(ctr)})`;
-    document.getElementById('roiOrders').textContent = `${fmtInt(orders)} (${fmtPct(conv)})`;
-    document.getElementById('roiRevenue').textContent = fmtEur(revenue);
+    document.getElementById('roiOpens').textContent = `${fmtInt(opens)} (open ${fmtPct(open)})`;
+    document.getElementById('roiClicks').textContent = `${fmtInt(clicks)} (CTOR ${fmtPct(ctor)})`;
+    document.getElementById('roiOrders').textContent = `${fmtInt(orders)} (konv. ${fmtPct(conv)})`;
+    document.getElementById('roiRevenue').textContent = fmtEur(directRevenue);
     document.getElementById('roiPerNl').textContent = fmtEur(revenuePerNl);
 
-    // Dynamic insight — najsilnejšia páka (počítaná pre celkový výnos kampane)
-    const baseline = revenue;
-    const dbBoost = (db * 1.1) * (open/100) * (ctr/100) * (conv/100) * aov * nls;
-    const openBoost = db * Math.min(50, open + 6)/100 * (ctr/100) * (conv/100) * aov * nls;
-    const ctrBoost = db * (open/100) * Math.min(15, ctr + 2)/100 * (conv/100) * aov * nls;
-    const convBoost = db * (open/100) * (ctr/100) * Math.min(10, conv + 1)/100 * aov * nls;
+    // Assisted uplift — zobraz len ak > 0
+    const upliftRow = document.getElementById('roiUpliftRow');
+    if (uplift > 0) {
+      const upliftAmount = directRevenue * uplift / 100;
+      document.getElementById('roiUpliftPct').textContent = uplift;
+      document.getElementById('roiUpliftAmount').textContent = '+' + fmtEur(upliftAmount);
+      document.getElementById('roiTotalWithUplift').textContent = fmtEur(directRevenue + upliftAmount);
+      upliftRow.style.display = 'block';
+    } else {
+      upliftRow.style.display = 'none';
+    }
+
+    // Dynamic insight — najsilnejšia páka (počítaná pre celkový direct online výnos)
+    const baseline = directRevenue;
+    const dbBoost = (db * 1.1) * (open/100) * (ctor/100) * (conv/100) * aov * nls;
+    const openBoost = db * Math.min(50, open + 6)/100 * (ctor/100) * (conv/100) * aov * nls;
+    const ctorBoost = db * (open/100) * Math.min(20, ctor + 2)/100 * (conv/100) * aov * nls;
+    const convBoost = db * (open/100) * (ctor/100) * Math.min(10, conv + 1)/100 * aov * nls;
     const opts = [
       { lbl: `+10 % v databáze pridá ~${fmtEur(dbBoost - baseline)} (+${((dbBoost/baseline - 1)*100).toFixed(0)} %).`, gain: dbBoost - baseline },
       { lbl: `+6 pp open rate pridá ~${fmtEur(openBoost - baseline)} (+${((openBoost/baseline - 1)*100).toFixed(0)} %).`, gain: openBoost - baseline },
-      { lbl: `+2 pp CTR pridá ~${fmtEur(ctrBoost - baseline)} (+${((ctrBoost/baseline - 1)*100).toFixed(0)} %).`, gain: ctrBoost - baseline },
-      { lbl: `+1 pp konverzia pridá ~${fmtEur(convBoost - baseline)} (+${((convBoost/baseline - 1)*100).toFixed(0)} %).`, gain: convBoost - baseline }
+      { lbl: `+2 pp CTOR pridá ~${fmtEur(ctorBoost - baseline)} (+${((ctorBoost/baseline - 1)*100).toFixed(0)} %).`, gain: ctorBoost - baseline },
+      { lbl: `+1 pp konverzia po kliku pridá ~${fmtEur(convBoost - baseline)} (+${((convBoost/baseline - 1)*100).toFixed(0)} %).`, gain: convBoost - baseline }
     ].sort((a,b) => b.gain - a.gain);
     document.getElementById('roiInsight').textContent = opts[0].lbl;
   }

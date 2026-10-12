@@ -1,99 +1,91 @@
 {
-  "generated": "2026-10-05 06:00 UTC",
-  "week": "KW 41 · 5.–11.10.2026",
+  "generated": "2026-10-12 06:00 UTC",
+  "week": "KW 42 · 12.–18.10.2026",
   "kpi": {
-    "open": "37,3 %",
-    "ctr": "7,2 %",
-    "conv": "4,0 %",
-    "revenue": "4 139 €"
+    "open": "37,7 %",
+    "ctr": "7,0 %",
+    "conv": "3,9 %",
+    "revenue": "3 950 €"
   },
   "deltas": {
-    "open_pp": -0.1600000000000037,
-    "ctr_pp": -0.03666666666666796,
-    "conv_pp": 0.01499999999999968,
-    "revenue_pct": -0.5805012725532244
+    "open_pp": 0.37666666666667226,
+    "ctr_pp": -0.20499999999999918,
+    "conv_pp": -0.09166666666666634,
+    "revenue_pct": -4.548264437977956
   },
   "nl_metrics": [
     {
       "id": "nl0",
       "label": "NL 0 — Welcome",
-      "open": 41.81,
-      "ctr": 8.03,
-      "unsub": 0.09,
-      "conv": 5.01,
-      "score": 94
+      "open": 42.43,
+      "ctr": 7.83,
+      "unsub": 0.1,
+      "conv": 4.66,
+      "score": 95
     },
     {
       "id": "nl1",
       "label": "NL 1 — Slnečná pohotovosť",
-      "open": 38.86,
-      "ctr": 7.15,
-      "unsub": 0.17,
-      "conv": 4.02,
-      "score": 87
+      "open": 38.82,
+      "ctr": 7.49,
+      "unsub": 0.15,
+      "conv": 3.86,
+      "score": 84
     },
     {
       "id": "nl2",
       "label": "NL 2 — Festival kvíz",
-      "open": 45.87,
-      "ctr": 9.96,
-      "unsub": 0.27,
-      "conv": 5.17,
-      "score": 94
+      "open": 44.52,
+      "ctr": 9.81,
+      "unsub": 0.2,
+      "conv": 5.05,
+      "score": 97
     },
     {
       "id": "nl3",
       "label": "NL 3 — Rodinný checklist",
-      "open": 34.26,
-      "ctr": 6.42,
-      "unsub": 0.25,
-      "conv": 3.48,
-      "score": 80
+      "open": 35.21,
+      "ctr": 5.92,
+      "unsub": 0.29,
+      "conv": 3.55,
+      "score": 76
     },
     {
       "id": "nl4",
       "label": "NL 4 — Cestovka",
-      "open": 26.74,
-      "ctr": 4.18,
-      "unsub": 0.38,
-      "conv": 2.28,
-      "score": 60
+      "open": 28.53,
+      "ctr": 4.1,
+      "unsub": 0.41,
+      "conv": 1.93,
+      "score": 61
     },
     {
       "id": "nl5",
       "label": "NL 5 — Beauty rituál",
-      "open": 36.22,
-      "ctr": 7.63,
-      "unsub": 0.17,
-      "conv": 3.91,
+      "open": 36.51,
+      "ctr": 6.99,
+      "unsub": 0.12,
+      "conv": 4.27,
       "score": 89
     }
   ],
   "wins": [
-    "NL 0 — Welcome má skóre 94, najvyššie v sérii (open 41.8 %).",
-    "Top sezónny signál: After-sun (+182 %).",
+    "NL 2 — Festival kvíz má skóre 97, najvyššie v sérii (open 44.5 %).",
+    "Top sezónny signál: After-sun (+186 %).",
     "Atribuovaný výnos drží trajektóriu — ROAS nad cieľom 5×."
   ],
   "concerns": [
-    "NL 4 — Cestovka open rate 26.7 % len +15 % vs benchmark — revízia subject line.",
-    "Unsub rate NL 4 — Cestovka 0.38 % nad cieľom 0,30 %.",
+    "Unsub rate NL 4 — Cestovka 0.41 % nad cieľom 0,30 %.",
     "Pinterest trends:read API zamietnutý — panel beží na curated Predicts 2026."
   ],
   "top_trend": {
     "label": "After-sun",
-    "change": 182,
+    "change": 186,
     "weekly": [
       0.0,
       0.0,
       0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      18.7,
-      0.0,
+      25.7,
       0.0,
       0.0,
       0.0,
@@ -101,34 +93,41 @@
       0.0,
       0.0,
       0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      23.7,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      24.7,
+      61.0,
       0.0,
       27.7,
       0.0,
-      21.3,
-      43.0,
-      33.3,
       0.0,
-      30.7,
-      49.7,
-      21.7,
-      0.0,
-      20.7,
-      0.0,
-      27.3,
-      18.0,
-      21.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      19.0,
+      27.0,
+      25.3,
       0.0,
       0.0,
       0.0,
       0.0,
       0.0,
       0.0,
-      26.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
       0.0,
       0.0,
       0.0,
@@ -142,27 +141,27 @@
         "v": 100
       },
       {
-        "q": "after sun film",
-        "v": 63
-      },
-      {
         "q": "nivea after sun",
         "v": 60
       },
       {
-        "q": "bioderma photoderm after sun",
-        "v": 59
+        "q": "after sun lotion",
+        "v": 51
       },
       {
-        "q": "garnier after sun",
-        "v": 34
+        "q": "bioderma photoderm after sun",
+        "v": 51
+      },
+      {
+        "q": "after sun film",
+        "v": 38
       }
     ]
   },
   "aiSummary": {
-    "sk": "Séria <b>Leto s dm</b> beží nad benchmarkom — priemerný open rate <b>37,3 %</b> ťahá najmä <b>NL 0 — Welcome</b> (41.8 %). Podpriemer: NL 4 — Cestovka (26.7 %) — replikovať mechaniku top performer-a. Atribuovaný výnos <b>4 139 €</b>, top sezónny signál <i>After-sun</i> potvrdzuje načasovanie.",
-    "de": "Die Kampagne <b>Leto s dm</b> übertrifft den Benchmark — durchschnittliche Öffnungsrate <b>37 3 %</b> wird hauptsächlich von <b>NL 0 — Welcome</b> (41.8 %) getragen. Underperformer: NL 4 — Cestovka (26.7 %) — Mechanik vom Top-Performer übernehmen. Zugeordneter Umsatz <b>4 139 €</b>  Top-Trend <i>After-sun</i> bestätigt das Timing.",
-    "en": "The <b>Leto s dm</b> campaign tracks above benchmark — average open rate <b>37,3 %</b> driven primarily by <b>NL 0 — Welcome</b> (41.8 %). Underperformer: NL 4 — Cestovka (26.7 %) — replicate the top-performer mechanic. Attributed revenue <b>€4,139</b>, top trend <i>After-sun</i> confirms timing."
+    "sk": "Séria <b>Leto s dm</b> beží nad benchmarkom — priemerný open rate <b>37,7 %</b> ťahá najmä <b>NL 2 — Festival kvíz</b> (44.5 %). Podpriemer: NL 4 — Cestovka (28.5 %) — replikovať mechaniku top performer-a. Atribuovaný výnos <b>3 950 €</b>, top sezónny signál <i>After-sun</i> potvrdzuje načasovanie.",
+    "de": "Die Kampagne <b>Leto s dm</b> übertrifft den Benchmark — durchschnittliche Öffnungsrate <b>37 7 %</b> wird hauptsächlich von <b>NL 2 — Festival kvíz</b> (44.5 %) getragen. Underperformer: NL 4 — Cestovka (28.5 %) — Mechanik vom Top-Performer übernehmen. Zugeordneter Umsatz <b>3 950 €</b>  Top-Trend <i>After-sun</i> bestätigt das Timing.",
+    "en": "The <b>Leto s dm</b> campaign tracks above benchmark — average open rate <b>37,7 %</b> driven primarily by <b>NL 2 — Festival kvíz</b> (44.5 %). Underperformer: NL 4 — Cestovka (28.5 %) — replicate the top-performer mechanic. Attributed revenue <b>€3,950</b>, top trend <i>After-sun</i> confirms timing."
   },
   "_meta": {
     "source": "Mailchimp Retail benchmark 2024 (jitter mock) + Google Trends SK · auto",

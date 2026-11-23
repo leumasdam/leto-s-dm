@@ -1,92 +1,92 @@
 {
-  "generated": "2026-11-16 06:00 UTC",
-  "week": "KW 47 · 16.–22.11.2026",
+  "generated": "2026-11-23 06:00 UTC",
+  "week": "KW 48 · 23.–29.11.2026",
   "kpi": {
-    "open": "37,8 %",
+    "open": "37,0 %",
     "ctr": "7,1 %",
     "conv": "3,9 %",
-    "revenue": "4 070 €"
+    "revenue": "4 005 €"
   },
   "deltas": {
-    "open_pp": 0.05666666666666487,
-    "ctr_pp": -0.04166666666666696,
-    "conv_pp": 0.10166666666666657,
-    "revenue_pct": 1.314405172626687
+    "open_pp": -0.7666666666666657,
+    "ctr_pp": -0.011666666666666714,
+    "conv_pp": -0.013333333333333197,
+    "revenue_pct": -1.5916392949448466
   },
   "nl_metrics": [
     {
       "id": "nl0",
       "label": "NL 0 — Welcome",
-      "open": 41.74,
-      "ctr": 8.23,
-      "unsub": 0.12,
-      "conv": 4.72,
-      "score": 94
+      "open": 42.22,
+      "ctr": 7.93,
+      "unsub": 0.14,
+      "conv": 4.7,
+      "score": 97
     },
     {
       "id": "nl1",
       "label": "NL 1 — Slnečná pohotovosť",
-      "open": 38.14,
-      "ctr": 6.64,
-      "unsub": 0.17,
-      "conv": 3.66,
-      "score": 85
+      "open": 37.66,
+      "ctr": 7.36,
+      "unsub": 0.15,
+      "conv": 4.13,
+      "score": 89
     },
     {
       "id": "nl2",
       "label": "NL 2 — Festival kvíz",
-      "open": 44.63,
-      "ctr": 10.27,
-      "unsub": 0.24,
-      "conv": 5.22,
+      "open": 44.26,
+      "ctr": 9.95,
+      "unsub": 0.22,
+      "conv": 5.21,
       "score": 98
     },
     {
       "id": "nl3",
       "label": "NL 3 — Rodinný checklist",
-      "open": 36.06,
-      "ctr": 6.27,
-      "unsub": 0.26,
-      "conv": 3.41,
-      "score": 78
+      "open": 34.27,
+      "ctr": 5.92,
+      "unsub": 0.25,
+      "conv": 3.18,
+      "score": 79
     },
     {
       "id": "nl4",
       "label": "NL 4 — Cestovka",
-      "open": 28.9,
-      "ctr": 3.43,
-      "unsub": 0.41,
-      "conv": 2.19,
-      "score": 59
+      "open": 26.99,
+      "ctr": 3.53,
+      "unsub": 0.44,
+      "conv": 2.0,
+      "score": 57
     },
     {
       "id": "nl5",
       "label": "NL 5 — Beauty rituál",
-      "open": 37.04,
-      "ctr": 7.66,
+      "open": 36.51,
+      "ctr": 7.74,
       "unsub": 0.13,
-      "conv": 4.27,
-      "score": 90
+      "conv": 4.17,
+      "score": 91
     }
   ],
   "wins": [
-    "NL 2 — Festival kvíz má skóre 98, najvyššie v sérii (open 44.6 %).",
-    "Top sezónny signál: After-sun (+239 %).",
+    "NL 2 — Festival kvíz má skóre 98, najvyššie v sérii (open 44.3 %).",
+    "Top sezónny signál: After-sun (+197 %).",
     "Atribuovaný výnos drží trajektóriu — ROAS nad cieľom 5×."
   ],
   "concerns": [
-    "Unsub rate NL 4 — Cestovka 0.41 % nad cieľom 0,30 %.",
+    "NL 4 — Cestovka open rate 27.0 % len +16 % vs benchmark — revízia subject line.",
+    "Unsub rate NL 4 — Cestovka 0.44 % nad cieľom 0,30 %.",
     "Pinterest trends:read API zamietnutý — panel beží na curated Predicts 2026."
   ],
   "top_trend": {
     "label": "After-sun",
-    "change": 239,
+    "change": 197,
     "weekly": [
       0.0,
       0.0,
       0.0,
       0.0,
-      24.7,
       0.0,
       0.0,
       0.0,
@@ -102,21 +102,21 @@
       0.0,
       0.0,
       0.0,
+      29.3,
       0.0,
       0.0,
       0.0,
-      57.0,
+      28.7,
+      27.7,
       0.0,
+      65.3,
+      52.0,
       22.3,
-      48.3,
-      44.7,
-      17.7,
-      19.3,
-      0.0,
-      23.0,
       0.0,
       0.0,
-      28.0,
+      27.0,
+      0.0,
+      20.3,
       0.0,
       0.0,
       0.0,
@@ -129,6 +129,7 @@
       0.0,
       0.0,
       0.0,
+      32.0,
       0.0,
       0.0,
       0.0,
@@ -142,26 +143,26 @@
       },
       {
         "q": "nivea after sun",
-        "v": 59
+        "v": 54
       },
       {
         "q": "bioderma photoderm after sun",
-        "v": 52
-      },
-      {
-        "q": "after sun lotion",
         "v": 48
       },
       {
+        "q": "after sun lotion",
+        "v": 46
+      },
+      {
         "q": "after sun film",
-        "v": 44
+        "v": 39
       }
     ]
   },
   "aiSummary": {
-    "sk": "Séria <b>Leto s dm</b> beží nad benchmarkom — priemerný open rate <b>37,8 %</b> ťahá najmä <b>NL 2 — Festival kvíz</b> (44.6 %). Podpriemer: NL 4 — Cestovka (28.9 %) — replikovať mechaniku top performer-a. Atribuovaný výnos <b>4 070 €</b>, top sezónny signál <i>After-sun</i> potvrdzuje načasovanie.",
-    "de": "Die Kampagne <b>Leto s dm</b> übertrifft den Benchmark — durchschnittliche Öffnungsrate <b>37 8 %</b> wird hauptsächlich von <b>NL 2 — Festival kvíz</b> (44.6 %) getragen. Underperformer: NL 4 — Cestovka (28.9 %) — Mechanik vom Top-Performer übernehmen. Zugeordneter Umsatz <b>4 070 €</b>  Top-Trend <i>After-sun</i> bestätigt das Timing.",
-    "en": "The <b>Leto s dm</b> campaign tracks above benchmark — average open rate <b>37,8 %</b> driven primarily by <b>NL 2 — Festival kvíz</b> (44.6 %). Underperformer: NL 4 — Cestovka (28.9 %) — replicate the top-performer mechanic. Attributed revenue <b>€4,070</b>, top trend <i>After-sun</i> confirms timing."
+    "sk": "Séria <b>Leto s dm</b> beží nad benchmarkom — priemerný open rate <b>37,0 %</b> ťahá najmä <b>NL 2 — Festival kvíz</b> (44.3 %). Podpriemer: NL 4 — Cestovka (27.0 %) — replikovať mechaniku top performer-a. Atribuovaný výnos <b>4 005 €</b>, top sezónny signál <i>After-sun</i> potvrdzuje načasovanie.",
+    "de": "Die Kampagne <b>Leto s dm</b> übertrifft den Benchmark — durchschnittliche Öffnungsrate <b>37 0 %</b> wird hauptsächlich von <b>NL 2 — Festival kvíz</b> (44.3 %) getragen. Underperformer: NL 4 — Cestovka (27.0 %) — Mechanik vom Top-Performer übernehmen. Zugeordneter Umsatz <b>4 005 €</b>  Top-Trend <i>After-sun</i> bestätigt das Timing.",
+    "en": "The <b>Leto s dm</b> campaign tracks above benchmark — average open rate <b>37,0 %</b> driven primarily by <b>NL 2 — Festival kvíz</b> (44.3 %). Underperformer: NL 4 — Cestovka (27.0 %) — replicate the top-performer mechanic. Attributed revenue <b>€4,005</b>, top trend <i>After-sun</i> confirms timing."
   },
   "_meta": {
     "source": "Mailchimp Retail benchmark 2024 (jitter mock) + Google Trends SK · auto",
